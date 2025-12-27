@@ -650,6 +650,7 @@ dependencies = [
 [package.metadata]
 requires-dist = [
     { name = "mkdocs", extras = ["i18n"], specifier = ">=1.6,<2" },
+    { name = "mkdocs-material" },
     { name = "mkdocs-material", specifier = "==9.*" },
     { name = "mkdocs-with-pdf" },
     { name = "pymdown-extensions", specifier = ">=10,<11" },
