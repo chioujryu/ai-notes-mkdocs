@@ -1,0 +1,5650 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Attention - My AI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#attention" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="My AI Documentation" class="md-header__button md-logo" aria-label="My AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My AI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Attention
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/chioujryu/my-mkdocs-AI-docs/tree/main" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    my-mkdocs-AI-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="My AI Documentation" class="md-nav__button md-logo" aria-label="My AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My AI Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/chioujryu/my-mkdocs-AI-docs/tree/main" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    my-mkdocs-AI-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loss
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Loss
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/Loss/Cross-Entropy/Cross-Entropy.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cross-Entropy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/Loss/Cross-Entropy/BCELoss.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BCELoss
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/Normalization.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Detection_Segmentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Detection_Segmentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Detection_Segmentation/DETR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DETR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Detection_Segmentation/Grounding_DINO.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grounding DINO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Detection_Segmentation/Mask2Former/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mask2Former
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Detection_Segmentation/Mask_DINO.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mask DINO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Detection_Segmentation/Grounding-SAM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grounding-SAM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequence Labeling
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sequence Labeling
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Sequence_Labeling/NER/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Sequence_Labeling/BIO_BILOU/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BIO/ BILOU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Attention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Transformer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformer/Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformer/Switch_Transformer.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch Transformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Transformer/Swin_Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swin Transformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Positional_Encoding
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Positional_Encoding
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Positional_Encoding/Sinusoidal_Positional_Encoding.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sinusoidal Positional Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Positional_Encoding/Relative_Positional_Encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Relative Positional Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Positional_Encoding/Better_Relative_PE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Better Relative PE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Positional_Encoding/Rotary_Position_Embedding_RoPE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rotary Position Embedding RoPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Positional_Encoding/ALiBi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ALiBi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../BERT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BERT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GPT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GPT-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPT-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../T5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLM
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VLM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VLM/1_vision-transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ViT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VLM/2_CLIP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLIP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VLM/3_BLIP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BLIP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VLM/4_BLIP-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BLIP-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VLM/5_SigLIP-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SigLIP-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VLM/6_Grounding-DINO.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grounding-DINO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VLM/7_Grounding-SAM.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grounding-SAM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VLM/8_LLaVA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLaVA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VLM/9_Florence_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Florence-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VLM/10_nanoVLM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nanoVLM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../VLM/11_Qwen2.5-VL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Qwen2.5-VL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diffusion
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diffusion
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VAE
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VAE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/VAE/VAE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VAE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/VAE/VQ-VAE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VQ-VAE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sampler
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sampler
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/Sampler/DDPM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DDPM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/Sampler/DDIM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DDIM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/Sampler/DPM-Solver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DPM-Solver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/LDM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/DiT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DiT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/Stable-Diffusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stable Diffusion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/HunyuanImage-2.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HunyuanImage 2.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Image-to-Text
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Image-to-Text
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Image-to-Text/Florence_2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Florence 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#self-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Self-Attention
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross Attention
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cross Attention">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1cross-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.Cross Attention 是什麼
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.Cross Attention 是什麼">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1. 用生活例子解釋
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 技術上的作用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 淺顯的例子
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        數學運算講解
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="attention">Attention</h1>
+<h2 id="self-attention">Self-Attention</h2>
+<h2 id="cross-attention">Cross Attention</h2>
+<p><img alt="alt text" src="../assets/%E4%BD%A0%E4%B8%80%E5%AE%9A%E8%A6%81%E6%87%82%E5%BE%97%20AI%20%E7%AD%86%E8%A8%98_v2/image-2.png" /></p>
+<h3 id="1cross-attention"><strong>1.Cross Attention 是什麼</strong></h3>
+<h4 id="11">1.1. 用生活例子解釋</h4>
+<p>想像你在看一本畫冊，同時旁邊有人在念解說詞。<br />
+- <strong>你眼睛看到的畫面</strong> = 圖像特徵（Image Features）<br />
+- <strong>你耳朵聽到的解說詞</strong> = 文字特徵（Text Features）<br />
+- <strong>Cross Attention</strong> 就像你一邊聽解說一邊「對照」畫面，把聽到的內容和看到的細節對應起來。  </p>
+<p>這個過程中：
+- 你的<strong>問題</strong>（或當前的關注點）→ 就是 Cross Attention 裡的 <strong>Query (Q)</strong><br />
+- 圖像中各個區域的資訊 → 就是 <strong>Key (K)</strong> 與 <strong>Value (V)</strong><br />
+- Cross Attention 會根據 <strong>Q 與 K 的相似度</strong> 找到最相關的部分，然後從 <strong>V</strong> 中取出資訊，融合到你的思考中。</p>
+<hr />
+<h4 id="12">1.2 技術上的作用</h4>
+<p>在 <strong>Self Attention</strong> 中，Q、K、V 都來自<strong>同一個序列</strong>（例如只有文字）。<br />
+但在 <strong>Cross Attention</strong> 中：
+- <strong>Q</strong> 來自一個模態（例如文字）
+- <strong>K、V</strong> 來自另一個模態（例如圖片）</p>
+<p><strong>作用</strong>：  </p>
+<blockquote>
+<p>讓一個模態「有條件地」關注另一個模態的資訊，從而融合不同來源的訊息。</p>
+</blockquote>
+<hr />
+<h4 id="13">1.3 淺顯的例子</h4>
+<p><strong>🌰 例子 1：視覺問答（VQA）</strong>
+- 問題（文字）：<strong>「圖片中那個人穿什麼顏色的衣服？」</strong>
+- 圖片（視覺特徵）：包含背景、人物、物品等 patch 的特徵。
+- Cross Attention：
+  - Q：來自問題文字編碼（「那個人」、「衣服」、「顏色」等詞）
+  - K、V：來自圖片的 patch 特徵
+  - 模型會讓 Q 關注與「人」相關的圖片部分 → 找到「衣服」 → 獲取顏色 → 輸出答案「藍色」。</p>
+<hr />
+<p><strong>🌰 例子 2：圖片生成（如 Stable Diffusion）</strong>
+- 輸入文字：<strong>「一隻戴著墨鏡的貓在海邊喝咖啡」</strong>
+- Cross Attention：
+  - Q：來自圖像生成過程中的中間圖像特徵
+  - K、V：來自文字編碼（墨鏡、貓、海邊、咖啡）
+  - 生成每個區域像素時，會根據 Q 找到對應的文字描述，確保圖片細節符合描述。
+Z</p>
+<hr />
+<p><strong>🌰 例子 3：影片字幕生成</strong>
+- 影片影格特徵（K、V）
+- 當前字幕生成的上下文（Q）
+- Cross Attention 幫助模型在生成下一個詞時，根據上下文去關注影片中對應的動作或場景。</p>
+<h3 id="_1">數學運算講解</h3>
+<h1 id="transformer">Transformer</h1>
+<p><img alt="alt text" src="../assets/%E4%BD%A0%E4%B8%80%E5%AE%9A%E8%A6%81%E6%87%82%E5%BE%97%20AI%20%E7%AD%86%E8%A8%98_v2/image.png" /></p>
+<h2 id="encoder"><strong>Encoder</strong></h2>
+<p>好的，我看到你給的圖是 Transformer 的 Encoder（BERT 左邊）和 Decoder（GPT 右邊）結構圖。你說只需要在一個 <strong>Encoder Block</strong> 裡一步一步做前向傳播，而且只包含 <strong>Input Embedding → Positional Encoding → Multi-Head Attention</strong> 這三個部分，那我們就用一個真實的數值例子來算。</p>
+<hr />
+<h3 id="1"><strong>1.假設輸入</strong></h3>
+<p>假設我們的輸入是一個簡單的句子：</p>
+<div class="highlight"><pre><span></span><code>&quot;He likes AI&quot;
+</code></pre></div>
+<p>假設我們詞彙表（vocab）很小，對應的 token ID 是：</p>
+<div class="highlight"><pre><span></span><code>He     → 1
+likes  → 5
+AI     → 8
+</code></pre></div>
+<p>所以輸入的 token IDs 是：
+<div class="highlight"><pre><span></span><code>[1, 5, 8]
+</code></pre></div></p>
+<hr />
+<h3 id="2input-embedding"><strong>2.Input Embedding</strong></h3>
+<p>假設 embedding 維度是 <span class="arithmatex">\( d_\text{model} = 4 \)</span>，詞嵌入矩陣 <span class="arithmatex">\( E \)</span> 是：</p>
+<div class="arithmatex">\[
+E =
+\begin{bmatrix}
+0.1 &amp; 0.3 &amp; 0.5 &amp; 0.7 \\   % token 0
+0.2 &amp; 0.4 &amp; 0.6 &amp; 0.8 \\   % token 1 (He)
+0.9 &amp; 0.1 &amp; 0.1 &amp; 0.3 \\
+0.1 &amp; 0.2 &amp; 0.1 &amp; 0.9 \\
+0.5 &amp; 0.5 &amp; 0.5 &amp; 0.5 \\
+0.6 &amp; 0.6 &amp; 0.4 &amp; 0.4 \\   % token 5 (likes)
+0.3 &amp; 0.7 &amp; 0.2 &amp; 0.8 \\
+0.9 &amp; 0.5 &amp; 0.3 &amp; 0.1 \\
+0.8 &amp; 0.2 &amp; 0.4 &amp; 0.6     % token 8 (AI)
+\end{bmatrix}
+\]</div>
+<p>查表得到：</p>
+<div class="arithmatex">\[
+\text{Embedding} =
+\begin{bmatrix}
+0.2 &amp; 0.4 &amp; 0.6 &amp; 0.8 \\  % He
+0.6 &amp; 0.6 &amp; 0.4 &amp; 0.4 \\  % likes
+0.8 &amp; 0.2 &amp; 0.4 &amp; 0.6     % AI
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="3positional-encoding"><strong>3.Positional Encoding</strong></h3>
+<p>假設我們用最簡化的（sinusoidal）位置編碼，結果如下（假設已計算好）：</p>
+<div class="arithmatex">\[
+PE =
+\begin{bmatrix}
+0.00 &amp; 1.00 &amp; 0.00 &amp; 1.00 \\ % pos 0
+0.84 &amp; 0.54 &amp; 0.54 &amp; 0.84 \\ % pos 1
+0.91 &amp; 0.42 &amp; 0.91 &amp; 0.42    % pos 2
+\end{bmatrix}
+\]</div>
+<p>加入位置編碼：</p>
+<div class="arithmatex">\[
+X = \text{Embedding} + PE =
+\begin{bmatrix}
+0.2 &amp; 1.4 &amp; 0.6 &amp; 1.8 \\
+1.44 &amp; 1.14 &amp; 0.94 &amp; 1.24 \\
+1.71 &amp; 0.62 &amp; 1.31 &amp; 1.02
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="4multi-head-attention"><strong>4.Multi-Head Attention</strong></h3>
+<p>（假設 2 個頭，每頭維度 = 2）
+<img alt="alt text" src="../assets/%E4%BD%A0%E4%B8%80%E5%AE%9A%E8%A6%81%E6%87%82%E5%BE%97%20AI%20%E7%AD%86%E8%A8%98_v2/image-1.png" /></p>
+<h4 id="step-41-q-k-v">Step 4.1: 建立 Q, K, V</h4>
+<p>對於每一個頭，我們有不同的參數矩陣：</p>
+<p>假設：</p>
+<div class="arithmatex">\[
+W_Q^{(1)} =
+\begin{bmatrix}
+0.1 &amp; 0.3 \\
+0.2 &amp; 0.4 \\
+0.3 &amp; 0.5 \\
+0.4 &amp; 0.6
+\end{bmatrix}, \quad
+W_K^{(1)} =
+\begin{bmatrix}
+0.2 &amp; 0.1 \\
+0.4 &amp; 0.3 \\
+0.6 &amp; 0.5 \\
+0.8 &amp; 0.7
+\end{bmatrix}, \quad
+W_V^{(1)} =
+\begin{bmatrix}
+0.5 &amp; 0.9 \\
+0.1 &amp; 0.3 \\
+0.7 &amp; 0.5 \\
+0.2 &amp; 0.4
+\end{bmatrix}
+\]</div>
+<p>我們先計算第一個頭的 Q:</p>
+<div class="arithmatex">\[
+Q^{(1)} = X \cdot W_Q^{(1)}
+\]</div>
+<p>以第一行為例：</p>
+<div class="arithmatex">\[
+[0.2, 1.4, 0.6, 1.8] \cdot
+\begin{bmatrix}
+0.1 &amp; 0.3 \\
+0.2 &amp; 0.4 \\
+0.3 &amp; 0.5 \\
+0.4 &amp; 0.6
+\end{bmatrix}=
+[ (0.2)(0.1)+(1.4)(0.2)+(0.6)(0.3)+(1.8)(0.4),\;
+  (0.2)(0.3)+(1.4)(0.4)+(0.6)(0.5)+(1.8)(0.6) ]
+\]</div>
+<div class="arithmatex">\[
+= [0.02+0.28+0.18+0.72,\; 0.06+0.56+0.30+1.08]
+\]</div>
+<div class="arithmatex">\[
+= [1.20, 2.00]
+\]</div>
+<p>同理計算三行，假設結果：</p>
+<div class="arithmatex">\[
+Q^{(1)} =
+\begin{bmatrix}
+1.20 &amp; 2.00 \\
+1.00 &amp; 1.80 \\
+1.10 &amp; 1.90
+\end{bmatrix}
+\]</div>
+<p>同樣計算 <span class="arithmatex">\(K^{(1)}\)</span>、<span class="arithmatex">\(V^{(1)}\)</span>（這裡省略細算，但原理相同）。</p>
+<hr />
+<h4 id="step-42-attention-score">Step 4.2: Attention Score</h4>
+<div class="arithmatex">\[
+\text{Attention}(Q,K,V) = \text{Softmax}\left( \frac{QK^T}{\sqrt{d_k}} \right) V
+\]</div>
+<p>假設 <span class="arithmatex">\(d_k = 2\)</span>，則 <span class="arithmatex">\(\sqrt{d_k} = \sqrt{2} \approx 1.414\)</span>。</p>
+<p>假設計完 <span class="arithmatex">\(QK^T\)</span> 後得到：</p>
+<div class="arithmatex">\[
+QK^T =
+\begin{bmatrix}
+5.0 &amp; 4.6 &amp; 4.8 \\
+4.6 &amp; 4.4 &amp; 4.5 \\
+4.8 &amp; 4.5 &amp; 4.7
+\end{bmatrix}
+\]</div>
+<p>除以 <span class="arithmatex">\(\sqrt{2}\)</span>：</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+3.54 &amp; 3.25 &amp; 3.40 \\
+3.25 &amp; 3.11 &amp; 3.18 \\
+3.40 &amp; 3.18 &amp; 3.32
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="step-43-softmax">Step 4.3 Softmax（每一行分別做）</h4>
+<p>我們現在有：</p>
+<div class="arithmatex">\[
+\frac{QK^T}{\sqrt{d_k}} =
+\begin{bmatrix}
+3.54 &amp; 3.25 &amp; 3.40 \\
+3.25 &amp; 3.11 &amp; 3.18 \\
+3.40 &amp; 3.18 &amp; 3.32
+\end{bmatrix}
+\]</div>
+<hr />
+<h5 id="softmax"><strong>第一行 Softmax</strong></h5>
+<p>先取 exp：</p>
+<div class="arithmatex">\[
+e^{3.54} \approx 34.48,\quad e^{3.25} \approx 25.79,\quad e^{3.40} \approx 29.96
+\]</div>
+<p>總和：</p>
+<div class="arithmatex">\[
+\text{sum} \approx 34.48 + 25.79 + 29.96 = 90.23
+\]</div>
+<p>Softmax：</p>
+<div class="arithmatex">\[
+[\,0.382, \; 0.286, \; 0.332\,]
+\]</div>
+<hr />
+<h5 id="softmax_1"><strong>第二行 Softmax</strong></h5>
+<div class="arithmatex">\[
+e^{3.25} \approx 25.79,\quad e^{3.11} \approx 22.41,\quad e^{3.18} \approx 24.03
+\]</div>
+<p>總和：</p>
+<div class="arithmatex">\[
+72.23
+\]</div>
+<p>Softmax：</p>
+<div class="arithmatex">\[
+[\,0.357, \; 0.310, \; 0.333\,]
+\]</div>
+<hr />
+<h5 id="softmax_2"><strong>第三行 Softmax</strong></h5>
+<div class="arithmatex">\[
+e^{3.40} \approx 29.96,\quad e^{3.18} \approx 24.03,\quad e^{3.32} \approx 27.63
+\]</div>
+<p>總和：</p>
+<div class="arithmatex">\[
+81.62
+\]</div>
+<p>Softmax：</p>
+<div class="arithmatex">\[
+[\,0.367, \; 0.294, \; 0.339\,]
+\]</div>
+<hr />
+<p>因此注意力權重矩陣 <span class="arithmatex">\(A^{(1)}\)</span> 為：</p>
+<div class="arithmatex">\[
+A^{(1)} \approx
+\begin{bmatrix}
+0.382 &amp; 0.286 &amp; 0.332 \\
+0.357 &amp; 0.310 &amp; 0.333 \\
+0.367 &amp; 0.294 &amp; 0.339
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="step-44-v">Step 4.4 乘 V</h4>
+<p>假設第一個頭的 <span class="arithmatex">\(V^{(1)}\)</span> 已計算為：</p>
+<div class="arithmatex">\[
+V^{(1)} =
+\begin{bmatrix}
+0.50 &amp; 0.90 \\
+0.10 &amp; 0.30 \\
+0.70 &amp; 0.50
+\end{bmatrix}
+\]</div>
+<p>計算：</p>
+<div class="arithmatex">\[
+O^{(1)} = A^{(1)} \cdot V^{(1)}
+\]</div>
+<hr />
+<h5 id="_2"><strong>第一行輸出</strong></h5>
+<p>第一列：</p>
+<div class="arithmatex">\[
+0.382(0.50) + 0.286(0.10) + 0.332(0.70) = 0.191 + 0.0286 + 0.2324 \approx 0.452
+\]</div>
+<p>第二列：</p>
+<div class="arithmatex">\[
+0.382(0.90) + 0.286(0.30) + 0.332(0.50) = 0.3438 + 0.0858 + 0.166 \approx 0.596
+\]</div>
+<p>→ <span class="arithmatex">\([0.452, 0.596]\)</span></p>
+<hr />
+<h5 id="_3"><strong>第二行輸出</strong></h5>
+<div class="arithmatex">\[
+[0.357, 0.310, 0.333] \cdot V^{(1)}
+\]</div>
+<p>第一列：</p>
+<div class="arithmatex">\[
+0.1785 + 0.031 + 0.2331 \approx 0.443
+\]</div>
+<p>第二列：</p>
+<div class="arithmatex">\[
+0.3213 + 0.093 + 0.1665 \approx 0.581
+\]</div>
+<p>→ <span class="arithmatex">\([0.443, 0.581]\)</span></p>
+<hr />
+<h4 id="_4"><strong>第三行輸出</strong></h4>
+<div class="arithmatex">\[
+[0.367, 0.294, 0.339] \cdot V^{(1)}
+\]</div>
+<p>第一列：</p>
+<div class="arithmatex">\[
+0.1835 + 0.0294 + 0.2373 \approx 0.450
+\]</div>
+<p>第二列：</p>
+<div class="arithmatex">\[
+0.3303 + 0.0882 + 0.1695 \approx 0.588
+\]</div>
+<p>→ <span class="arithmatex">\([0.450, 0.588]\)</span></p>
+<hr />
+<p>因此第一個頭的輸出：</p>
+<div class="arithmatex">\[
+O^{(1)} \approx
+\begin{bmatrix}
+0.452 &amp; 0.596 \\
+0.443 &amp; 0.581 \\
+0.450 &amp; 0.588
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="_5"><strong>第二個頭的計算（假設數據）</strong></h4>
+<p>為了節省篇幅，假設我們已經得到第二個頭的輸出：</p>
+<div class="arithmatex">\[
+O^{(2)} \approx
+\begin{bmatrix}
+0.30 &amp; 0.70 \\
+0.60 &amp; 0.90 \\
+0.80 &amp; 0.60
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="_6"><strong>拼接所有頭</strong></h4>
+<div class="arithmatex">\[
+O_{\text{concat}} =
+\begin{bmatrix}
+0.452 &amp; 0.596 &amp; 0.300 &amp; 0.700 \\
+0.443 &amp; 0.581 &amp; 0.600 &amp; 0.900 \\
+0.450 &amp; 0.588 &amp; 0.800 &amp; 0.600
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="w_o"><strong>輸出線性層 <span class="arithmatex">\(W_O\)</span></strong></h4>
+<p>假設：</p>
+<div class="arithmatex">\[
+W_O =
+\begin{bmatrix}
+0.2 &amp; 0.1 &amp; 0.0 &amp; 0.3 \\
+0.0 &amp; 0.2 &amp; 0.4 &amp; 0.1 \\
+0.5 &amp; 0.1 &amp; 0.3 &amp; 0.2 \\
+0.1 &amp; 0.0 &amp; 0.2 &amp; 0.4
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="token-1"><strong>Token 1</strong></h4>
+<div class="arithmatex">\[
+[0.452, 0.596, 0.300, 0.700] \cdot W_O
+\]</div>
+<p>1️⃣：</p>
+<div class="arithmatex">\[
+0.452(0.2) + 0.596(0.0) + 0.300(0.5) + 0.700(0.1) = 0.0904+0+0.150+0.070=0.3104
+\]</div>
+<p>2️⃣：</p>
+<div class="arithmatex">\[
+0.0452+0.1192+0.030+0=0.1944
+\]</div>
+<p>3️⃣：</p>
+<div class="arithmatex">\[
+0+0.2384+0.090+0.140=0.4684
+\]</div>
+<p>4️⃣：</p>
+<div class="arithmatex">\[
+0.1356+0.0596+0.060+0.280=0.5352
+\]</div>
+<p>→ <span class="arithmatex">\([0.310, 0.194, 0.468, 0.535]\)</span></p>
+<hr />
+<p>同理計算 Token 2、Token 3（略），假設最後結果：</p>
+<div class="arithmatex">\[
+\text{MHA_output} \approx
+\begin{bmatrix}
+0.310 &amp; 0.194 &amp; 0.468 &amp; 0.535 \\
+0.414 &amp; 0.244 &amp; 0.508 &amp; 0.605 \\
+0.470 &amp; 0.270 &amp; 0.520 &amp; 0.590
+\end{bmatrix}
+\]</div>
+<h3 id="5-add-norm"><strong>5. Add &amp; Norm（第一次）</strong></h3>
+<p>（第一次殘差連接與層正規化）</p>
+<h4 id="_7">殘差相加</h4>
+<p>殘差輸入 <span class="arithmatex">\(X\)</span>（Positional Encoding 後）：</p>
+<div class="arithmatex">\[
+X =
+\begin{bmatrix}
+0.20 &amp; 1.40 &amp; 0.60 &amp; 1.80 \\
+1.44 &amp; 1.14 &amp; 0.94 &amp; 1.24 \\
+1.71 &amp; 0.62 &amp; 1.31 &amp; 1.02
+\end{bmatrix}
+\]</div>
+<p>多頭注意力輸出：</p>
+<div class="arithmatex">\[
+\text{MHA_output} =
+\begin{bmatrix}
+0.310 &amp; 0.194 &amp; 0.468 &amp; 0.535 \\
+0.414 &amp; 0.244 &amp; 0.508 &amp; 0.605 \\
+0.470 &amp; 0.270 &amp; 0.520 &amp; 0.590
+\end{bmatrix}
+\]</div>
+<p>相加：</p>
+<div class="arithmatex">\[
+S = X + \text{MHA_output} =
+\begin{bmatrix}
+0.510 &amp; 1.594 &amp; 1.068 &amp; 2.335 \\
+1.854 &amp; 1.384 &amp; 1.448 &amp; 1.845 \\
+2.180 &amp; 0.890 &amp; 1.830 &amp; 1.610
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="layernorm1-0">層正規化（LayerNorm，γ=1, β=0）</h4>
+<p>對每一行做：</p>
+<div class="arithmatex">\[
+\text{LN}(x) = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}}
+\]</div>
+<p><strong>Token 1</strong>：
+- 均值：
+<span class="arithmatex">\(\mu = (0.510 + 1.594 + 1.068 + 2.335)/4 \approx 1.37675\)</span><br />
+- 方差：
+<span class="arithmatex">\(\sigma^2 \approx 0.565\)</span>，標準差 <span class="arithmatex">\(\sigma \approx 0.751\)</span><br />
+- 標準化：</p>
+<div class="arithmatex">\[
+[-1.153, 0.290, -0.410, 1.273]
+\]</div>
+<p><strong>Token 2</strong>：
+- <span class="arithmatex">\(\mu \approx 1.63275\)</span>，<span class="arithmatex">\(\sigma \approx 0.183\)</span><br />
+- 標準化：</p>
+<div class="arithmatex">\[
+[1.210, -1.359, -1.006, 1.155]
+\]</div>
+<p><strong>Token 3</strong>：
+- <span class="arithmatex">\(\mu \approx 1.6275\)</span>，<span class="arithmatex">\(\sigma \approx 0.547\)</span><br />
+- 標準化：</p>
+<div class="arithmatex">\[
+[1.010, -1.347, 0.371, -0.034]
+\]</div>
+<hr />
+<p>LayerNorm 後：</p>
+<div class="arithmatex">\[
+Z_1 =
+\begin{bmatrix}
+-1.153 &amp; 0.290 &amp; -0.410 &amp; 1.273 \\
+1.210 &amp; -1.359 &amp; -1.006 &amp; 1.155 \\
+1.010 &amp; -1.347 &amp; 0.371 &amp; -0.034
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="6-feed-forward-networkffn"><strong>6. Feed Forward Network（FFN）</strong></h3>
+<p>兩層全連接，中間 ReLU：</p>
+<div class="arithmatex">\[
+\text{FFN}(x) = \max(0, x W_1 + b_1) W_2 + b_2
+\]</div>
+<p>假設：</p>
+<div class="arithmatex">\[
+W_1 =
+\begin{bmatrix}
+0.2 &amp; 0.5 &amp; 0.1 &amp; 0.4 &amp; 0.3 &amp; 0.6 \\
+0.7 &amp; 0.2 &amp; 0.3 &amp; 0.0 &amp; 0.5 &amp; 0.1 \\
+0.6 &amp; 0.1 &amp; 0.4 &amp; 0.3 &amp; 0.2 &amp; 0.2 \\
+0.0 &amp; 0.3 &amp; 0.5 &amp; 0.2 &amp; 0.4 &amp; 0.1
+\end{bmatrix}
+,\quad
+W_2 =
+\begin{bmatrix}
+0.1 &amp; 0.3 &amp; 0.2 &amp; 0.5 \\
+0.4 &amp; 0.1 &amp; 0.3 &amp; 0.2 \\
+0.2 &amp; 0.4 &amp; 0.5 &amp; 0.3 \\
+0.3 &amp; 0.2 &amp; 0.4 &amp; 0.1 \\
+0.5 &amp; 0.3 &amp; 0.1 &amp; 0.2 \\
+0.2 &amp; 0.1 &amp; 0.3 &amp; 0.4
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="token-1_1">Token 1：</h4>
+<p>第一層：</p>
+<div class="arithmatex">\[
+[-1.153, 0.290, -0.410, 1.273] \cdot W_1 \approx [-0.326, 0.104, 0.344, 0.301, 0.305, 0.195]
+\]</div>
+<p>ReLU：
+<span class="arithmatex">\([0, 0.104, 0.344, 0.301, 0.305, 0.195]\)</span></p>
+<p>第二層：</p>
+<div class="arithmatex">\[
+[0.316, 0.210, 0.265, 0.163]
+\]</div>
+<hr />
+<h4 id="token-2">Token 2：</h4>
+<p>第一層：</p>
+<div class="arithmatex">\[
+[1.210, -1.359, -1.006, 1.155] \cdot W_1 \approx [-0.372, -0.355, -0.454, 0.153, 0.040, -0.278]
+\]</div>
+<p>ReLU：
+<span class="arithmatex">\([0, 0, 0, 0.153, 0.040, 0]\)</span></p>
+<p>第二層：</p>
+<div class="arithmatex">\[
+[0.058, 0.031, 0.066, 0.015]
+\]</div>
+<hr />
+<h4 id="token-3">Token 3：</h4>
+<p>第一層：</p>
+<div class="arithmatex">\[
+[1.010, -1.347, 0.371, -0.034] \cdot W_1 \approx [-0.423, -0.392, -0.354, -0.271, -0.290, -0.256]
+\]</div>
+<p>ReLU：
+全為 0</p>
+<p>第二層：
+<span class="arithmatex">\([0, 0, 0, 0]\)</span></p>
+<hr />
+<p>FFN 輸出：</p>
+<div class="arithmatex">\[
+\text{FFN_output} =
+\begin{bmatrix}
+0.316 &amp; 0.210 &amp; 0.265 &amp; 0.163 \\
+0.058 &amp; 0.031 &amp; 0.066 &amp; 0.015 \\
+0     &amp; 0     &amp; 0     &amp; 0
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="7-add-norm"><strong>7. Add &amp; Norm（第二次）</strong></h3>
+<p>殘差相加：</p>
+<div class="arithmatex">\[
+U = Z_1 + \text{FFN_output} =
+\begin{bmatrix}
+-0.837 &amp; 0.500 &amp; -0.145 &amp; 1.436 \\
+1.268 &amp; -1.328 &amp; -0.940 &amp; 1.170 \\
+1.010 &amp; -1.347 &amp; 0.371 &amp; -0.034
+\end{bmatrix}
+\]</div>
+<p>對每一行做 LayerNorm（略去重複計算步驟）：</p>
+<p><strong>最終 Encoder Block 輸出</strong>：</p>
+<div class="arithmatex">\[
+\text{Output} \approx
+\begin{bmatrix}
+-1.046 &amp; 0.049 &amp; 0.531 &amp; 0.466 \\
+1.394 &amp; -1.303 &amp; -0.586 &amp; 0.495 \\
+1.010 &amp; -1.347 &amp; 0.371 &amp; -0.034
+\end{bmatrix}
+\]</div>
+<h2 id="decoder"><strong>Decoder</strong></h2>
+<p><img alt="alt text" src="../assets/%E4%BD%A0%E4%B8%80%E5%AE%9A%E8%A6%81%E6%87%82%E5%BE%97%20AI%20%E7%AD%86%E8%A8%98_v2/image.png" /></p>
+<h3 id="1-output-embedding"><strong>1. Output Embedding</strong></h3>
+<p>假設我們的解碼器要生成句子 <code>"likes AI"</code>（對應 token ID: <code>[5, 8]</code>），詞嵌入矩陣 <span class="arithmatex">\( E \)</span> 與之前相同：</p>
+<div class="arithmatex">\[
+E =
+\begin{bmatrix}
+0.1 &amp; 0.3 &amp; 0.5 &amp; 0.7 \\   % token 0
+0.2 &amp; 0.4 &amp; 0.6 &amp; 0.8 \\   % token 1
+0.9 &amp; 0.1 &amp; 0.1 &amp; 0.3 \\
+0.1 &amp; 0.2 &amp; 0.1 &amp; 0.9 \\
+0.5 &amp; 0.5 &amp; 0.5 &amp; 0.5 \\
+0.6 &amp; 0.6 &amp; 0.4 &amp; 0.4 \\   % token 5 (likes)
+0.3 &amp; 0.7 &amp; 0.2 &amp; 0.8 \\
+0.9 &amp; 0.5 &amp; 0.3 &amp; 0.1 \\
+0.8 &amp; 0.2 &amp; 0.4 &amp; 0.6     % token 8 (AI)
+\end{bmatrix}
+\]</div>
+<p>查表：</p>
+<div class="arithmatex">\[
+\text{Embedding} =
+\begin{bmatrix}
+0.6 &amp; 0.6 &amp; 0.4 &amp; 0.4 \\  % likes
+0.8 &amp; 0.2 &amp; 0.4 &amp; 0.6     % AI
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="2-positional-encoding"><strong>2. Positional Encoding</strong></h3>
+<p>假設我們用相同的簡化正弦位置編碼（d_model=4）：</p>
+<div class="arithmatex">\[
+PE =
+\begin{bmatrix}
+0.00 &amp; 1.00 &amp; 0.00 &amp; 1.00 \\ % pos 0
+0.84 &amp; 0.54 &amp; 0.54 &amp; 0.84   % pos 1
+\end{bmatrix}
+\]</div>
+<p>相加後：</p>
+<div class="arithmatex">\[
+X =
+\begin{bmatrix}
+0.6 &amp; 1.6 &amp; 0.4 &amp; 1.4 \\
+1.64 &amp; 0.74 &amp; 0.94 &amp; 1.44
+\end{bmatrix}
+\]</div>
+<p>這就是進入 <strong>Masked Multi-Head Attention</strong> 的輸入。</p>
+<hr />
+<h3 id="3-masked-multi-head-attention"><strong>3. Masked Multi-Head Attention</strong></h3>
+<p>假設我們有 <strong>2 個頭</strong>，每個頭維度 <span class="arithmatex">\(d_k = d_v = 2\)</span>。</p>
+<p><strong>頭1</strong> 權重：</p>
+<div class="arithmatex">\[
+W_Q^{(1)} =
+\begin{bmatrix}
+0.1 &amp; 0.3 \\
+0.2 &amp; 0.4 \\
+0.3 &amp; 0.5 \\
+0.4 &amp; 0.6
+\end{bmatrix},\quad
+W_K^{(1)} =
+\begin{bmatrix}
+0.2 &amp; 0.1 \\
+0.4 &amp; 0.3 \\
+0.6 &amp; 0.5 \\
+0.8 &amp; 0.7
+\end{bmatrix},\quad
+W_V^{(1)} =
+\begin{bmatrix}
+0.1 &amp; 0.2 \\
+0.3 &amp; 0.4 \\
+0.5 &amp; 0.6 \\
+0.7 &amp; 0.8
+\end{bmatrix}
+\]</div>
+<p><strong>頭2</strong> 權重：</p>
+<div class="arithmatex">\[
+W_Q^{(2)} =
+\begin{bmatrix}
+0.2 &amp; 0.4 \\
+0.3 &amp; 0.5 \\
+0.4 &amp; 0.6 \\
+0.5 &amp; 0.7
+\end{bmatrix},\quad
+W_K^{(2)} =
+\begin{bmatrix}
+0.1 &amp; 0.3 \\
+0.2 &amp; 0.4 \\
+0.3 &amp; 0.5 \\
+0.4 &amp; 0.6
+\end{bmatrix},\quad
+W_V^{(2)} =
+\begin{bmatrix}
+0.2 &amp; 0.1 \\
+0.4 &amp; 0.3 \\
+0.6 &amp; 0.5 \\
+0.8 &amp; 0.7
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="31-q-k-v">3.1. 計算 Q, K, V</h4>
+<h5 id="1_1">頭1：</h5>
+<div class="arithmatex">\[
+Q^{(1)} = X \cdot W_Q^{(1)} =
+\begin{bmatrix}
+0.6 &amp; 1.6 &amp; 0.4 &amp; 1.4 \\
+1.64 &amp; 0.74 &amp; 0.94 &amp; 1.44
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.1 &amp; 0.3 \\
+0.2 &amp; 0.4 \\
+0.3 &amp; 0.5 \\
+0.4 &amp; 0.6
+\end{bmatrix}=
+\begin{bmatrix}
+1.06 &amp; 1.86 \\
+1.17 &amp; 2.122
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+K^{(1)} = X \cdot W_K^{(1)} =
+\begin{bmatrix}
+0.6 &amp; 1.6 &amp; 0.4 &amp; 1.4 \\
+1.64 &amp; 0.74 &amp; 0.94 &amp; 1.44
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.2 &amp; 0.1 \\
+0.4 &amp; 0.3 \\
+0.6 &amp; 0.5 \\
+0.8 &amp; 0.7
+\end{bmatrix}=
+\begin{bmatrix}
+2.12 &amp; 1.72 \\
+2.34 &amp; 1.864
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+V^{(1)} = X \cdot W_V^{(1)} =
+\begin{bmatrix}
+0.6 &amp; 1.6 &amp; 0.4 &amp; 1.4 \\
+1.64 &amp; 0.74 &amp; 0.94 &amp; 1.44
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.1 &amp; 0.2 \\
+0.3 &amp; 0.4 \\
+0.5 &amp; 0.6 \\
+0.7 &amp; 0.8
+\end{bmatrix}=
+\begin{bmatrix}
+1.72 &amp; 2.12 \\
+1.864 &amp; 2.34
+\end{bmatrix}
+\]</div>
+<hr />
+<h5 id="2">頭2：</h5>
+<div class="arithmatex">\[
+Q^{(2)} = X \cdot W_Q^{(2)} =
+\begin{bmatrix}
+0.6 &amp; 1.6 &amp; 0.4 &amp; 1.4 \\
+1.64 &amp; 0.74 &amp; 0.94 &amp; 1.44
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.2 &amp; 0.4 \\
+0.3 &amp; 0.5 \\
+0.4 &amp; 0.6 \\
+0.5 &amp; 0.7
+\end{bmatrix}=
+\begin{bmatrix}
+1.20 &amp; 2.00 \\
+1.312 &amp; 2.192
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+K^{(2)} = X \cdot W_K^{(2)} =
+\begin{bmatrix}
+0.6 &amp; 1.6 &amp; 0.4 &amp; 1.4 \\
+1.64 &amp; 0.74 &amp; 0.94 &amp; 1.44
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.1 &amp; 0.3 \\
+0.2 &amp; 0.4 \\
+0.3 &amp; 0.5 \\
+0.4 &amp; 0.6
+\end{bmatrix}=
+\begin{bmatrix}
+1.20 &amp; 2.00 \\
+1.312 &amp; 2.192
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+V^{(2)} = X \cdot W_V^{(2)} =
+\begin{bmatrix}
+0.6 &amp; 1.6 &amp; 0.4 &amp; 1.4 \\
+1.64 &amp; 0.74 &amp; 0.94 &amp; 1.44
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.2 &amp; 0.1 \\
+0.4 &amp; 0.3 \\
+0.6 &amp; 0.5 \\
+0.8 &amp; 0.7
+\end{bmatrix}=
+\begin{bmatrix}
+1.72 &amp; 1.40 \\
+1.864 &amp; 1.544
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="32-attention-scoresqkt-sqrtd_k">3.2. 計算 Attention Scores（QK^T / sqrt(d_k)）</h4>
+<h5 id="1_2">頭1：</h5>
+<div class="arithmatex">\[
+\text{scores}^{(1)} = \frac{Q^{(1)} \cdot (K^{(1)})^T}{\sqrt{2}} =
+\frac{
+\begin{bmatrix}
+1.06 &amp; 1.86 \\
+1.17 &amp; 2.122
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+2.12 &amp; 2.34 \\
+1.72 &amp; 1.864
+\end{bmatrix}
+}{\sqrt{2}}=
+\begin{bmatrix}
+3.853 &amp; 4.208 \\
+4.335 &amp; 4.732
+\end{bmatrix}
+\]</div>
+<hr />
+<h5 id="2_1">頭2：</h5>
+<div class="arithmatex">\[
+\text{scores}^{(2)} = \frac{Q^{(2)} \cdot (K^{(2)})^T}{\sqrt{2}} =
+\frac{
+\begin{bmatrix}
+1.20 &amp; 2.00 \\
+1.312 &amp; 2.192
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+1.20 &amp; 1.312 \\
+2.00 &amp; 2.192
+\end{bmatrix}
+}{\sqrt{2}}=
+\begin{bmatrix}
+2.262 &amp; 2.471 \\
+2.701 &amp; 2.949
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="33-mask-decoder-mask">3.3. Mask 未來位置（Decoder Mask）</h4>
+<p>對於 <span class="arithmatex">\(T=2\)</span>，mask 後：</p>
+<div class="arithmatex">\[
+\text{scores}^{(1)}_{\text{masked}} =
+\begin{bmatrix}
+3.853 &amp; -\infty \\
+4.335 &amp; 4.732
+\end{bmatrix},
+\quad
+\text{scores}^{(2)}_{\text{masked}} =
+\begin{bmatrix}
+2.262 &amp; -\infty \\
+2.701 &amp; 2.949
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="34-softmax">3.4. Softmax</h4>
+<div class="arithmatex">\[
+\text{attn}^{(1)} =
+\begin{bmatrix}
+1 &amp; 0 \\
+0.401 &amp; 0.599
+\end{bmatrix},
+\quad
+\text{attn}^{(2)} =
+\begin{bmatrix}
+1 &amp; 0 \\
+0.438 &amp; 0.562
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="35-attn-v">3.5. 輸出每個頭（Attn ⋅ V）</h4>
+<h5 id="1_3">頭1：</h5>
+<div class="arithmatex">\[
+\text{head}_1 = \text{attn}^{(1)} \cdot V^{(1)} =
+\begin{bmatrix}
+1 &amp; 0 \\
+0.401 &amp; 0.599
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+1.72 &amp; 2.12 \\
+1.864 &amp; 2.34
+\end{bmatrix}=
+\begin{bmatrix}
+1.72 &amp; 2.12 \\
+1.805 &amp; 2.251
+\end{bmatrix}
+\]</div>
+<h5 id="2_2">頭2：</h5>
+<div class="arithmatex">\[
+\text{head}_2 = \text{attn}^{(2)} \cdot V^{(2)} =
+\begin{bmatrix}
+1 &amp; 0 \\
+0.438 &amp; 0.562
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+1.72 &amp; 1.40 \\
+1.864 &amp; 1.544
+\end{bmatrix}=
+\begin{bmatrix}
+1.72 &amp; 1.40 \\
+1.799 &amp; 1.463
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="36-concat">3.6. Concat 並投影</h4>
+<p>將兩個頭輸出 concat（沿特徵維度拼接）：</p>
+<div class="arithmatex">\[
+\text{Concat} =
+\begin{bmatrix}
+1.72 &amp; 2.12 &amp; 1.72 &amp; 1.40 \\
+1.805 &amp; 2.251 &amp; 1.799 &amp; 1.463
+\end{bmatrix}
+\]</div>
+<p>假設輸出權重：</p>
+<div class="arithmatex">\[
+W_O =
+\begin{bmatrix}
+0.2 &amp; 0.4 &amp; 0.6 &amp; 0.8 \\
+0.1 &amp; 0.3 &amp; 0.5 &amp; 0.7 \\
+0.9 &amp; 0.7 &amp; 0.5 &amp; 0.3 \\
+0.8 &amp; 0.6 &amp; 0.4 &amp; 0.2
+\end{bmatrix}
+\]</div>
+<p>最終：</p>
+<div class="arithmatex">\[
+\text{MaskedMHA_out} = \text{Concat} \cdot W_O
+\]</div>
+<div class="arithmatex">\[
+\text{MaskedMHA_out} \approx
+\begin{bmatrix}
+3.224 &amp; 3.368 &amp; 3.512 &amp; 3.656 \\
+3.376 &amp; 3.534 &amp; 3.693 &amp; 3.852
+\end{bmatrix}
+\]</div>
+<h3 id="4multi-head-attention_1"><strong>4.Multi-Head Attention</strong></h3>
+<p>假設有 <strong>2 個頭</strong>，每個頭的維度 <span class="arithmatex">\(d_k = d_v = 2\)</span></p>
+<hr />
+<p><strong>頭1權重</strong></p>
+<div class="arithmatex">\[
+W_Q^{(1)} =
+\begin{bmatrix}
+0.1 &amp; 0.3 \\
+0.2 &amp; 0.4 \\
+0.3 &amp; 0.5 \\
+0.4 &amp; 0.6
+\end{bmatrix},\quad
+W_K^{(1)} =
+\begin{bmatrix}
+0.2 &amp; 0.1 \\
+0.4 &amp; 0.3 \\
+0.6 &amp; 0.5 \\
+0.8 &amp; 0.7
+\end{bmatrix},\quad
+W_V^{(1)} =
+\begin{bmatrix}
+0.1 &amp; 0.2 \\
+0.3 &amp; 0.4 \\
+0.5 &amp; 0.6 \\
+0.7 &amp; 0.8
+\end{bmatrix}
+\]</div>
+<hr />
+<p><strong>頭2權重</strong></p>
+<div class="arithmatex">\[
+W_Q^{(2)} =
+\begin{bmatrix}
+0.2 &amp; 0.4 \\
+0.3 &amp; 0.5 \\
+0.4 &amp; 0.6 \\
+0.5 &amp; 0.7
+\end{bmatrix},\quad
+W_K^{(2)} =
+\begin{bmatrix}
+0.1 &amp; 0.3 \\
+0.2 &amp; 0.4 \\
+0.3 &amp; 0.5 \\
+0.4 &amp; 0.6
+\end{bmatrix},\quad
+W_V^{(2)} =
+\begin{bmatrix}
+0.2 &amp; 0.1 \\
+0.4 &amp; 0.3 \\
+0.6 &amp; 0.5 \\
+0.8 &amp; 0.7
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="41-q-k-v"><strong>4.1 計算 Q, K, V</strong></h4>
+<p><strong>頭1：</strong></p>
+<div class="arithmatex">\[
+Q^{(1)} = \text{MaskedMHA_out} \cdot W_Q^{(1)} =
+\begin{bmatrix}
+3.224 &amp; 3.368 &amp; 3.512 &amp; 3.656 \\
+3.376 &amp; 3.534 &amp; 3.693 &amp; 3.852
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.1 &amp; 0.3 \\
+0.2 &amp; 0.4 \\
+0.3 &amp; 0.5 \\
+0.4 &amp; 0.6
+\end{bmatrix}=
+\begin{bmatrix}
+2.816 &amp; 4.816 \\
+2.948 &amp; 5.038
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+K^{(1)} = \text{Enc_out} \cdot W_K^{(1)} =
+\begin{bmatrix}
+-1.046 &amp; 0.049 &amp; 0.531 &amp; 0.466 \\
+1.394 &amp; -1.303 &amp; -0.586 &amp; 0.495 \\
+1.010 &amp; -1.347 &amp; 0.371 &amp; -0.034
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.2 &amp; 0.1 \\
+0.4 &amp; 0.3 \\
+0.6 &amp; 0.5 \\
+0.8 &amp; 0.7
+\end{bmatrix}=
+\begin{bmatrix}
+0.524 &amp; 0.374 \\
+-0.502 &amp; -0.518 \\
+-0.324 &amp; -0.604
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+V^{(1)} = \text{Enc_out} \cdot W_V^{(1)} =
+\begin{bmatrix}
+-1.046 &amp; 0.049 &amp; 0.531 &amp; 0.466 \\
+1.394 &amp; -1.303 &amp; -0.586 &amp; 0.495 \\
+1.010 &amp; -1.347 &amp; 0.371 &amp; -0.034
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.1 &amp; 0.2 \\
+0.3 &amp; 0.4 \\
+0.5 &amp; 0.6 \\
+0.7 &amp; 0.8
+\end{bmatrix}=
+\begin{bmatrix}
+0.44 &amp; 0.54 \\
+-0.388 &amp; -0.394 \\
+-0.292 &amp; -0.444
+\end{bmatrix}
+\]</div>
+<hr />
+<p><strong>頭2：</strong></p>
+<div class="arithmatex">\[
+Q^{(2)} = \text{MaskedMHA_out} \cdot W_Q^{(2)} =
+\begin{bmatrix}
+3.224 &amp; 3.368 &amp; 3.512 &amp; 3.656 \\
+3.376 &amp; 3.534 &amp; 3.693 &amp; 3.852
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.2 &amp; 0.4 \\
+0.3 &amp; 0.5 \\
+0.4 &amp; 0.6 \\
+0.5 &amp; 0.7
+\end{bmatrix}=
+\begin{bmatrix}
+3.648 &amp; 5.648 \\
+3.818 &amp; 5.890
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+K^{(2)} = \text{Enc_out} \cdot W_K^{(2)} =
+\begin{bmatrix}
+-1.046 &amp; 0.049 &amp; 0.531 &amp; 0.466 \\
+1.394 &amp; -1.303 &amp; -0.586 &amp; 0.495 \\
+1.010 &amp; -1.347 &amp; 0.371 &amp; -0.034
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.1 &amp; 0.3 \\
+0.2 &amp; 0.4 \\
+0.3 &amp; 0.5 \\
+0.4 &amp; 0.6
+\end{bmatrix}=
+\begin{bmatrix}
+0.324 &amp; 0.674 \\
+-0.258 &amp; -0.478 \\
+-0.194 &amp; -0.514
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+V^{(2)} = \text{Enc_out} \cdot W_V^{(2)} =
+\begin{bmatrix}
+-1.046 &amp; 0.049 &amp; 0.531 &amp; 0.466 \\
+1.394 &amp; -1.303 &amp; -0.586 &amp; 0.495 \\
+1.010 &amp; -1.347 &amp; 0.371 &amp; -0.034
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.2 &amp; 0.1 \\
+0.4 &amp; 0.3 \\
+0.6 &amp; 0.5 \\
+0.8 &amp; 0.7
+\end{bmatrix}=
+\begin{bmatrix}
+0.524 &amp; 0.374 \\
+-0.502 &amp; -0.518 \\
+-0.324 &amp; -0.604
+\end{bmatrix}
+\]</div>
+<h4 id="42-scores"><strong>4.2 計算 scores</strong></h4>
+<p><strong>頭1</strong></p>
+<div class="arithmatex">\[
+\text{scores}^{(1)} = \frac{Q^{(1)} \cdot (K^{(1)})^T}{\sqrt{2}} =
+\frac{
+\begin{bmatrix}
+2.816 &amp; 4.816 \\
+2.948 &amp; 5.038
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.524 &amp; -0.502 &amp; -0.324 \\
+0.374 &amp; -0.518 &amp; -0.604
+\end{bmatrix}
+}{1.414}=
+\begin{bmatrix}
+2.156 &amp; -3.392 &amp; -3.888 \\
+2.257 &amp; -3.549 &amp; -4.068
+\end{bmatrix}
+\]</div>
+<p><strong>頭2</strong></p>
+<div class="arithmatex">\[
+\text{scores}^{(2)} = \frac{Q^{(2)} \cdot (K^{(2)})^T}{\sqrt{2}} =
+\frac{
+\begin{bmatrix}
+3.648 &amp; 5.648 \\
+3.818 &amp; 5.890
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.324 &amp; -0.258 &amp; -0.194 \\
+0.674 &amp; -0.478 &amp; -0.514
+\end{bmatrix}
+}{1.414}=
+\begin{bmatrix}
+3.999 &amp; -4.743 &amp; -4.870 \\
+4.180 &amp; -4.963 &amp; -5.090
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="43-softmax-attn"><strong>4.3 softmax 得到 attn</strong></h4>
+<p><strong>頭1</strong></p>
+<div class="arithmatex">\[
+\text{attn}^{(1)} =
+\begin{bmatrix}
+0.999 &amp; 0.0005 &amp; 0.0005 \\
+0.999 &amp; 0.0005 &amp; 0.0005
+\end{bmatrix}
+\]</div>
+<p><strong>頭2</strong></p>
+<div class="arithmatex">\[
+\text{attn}^{(2)} =
+\begin{bmatrix}
+0.999 &amp; 0.0005 &amp; 0.0005 \\
+0.999 &amp; 0.0005 &amp; 0.0005
+\end{bmatrix}
+\]</div>
+<p>（由於 scores 差異很大，softmax 幾乎全在第一列）</p>
+<hr />
+<h4 id="44-head"><strong>4.4 計算 head 輸出</strong></h4>
+<p><strong>頭1</strong></p>
+<div class="arithmatex">\[
+\text{head}_1 = \text{attn}^{(1)} \cdot V^{(1)} =
+\begin{bmatrix}
+0.999 &amp; 0.0005 &amp; 0.0005 \\
+0.999 &amp; 0.0005 &amp; 0.0005
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.44 &amp; 0.54 \\
+-0.388 &amp; -0.394 \\
+-0.292 &amp; -0.444
+\end{bmatrix}=
+\begin{bmatrix}
+0.439 &amp; 0.539 \\
+0.439 &amp; 0.539
+\end{bmatrix}
+\]</div>
+<p><strong>頭2</strong></p>
+<div class="arithmatex">\[
+\text{head}_2 = \text{attn}^{(2)} \cdot V^{(2)} =
+\begin{bmatrix}
+0.999 &amp; 0.0005 &amp; 0.0005 \\
+0.999 &amp; 0.0005 &amp; 0.0005
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.524 &amp; 0.374 \\
+-0.502 &amp; -0.518 \\
+-0.324 &amp; -0.604
+\end{bmatrix}=
+\begin{bmatrix}
+0.523 &amp; 0.373 \\
+0.523 &amp; 0.373
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="45-concat"><strong>4.5 concat 兩個頭</strong></h4>
+<div class="arithmatex">\[
+\text{Concat} =
+\begin{bmatrix}
+0.439 &amp; 0.539 &amp; 0.523 &amp; 0.373 \\
+0.439 &amp; 0.539 &amp; 0.523 &amp; 0.373
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="46"><strong>4.6 輸出投影</strong></h4>
+<p>假設輸出矩陣：</p>
+<div class="arithmatex">\[
+W_O =
+\begin{bmatrix}
+0.2 &amp; 0.4 &amp; 0.6 &amp; 0.8 \\
+0.1 &amp; 0.3 &amp; 0.5 &amp; 0.7 \\
+0.9 &amp; 0.7 &amp; 0.5 &amp; 0.3 \\
+0.8 &amp; 0.6 &amp; 0.4 &amp; 0.2
+\end{bmatrix}
+\]</div>
+<p>計算：</p>
+<div class="arithmatex">\[
+\text{MHA_out} = \text{Concat} \cdot W_O =
+\begin{bmatrix}
+0.439 &amp; 0.539 &amp; 0.523 &amp; 0.373 \\
+0.439 &amp; 0.539 &amp; 0.523 &amp; 0.373
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.2 &amp; 0.4 &amp; 0.6 &amp; 0.8 \\
+0.1 &amp; 0.3 &amp; 0.5 &amp; 0.7 \\
+0.9 &amp; 0.7 &amp; 0.5 &amp; 0.3 \\
+0.8 &amp; 0.6 &amp; 0.4 &amp; 0.2
+\end{bmatrix}=
+\begin{bmatrix}
+1.285 &amp; 1.199 &amp; 1.113 &amp; 1.027 \\
+1.285 &amp; 1.199 &amp; 1.113 &amp; 1.027
+\end{bmatrix}
+\]</div>
+<h3 id="5-mha_out"><strong>5. 已知 MHA_out 與殘差輸入</strong></h3>
+<p>我們剛剛計算得到的 Encoder–Decoder Multi-Head Attention 輸出：</p>
+<div class="arithmatex">\[
+\text{MHA_out} =
+\begin{bmatrix}
+1.285 &amp; 1.199 &amp; 1.113 &amp; 1.027 \\
+1.285 &amp; 1.199 &amp; 1.113 &amp; 1.027
+\end{bmatrix}
+\]</div>
+<p>殘差輸入是 <strong>MaskedMHA_out</strong>：</p>
+<div class="arithmatex">\[
+\text{MaskedMHA_out} =
+\begin{bmatrix}
+3.224 &amp; 3.368 &amp; 3.512 &amp; 3.656 \\
+3.376 &amp; 3.534 &amp; 3.693 &amp; 3.852
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="6-add-norm-add-norm"><strong>6. Add &amp; Norm（第一個 Add &amp; Norm）</strong></h3>
+<p>殘差相加：</p>
+<div class="arithmatex">\[
+\text{Add}_1 = \text{MaskedMHA_out} + \text{MHA_out} =
+\begin{bmatrix}
+3.224+1.285 &amp; 3.368+1.199 &amp; 3.512+1.113 &amp; 3.656+1.027 \\
+3.376+1.285 &amp; 3.534+1.199 &amp; 3.693+1.113 &amp; 3.852+1.027
+\end{bmatrix}=
+\begin{bmatrix}
+4.509 &amp; 4.567 &amp; 4.625 &amp; 4.683 \\
+4.661 &amp; 4.733 &amp; 4.806 &amp; 4.879
+\end{bmatrix}
+\]</div>
+<p>LayerNorm（假設此處簡化為均值歸一化，方便示範）：
+均值 μ、標準差 σ 按行計算，得到：</p>
+<div class="arithmatex">\[
+\text{Norm}_1 =
+\begin{bmatrix}
+-1.341 &amp; -0.447 &amp; 0.447 &amp; 1.341 \\
+-1.341 &amp; -0.447 &amp; 0.447 &amp; 1.341
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="7-feed-forward"><strong>7. Feed Forward</strong></h3>
+<p>假設 FFN 第一層權重：</p>
+<div class="arithmatex">\[
+W_1 =
+\begin{bmatrix}
+0.2 &amp; 0.4 &amp; 0.6 &amp; 0.8 \\
+0.1 &amp; 0.3 &amp; 0.5 &amp; 0.7 \\
+0.9 &amp; 0.7 &amp; 0.5 &amp; 0.3 \\
+0.8 &amp; 0.6 &amp; 0.4 &amp; 0.2
+\end{bmatrix}
+,\quad b_1 =
+\begin{bmatrix}
+0.1 &amp; 0.2 &amp; 0.3 &amp; 0.4
+\end{bmatrix}
+\]</div>
+<p>第一層：</p>
+<div class="arithmatex">\[
+\text{FFN}_1 = \text{Norm}_1 \cdot W_1 =
+\begin{bmatrix}
+-1.341 &amp; -0.447 &amp; 0.447 &amp; 1.341 \\
+-1.341 &amp; -0.447 &amp; 0.447 &amp; 1.341
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.2 &amp; 0.4 &amp; 0.6 &amp; 0.8 \\
+0.1 &amp; 0.3 &amp; 0.5 &amp; 0.7 \\
+0.9 &amp; 0.7 &amp; 0.5 &amp; 0.3 \\
+0.8 &amp; 0.6 &amp; 0.4 &amp; 0.2
+\end{bmatrix}=
+\begin{bmatrix}
+1.072 &amp; 0.896 &amp; 0.720 &amp; 0.544 \\
+1.072 &amp; 0.896 &amp; 0.720 &amp; 0.544
+\end{bmatrix}
+\]</div>
+<p>加偏置：</p>
+<div class="arithmatex">\[
+\text{FFN}_1 + b_1 =
+\begin{bmatrix}
+1.172 &amp; 1.096 &amp; 1.020 &amp; 0.944 \\
+1.172 &amp; 1.096 &amp; 1.020 &amp; 0.944
+\end{bmatrix}
+\]</div>
+<p>激活（ReLU 不影響正數）：</p>
+<div class="arithmatex">\[
+\text{Act} =
+\begin{bmatrix}
+1.172 &amp; 1.096 &amp; 1.020 &amp; 0.944 \\
+1.172 &amp; 1.096 &amp; 1.020 &amp; 0.944
+\end{bmatrix}
+\]</div>
+<hr />
+<p>第二層權重：</p>
+<div class="arithmatex">\[
+W_2 =
+\begin{bmatrix}
+0.5 &amp; 0.6 &amp; 0.7 &amp; 0.8 \\
+0.4 &amp; 0.5 &amp; 0.6 &amp; 0.7 \\
+0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 \\
+0.2 &amp; 0.3 &amp; 0.4 &amp; 0.5
+\end{bmatrix}
+,\quad b_2 =
+\begin{bmatrix}
+0.05 &amp; 0.06 &amp; 0.07 &amp; 0.08
+\end{bmatrix}
+\]</div>
+<p>第二層：</p>
+<div class="arithmatex">\[
+\text{FFN}_2 = \text{Act} \cdot W_2 =
+\begin{bmatrix}
+1.172 &amp; 1.096 &amp; 1.020 &amp; 0.944 \\
+1.172 &amp; 1.096 &amp; 1.020 &amp; 0.944
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.5 &amp; 0.6 &amp; 0.7 &amp; 0.8 \\
+0.4 &amp; 0.5 &amp; 0.6 &amp; 0.7 \\
+0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 \\
+0.2 &amp; 0.3 &amp; 0.4 &amp; 0.5
+\end{bmatrix}=
+\begin{bmatrix}
+1.270 &amp; 1.680 &amp; 2.090 &amp; 2.500 \\
+1.270 &amp; 1.680 &amp; 2.090 &amp; 2.500
+\end{bmatrix}
+\]</div>
+<p>加偏置：</p>
+<div class="arithmatex">\[
+\text{FFN_out} =
+\begin{bmatrix}
+1.320 &amp; 1.740 &amp; 2.160 &amp; 2.580 \\
+1.320 &amp; 1.740 &amp; 2.160 &amp; 2.580
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="8-add-norm"><strong>8. Add &amp; Norm（第二次）</strong></h3>
+<p>殘差相加：</p>
+<div class="arithmatex">\[
+\text{Add}_2 = \text{Norm}_1 + \text{FFN_out} =
+\begin{bmatrix}
+-1.341+1.320 &amp; -0.447+1.740 &amp; 0.447+2.160 &amp; 1.341+2.580 \\
+-1.341+1.320 &amp; -0.447+1.740 &amp; 0.447+2.160 &amp; 1.341+2.580
+\end{bmatrix}=
+\begin{bmatrix}
+-0.021 &amp; 1.293 &amp; 2.607 &amp; 3.921 \\
+-0.021 &amp; 1.293 &amp; 2.607 &amp; 3.921
+\end{bmatrix}
+\]</div>
+<p>LayerNorm：
+均值 μ=1.95，σ≈1.604，得到：</p>
+<div class="arithmatex">\[
+\text{Norm}_2 =
+\begin{bmatrix}
+-1.227 &amp; -0.410 &amp; 0.410 &amp; 1.227 \\
+-1.227 &amp; -0.410 &amp; 0.410 &amp; 1.227
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="9-linear"><strong>9. Linear（輸出層）</strong></h3>
+<p>假設詞彙表大小 <span class="arithmatex">\(V=6\)</span>，輸出層權重：</p>
+<div class="arithmatex">\[
+W_{\text{out}} =
+\begin{bmatrix}
+0.2 &amp; 0.1 &amp; 0.4 &amp; 0.3 &amp; 0.5 &amp; 0.6 \\
+0.3 &amp; 0.2 &amp; 0.5 &amp; 0.4 &amp; 0.6 &amp; 0.7 \\
+0.4 &amp; 0.3 &amp; 0.6 &amp; 0.5 &amp; 0.7 &amp; 0.8 \\
+0.5 &amp; 0.4 &amp; 0.7 &amp; 0.6 &amp; 0.8 &amp; 0.9
+\end{bmatrix}
+\]</div>
+<p>計算：</p>
+<div class="arithmatex">\[
+\text{Logits} = \text{Norm}_2 \cdot W_{\text{out}} =
+\begin{bmatrix}
+-1.227 &amp; -0.410 &amp; 0.410 &amp; 1.227 \\
+-1.227 &amp; -0.410 &amp; 0.410 &amp; 1.227
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.2 &amp; 0.1 &amp; 0.4 &amp; 0.3 &amp; 0.5 &amp; 0.6 \\
+0.3 &amp; 0.2 &amp; 0.5 &amp; 0.4 &amp; 0.6 &amp; 0.7 \\
+0.4 &amp; 0.3 &amp; 0.6 &amp; 0.5 &amp; 0.7 &amp; 0.8 \\
+0.5 &amp; 0.4 &amp; 0.7 &amp; 0.6 &amp; 0.8 &amp; 0.9
+\end{bmatrix}=
+\begin{bmatrix}
+0.410 &amp; 0.320 &amp; 0.740 &amp; 0.650 &amp; 0.870 &amp; 0.980 \\
+0.410 &amp; 0.320 &amp; 0.740 &amp; 0.650 &amp; 0.870 &amp; 0.980
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="10-softmax"><strong>10. Softmax</strong></h3>
+<p>對每行做 softmax（沿詞彙表方向）：</p>
+<div class="arithmatex">\[
+\text{Probs} =
+\begin{bmatrix}
+0.139 &amp; 0.127 &amp; 0.208 &amp; 0.190 &amp; 0.236 &amp; 0.256 \\
+0.139 &amp; 0.127 &amp; 0.208 &amp; 0.190 &amp; 0.236 &amp; 0.256
+\end{bmatrix}
+\]</div>
+<hr />
+<p>✅ <strong>最終輸出</strong>（每個位置的詞彙表概率分佈）：</p>
+<div class="arithmatex">\[
+\boxed{
+\begin{bmatrix}
+0.139 &amp; 0.127 &amp; 0.208 &amp; 0.190 &amp; 0.236 &amp; 0.256 \\
+0.139 &amp; 0.127 &amp; 0.208 &amp; 0.190 &amp; 0.236 &amp; 0.256
+\end{bmatrix}
+}
+\]</div>
+<h1 id="q-former">Q-Former</h1>
+<h2 id="self-attention_1"><strong>Self-Attention</strong></h2>
+<h3 id="step-0-learnable-query-tokens"><strong>Step 0：輸入 Learnable Query Tokens</strong></h3>
+<div class="arithmatex">\[
+\mathbf{Q_{tokens}} \in \mathbb{R}^{2 \times 6}
+\]</div>
+<div class="arithmatex">\[
+\mathbf{Q_{tokens}} =
+\begin{bmatrix}
+0.2 &amp; 0.1 &amp; 0.0 &amp; 0.1 &amp; 0.2 &amp; 0.3 \\
+0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3
+\end{bmatrix}
+\]</div>
+<p>這兩個 token 是 Q‑Former 裡的 <strong>可學查詢向量</strong>（Learnable Query Tokens），在訓練過程中會更新參數。</p>
+<hr />
+<h3 id="step-1-qkv"><strong>Step 1：投影到 Q、K、V 空間</strong></h3>
+<p>在 Self-Attention 中，輸入本身同時產生 Q、K、V。<br />
+我們假設投影權重為（隨機舉例，方便計算）：</p>
+<div class="arithmatex">\[
+W_Q \in \mathbb{R}^{6 \times 6} =
+\begin{bmatrix}
+0.1 &amp; 0.2 &amp; 0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 \\
+0.0 &amp; 0.1 &amp; 0.0 &amp; 0.1 &amp; 0.0 &amp; 0.1 \\
+0.2 &amp; 0.2 &amp; 0.2 &amp; 0.2 &amp; 0.2 &amp; 0.2 \\
+0.1 &amp; 0.0 &amp; 0..1 &amp; 0.0 &amp; 0.1 &amp; 0.0 \\
+0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 \\
+0.4 &amp; 0.4 &amp; 0.4 &amp; 0.4 &amp; 0.4 &amp; 0.4
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+W_K \in \mathbb{R}^{6 \times 6} =
+\begin{bmatrix}
+0.2 &amp; 0.0 &amp; 0.1 &amp; 0.0 &amp; 0.2 &amp; 0.0 \\
+0.1 &amp; 0.1 &amp; 0.1 &amp; 0.1 &amp; 0.1 &amp; 0.1 \\
+0.0 &amp; 0.2 &amp; 0.0 &amp; 0.2 &amp; 0.0 &amp; 0.2 \\
+0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 \\
+0.4 &amp; 0.4 &amp; 0.4 &amp; 0.4 &amp; 0.4 &amp; 0.4 \\
+0.5 &amp; 0.5 &amp; 0.5 &amp; 0.5 &amp; 0.5 &amp; 0.5
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+W_V \in \mathbb{R}^{6 \times 6} =
+\begin{bmatrix}
+0.5 &amp; 0.4 &amp; 0.3 &amp; 0.2 &amp; 0.1 &amp; 0.0 \\
+0.1 &amp; 0.2 &amp; 0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 \\
+0.0 &amp; 0.1 &amp; 0.0 &amp; 0.1 &amp; 0.0 &amp; 0.1 \\
+0.2 &amp; 0.1 &amp; 0.2 &amp; 0.1 &amp; 0.2 &amp; 0.1 \\
+0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 \\
+0.4 &amp; 0.4 &amp; 0.4 &amp; 0.4 &amp; 0.4 &amp; 0.4
+\end{bmatrix}
+\]</div>
+<hr />
+<p><strong>計算 Q</strong>：</p>
+<div class="arithmatex">\[
+Q = Q_{tokens} \cdot W_Q
+\]</div>
+<p>shape: (2×6) ⋅ (6×6) → (2×6)</p>
+<div class="arithmatex">\[
+Q =
+\begin{bmatrix}
+0.33 &amp; 0.33 &amp; 0.33 &amp; 0.33 &amp; 0.33 &amp; 0.33 \\
+0.33 &amp; 0.33 &amp; 0.33 &amp; 0.33 &amp; 0.33 &amp; 0.33
+\end{bmatrix}
+\]</div>
+<hr />
+<p><strong>計算 K</strong>：</p>
+<div class="arithmatex">\[
+K = Q_{tokens} \cdot W_K
+\]</div>
+<p>shape: (2×6) ⋅ (6×6) → (2×6)</p>
+<div class="arithmatex">\[
+K =
+\begin{bmatrix}
+0.51 &amp; 0.51 &amp; 0.51 &amp; 0.51 &amp; 0.51 &amp; 0.51 \\
+0.75 &amp; 0.75 &amp; 0.75 &amp; 0.75 &amp; 0.75 &amp; 0.75
+\end{bmatrix}
+\]</div>
+<hr />
+<p><strong>計算 V</strong>：</p>
+<div class="arithmatex">\[
+V = Q_{tokens} \cdot W_V
+\]</div>
+<p>shape: (2×6) ⋅ (6×6) → (2×6)</p>
+<div class="arithmatex">\[
+V =
+\begin{bmatrix}
+0.37 &amp; 0.36 &amp; 0.35 &amp; 0.34 &amp; 0.33 &amp; 0.32 \\
+0.45 &amp; 0.45 &amp; 0.45 &amp; 0.45 &amp; 0.45 &amp; 0.45
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="step-2-attention-scores"><strong>Step 2：計算 Attention Scores</strong></h3>
+<div class="arithmatex">\[
+\text{Scores} = \frac{Q \cdot K^T}{\sqrt{d_k}}, \quad d_k = 6, \ \sqrt{6} \approx 2.449
+\]</div>
+<p>先計算 <span class="arithmatex">\( Q \cdot K^T\)</span>：</p>
+<div class="arithmatex">\[
+(2\times 6) \cdot (6\times 2) = (2\times 2)
+\]</div>
+<div class="arithmatex">\[
+Q \cdot K^T =
+\begin{bmatrix}
+1.0098 &amp; 1.4850 \\
+1.0098 &amp; 1.4850
+\end{bmatrix}
+\]</div>
+<hr />
+<p>除以 <span class="arithmatex">\(\sqrt{6} \approx 2.449\)</span>：</p>
+<div class="arithmatex">\[
+\text{Scores} =
+\begin{bmatrix}
+0.412 &amp; 0.606 \\
+0.412 &amp; 0.606
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="step-3softmax"><strong>Step 3：Softmax</strong></h3>
+<p>對每一行（每個 Query token）做 softmax：</p>
+<p>第一行：</p>
+<div class="arithmatex">\[
+\exp(0.412) \approx 1.509, \quad \exp(0.606) \approx 1.833
+\]</div>
+<p>總和 ≈ 3.342<br />
+softmax ≈ [0.452, 0.548]</p>
+<p>第二行同第一行：</p>
+<div class="arithmatex">\[
+\text{AttnWeights} =
+\begin{bmatrix}
+0.452 &amp; 0.548 \\
+0.452 &amp; 0.548
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="step-4"><strong>Step 4：加權求和得到輸出</strong></h3>
+<div class="arithmatex">\[
+\text{SelfAttnOut} = \text{AttnWeights} \cdot V
+\]</div>
+<p>shape: (2×2) ⋅ (2×6) → (2×6)</p>
+<div class="arithmatex">\[
+\text{SelfAttnOut} =
+\begin{bmatrix}
+0.415 &amp; 0.411 &amp; 0.407 &amp; 0.403 &amp; 0.399 &amp; 0.395 \\
+0.415 &amp; 0.411 &amp; 0.407 &amp; 0.403 &amp; 0.399 &amp; 0.395
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="step-5"><strong>Step 5：解決的痛點</strong></h3>
+<p>這一步 <strong>Self-Attention</strong> 的計算，解決了：
+- 讓 <strong>Learnable Query Tokens</strong> 彼此之間先做信息交互，建立上下文關係<br />
+- 後續在 Cross-Attention 中，這些 Query tokens 才能更有針對性地去影像特徵中「取信息」<br />
+- 保證每個 Query token 在進入下一階段之前，已經「知道」其他 Query token 的狀態，減少冗餘</p>
+<hr />
+<h2 id="cross-attention_1"><strong>Cross-Attention</strong></h2>
+<h3 id="_8"><strong>場景設定（真實簡化版）</strong></h3>
+<ul>
+<li>影像經過 CNN / ViT 後，我們得到一組 <strong>Image Embedding</strong>，假設有 4 個 patch，每個 patch 維度為 6。</li>
+<li>Q-Former 的第一層是 Multi-Head Attention（這裡簡化成單頭注意力）。</li>
+</ul>
+<hr />
+<h3 id="step-0"><strong>Step 0：輸入資料</strong></h3>
+<h4 id="image-embedding">影像特徵（Image Embedding）</h4>
+<div class="arithmatex">\[
+\mathbf{X_{img}} \in \mathbb{R}^{4 \times 6}
+\]</div>
+<div class="arithmatex">\[
+\mathbf{X_{img}} =
+\begin{bmatrix}
+0.1 &amp; 0.2 &amp; 0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 \\
+0.5 &amp; 0.4 &amp; 0.3 &amp; 0.2 &amp; 0.1 &amp; 0.0 \\
+0.9 &amp; 0.8 &amp; 0.7 &amp; 0.6 &amp; 0.5 &amp; 0.4 \\
+0.3 &amp; 0.1 &amp; 0.4 &amp; 0.2 &amp; 0.5 &amp; 0.7
+\end{bmatrix}
+\]</div>
+<h4 id="self-attention-query-tokens">Self-Attention 輸出（作為 Query tokens）</h4>
+<div class="arithmatex">\[
+\mathbf{SelfAttnOut} \in \mathbb{R}^{2 \times 6}
+\]</div>
+<div class="arithmatex">\[
+\mathbf{SelfAttnOut} =
+\begin{bmatrix}
+0.415 &amp; 0.411 &amp; 0.407 &amp; 0.403 &amp; 0.399 &amp; 0.395 \\
+0.415 &amp; 0.411 &amp; 0.407 &amp; 0.403 &amp; 0.399 &amp; 0.395
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="step-1-q-k-v"><strong>Step 1：線性投影到 Q, K, V 空間</strong></h3>
+<p>假設投影矩陣與之前相同：</p>
+<div class="arithmatex">\[
+W_Q \in \mathbb{R}^{6 \times 4}, \quad
+W_K \in \mathbb{R}^{6 \times 4}, \quad
+W_V \in \mathbb{R}^{6 \times 4}
+\]</div>
+<div class="arithmatex">\[
+W_Q =
+\begin{bmatrix}
+0.1 &amp; 0.2 &amp; 0.3 &amp; 0.4 \\
+0.0 &amp; 0.1 &amp; 0.0 &amp; 0.1 \\
+0.2 &amp; 0.2 &amp; 0.2 &amp; 0.2 \\
+0.1 &amp; 0.0 &amp; 0.1 &amp; 0.0 \\
+0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 \\
+0.4 &amp; 0.4 &amp; 0.4 &amp; 0.4
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+W_K =
+\begin{bmatrix}
+0.2 &amp; 0.0 &amp; 0.1 &amp; 0.0 \\
+0.1 &amp; 0.1 &amp; 0.1 &amp; 0.1 \\
+0.0 &amp; 0.2 &amp; 0.0 &amp; 0.2 \\
+0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 \\
+0.4 &amp; 0.4 &amp; 0.4 &amp; 0.4 \\
+0.5 &amp; 0.5 &amp; 0.5 &amp; 0.5
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+W_V =
+\begin{bmatrix}
+0.5 &amp; 0.4 &amp; 0.3 &amp; 0.2 \\
+0.1 &amp; 0.2 &amp; 0.3 &amp; 0.4 \\
+0.0 &amp; 0.1 &amp; 0.0 &amp; 0.1 \\
+0.2 &amp; 0.1 &amp; 0.2 &amp; 0.1 \\
+0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 \\
+0.4 &amp; 0.4 &amp; 0.4 &amp; 0.4
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="q"><strong>計算 Q</strong></h4>
+<div class="arithmatex">\[
+Q = \mathbf{SelfAttnOut} \cdot W_Q
+\]</div>
+<p><strong>shape</strong>: (2×6) ⋅ (6×4) → (2×4)</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+0.415 &amp; 0.411 &amp; 0.407 &amp; 0.403 &amp; 0.399 &amp; 0.395 \\
+0.415 &amp; 0.411 &amp; 0.407 &amp; 0.403 &amp; 0.399 &amp; 0.395
+\end{bmatrix}
+\cdot
+W_Q=
+\begin{bmatrix}
+0.415 &amp; 0.410 &amp; 0.405 &amp; 0.400 \\
+0.415 &amp; 0.410 &amp; 0.405 &amp; 0.400
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="k"><strong>計算 K</strong></h4>
+<div class="arithmatex">\[
+K = \mathbf{X_{img}} \cdot W_K
+\]</div>
+<p><strong>shape</strong>: (4×6) ⋅ (6×4) → (4×4)</p>
+<div class="arithmatex">\[
+K =
+\begin{bmatrix}
+0.73 &amp; 0.75 &amp; 0.73 &amp; 0.75 \\
+0.28 &amp; 0.28 &amp; 0.28 &amp; 0.28 \\
+1.08 &amp; 1.04 &amp; 1.08 &amp; 1.04 \\
+0.84 &amp; 0.84 &amp; 0.84 &amp; 0.84
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="v"><strong>計算 V</strong></h4>
+<div class="arithmatex">\[
+V = \mathbf{X_{img}} \cdot W_V
+\]</div>
+<p><strong>shape</strong>: (4×6) ⋅ (6×4) → (4×4)</p>
+<div class="arithmatex">\[
+V =
+\begin{bmatrix}
+0.52 &amp; 0.52 &amp; 0.54 &amp; 0.54 \\
+0.33 &amp; 0.31 &amp; 0.27 &amp; 0.25 \\
+0.93 &amp; 0.91 &amp; 0.89 &amp; 0.87 \\
+0.65 &amp; 0.63 &amp; 0.65 &amp; 0.63
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="step-2-attention-score"><strong>Step 2：計算 Attention Score</strong></h3>
+<div class="arithmatex">\[
+\text{Scores} = \frac{Q \cdot K^T}{\sqrt{4}}
+\]</div>
+<p>shape: (2×4) ⋅ (4×4)ᵀ → (2×4)</p>
+<div class="arithmatex">\[
+Q \cdot K^T =
+\begin{bmatrix}
+0.956 &amp; 0.460 &amp; 1.444 &amp; 1.156 \\
+0.956 &amp; 0.460 &amp; 1.444 &amp; 1.156
+\end{bmatrix}
+\]</div>
+<p>除以 2：</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+0.478 &amp; 0.230 &amp; 0.722 &amp; 0.578 \\
+0.478 &amp; 0.230 &amp; 0.722 &amp; 0.578
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="softmax_3"><strong>Softmax 計算</strong></h4>
+<p>第一行：</p>
+<div class="arithmatex">\[
+e^{0.478} \approx 1.613,\ e^{0.230} \approx 1.259,\ e^{0.722} \approx 2.058,\ e^{0.578} \approx 1.783
+\]</div>
+<p>總和 ≈ 6.713<br />
+softmax ≈ [0.240, 0.188, 0.307, 0.265]</p>
+<p>第二行相同：</p>
+<div class="arithmatex">\[
+\text{Attention} =
+\begin{bmatrix}
+0.240 &amp; 0.188 &amp; 0.307 &amp; 0.265 \\
+0.240 &amp; 0.188 &amp; 0.307 &amp; 0.265
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="step-3-cross-attention"><strong>Step 3：加權求和得到 Cross-Attention 輸出</strong></h3>
+<div class="arithmatex">\[
+\text{CrossAttnOut} = \text{Attention} \cdot V
+\]</div>
+<p>shape: (2×4) ⋅ (4×4) → (2×4)</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+0.240 &amp; 0.188 &amp; 0.307 &amp; 0.265 \\
+0.240 &amp; 0.188 &amp; 0.307 &amp; 0.265
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.52 &amp; 0.52 &amp; 0.54 &amp; 0.54 \\
+0.33 &amp; 0.31 &amp; 0.27 &amp; 0.25 \\
+0.93 &amp; 0.91 &amp; 0.89 &amp; 0.87 \\
+0.65 &amp; 0.63 &amp; 0.65 &amp; 0.63
+\end{bmatrix}=
+\begin{bmatrix}
+0.691 &amp; 0.670 &amp; 0.692 &amp; 0.671 \\
+0.691 &amp; 0.670 &amp; 0.692 &amp; 0.671
+\end{bmatrix}
+\]</div>
+<p>⚠ 注意：這裡的輸出維度是 4，因為我們的 head dimension = 4。</p>
+<p>但在真實場景中，Q-Former block 的輸入輸出維度應該與 hidden size 相同（這裡假設 hidden size = 6），因此我們還需要一個 <strong>輸出投影矩陣</strong> <span class="arithmatex">\( W_O \)</span> 把 (2×4) 投影回 (2×6)。</p>
+<hr />
+<h3 id="step-4output-projection"><strong>Step 4：Output Projection</strong></h3>
+<div class="arithmatex">\[
+W_O \in \mathbb{R}^{4 \times 6}
+\]</div>
+<p>假設：</p>
+<div class="arithmatex">\[
+W_O =
+\begin{bmatrix}
+0.1 &amp; 0.2 &amp; 0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 \\
+0.2 &amp; 0.1 &amp; 0.4 &amp; 0.3 &amp; 0.6 &amp; 0.5 \\
+0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 &amp; 0.7 &amp; 0.8 \\
+0.4 &amp; 0.3 &amp; 0.6 &amp; 0.5 &amp; 0.8 &amp; 0.7
+\end{bmatrix}
+\]</div>
+<p>計算：</p>
+<div class="arithmatex">\[
+\text{ProjOut} = \text{CrossAttnOut} \cdot W_O
+\]</div>
+<p>shape: (2×4) ⋅ (4×6) → (2×6)</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+0.691 &amp; 0.670 &amp; 0.692 &amp; 0.671 \\
+0.691 &amp; 0.670 &amp; 0.692 &amp; 0.671
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+0.1 &amp; 0.2 &amp; 0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 \\
+0.2 &amp; 0.1 &amp; 0.4 &amp; 0.3 &amp; 0.6 &amp; 0.5 \\
+0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 &amp; 0.7 &amp; 0.8 \\
+0.4 &amp; 0.3 &amp; 0.6 &amp; 0.5 &amp; 0.8 &amp; 0.7
+\end{bmatrix}=
+\begin{bmatrix}
+0.874 &amp; 0.880 &amp; 1.362 &amp; 1.368 &amp; 1.586 &amp; 1.592 \\
+0.873 &amp; 0.879 &amp; 1.361 &amp; 1.367 &amp; 1.585 &amp; 1.591
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="step-5_1"><strong>Step 5：殘差連接</strong></h3>
+<p>殘差連接會將原本的 Query tokens（輸入）與投影後輸出相加。</p>
+<p>原本 Query tokens（shape: 2×6）：</p>
+<div class="arithmatex">\[
+Q_{tokens} =
+\begin{bmatrix}
+0.2 &amp; 0.1 &amp; 0.0 &amp; 0.1 &amp; 0.2 &amp; 0.3 \\
+0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3 &amp; 0.3
+\end{bmatrix}
+\]</div>
+<p>相加：</p>
+<div class="arithmatex">\[
+\text{Res1} = Q_{tokens} + \text{ProjOut}
+\]</div>
+<div class="arithmatex">\[=
+\begin{bmatrix}
+0.2+0.874 &amp; 0.1+0.880 &amp; 0.0+1.362 &amp; 0.1+1.368 &amp; 0.2+1.586 &amp; 0.3+1.592 \\
+0.3+0.873 &amp; 0.3+0.879 &amp; 0.3+1.361 &amp; 0.3+1.367 &amp; 0.3+1.585 &amp; 0.3+1.591
+\end{bmatrix}=
+\begin{bmatrix}
+1.074 &amp; 0.980 &amp; 1.362 &amp; 1.468 &amp; 1.786 &amp; 1.892 \\
+1.173 &amp; 1.179 &amp; 1.661 &amp; 1.667 &amp; 1.885 &amp; 1.891
+\end{bmatrix}
+\]</div>
+<p>shape: (2×6)</p>
+<hr />
+<h3 id="step-6layernorm"><strong>Step 6：LayerNorm</strong></h3>
+<p>LayerNorm 公式：</p>
+<div class="arithmatex">\[
+\text{LN}(x) = \frac{x - \mu}{\sqrt{\sigma^2 + \epsilon}} \cdot \gamma + \beta
+\]</div>
+<p>假設 <span class="arithmatex">\(\gamma = 1\)</span>，<span class="arithmatex">\(\beta = 0\)</span>，<span class="arithmatex">\(\epsilon\)</span> 忽略。</p>
+<p><strong>第一行：</strong>
+- 均值 μ ≈ (1.074 + 0.980 + 1.362 + 1.468 + 1.786 + 1.892) / 6<br />
+  = 8.562 / 6 ≈ 1.427
+- 方差 ≈ mean((x - μ)²)<br />
+  = mean([(-0.353)², (-0.447)², (-0.065)², (0.041)², (0.359)², (0.465)²])<br />
+  = mean([0.124, 0.200, 0.004, 0.002, 0.129, 0.216]) ≈ 0.1125<br />
+  標準差 ≈ 0.335</p>
+<p>正規化後：</p>
+<div class="arithmatex">\[
+[-1.054, -1.334, -0.194, 0.122, 1.072, 1.388]
+\]</div>
+<p><strong>第二行：</strong>
+- μ ≈ (1.173 + 1.179 + 1.661 + 1.667 + 1.885 + 1.891) / 6<br />
+  = 9.456 / 6 ≈ 1.576
+- 方差 ≈ mean([(-0.403)², (-0.397)², (0.085)², (0.091)², (0.309)², (0.315)²])<br />
+  = mean([0.162, 0.158, 0.007, 0.008, 0.095, 0.099]) ≈ 0.088<br />
+  標準差 ≈ 0.297</p>
+<p>正規化後：</p>
+<div class="arithmatex">\[
+[-1.357, -1.337, 0.286, 0.306, 1.040, 1.061]
+\]</div>
+<p>所以：</p>
+<div class="arithmatex">\[
+\text{LN1} =
+\begin{bmatrix}
+-1.054 &amp; -1.334 &amp; -0.194 &amp; 0.122 &amp; 1.072 &amp; 1.388 \\
+-1.357 &amp; -1.337 &amp; 0.286 &amp; 0.306 &amp; 1.040 &amp; 1.061
+\end{bmatrix}
+\]</div>
+<hr />
+<h3 id="step-7ffn"><strong>Step 7：前饋網路（FFN）</strong></h3>
+<p>FFN 通常是：</p>
+<div class="arithmatex">\[
+\text{FFN}(x) = \text{GELU}(x W_1 + b_1) W_2 + b_2
+\]</div>
+<p>假設：
+- <span class="arithmatex">\( W_1 \in \mathbb{R}^{6 \times 8} \)</span>（中間層維度 8）
+- <span class="arithmatex">\( W_2 \in \mathbb{R}^{8 \times 6} \)</span>
+- 偏置為 0</p>
+<p>給定：</p>
+<div class="arithmatex">\[
+W_1 =
+\begin{bmatrix}
+0.1 &amp; 0.2 &amp; 0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 &amp; 0.7 &amp; 0.8 \\
+0.2 &amp; 0.1 &amp; 0.4 &amp; 0.3 &amp; 0.6 &amp; 0.5 &amp; 0.8 &amp; 0.7 \\
+0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 &amp; 0.7 &amp; 0.8 &amp; 0.9 &amp; 1.0 \\
+0.4 &amp; 0.3 &amp; 0.6 &amp; 0.5 &amp; 0.8 &amp; 0.7 &amp; 1.0 &amp; 0.9 \\
+0.5 &amp; 0.6 &amp; 0.7 &amp; 0.8 &amp; 0.9 &amp; 1.0 &amp; 1.1 &amp; 1.2 \\
+0.6 &amp; 0.5 &amp; 0.8 &amp; 0.7 &amp; 1.0 &amp; 0.9 &amp; 1.2 &amp; 1.1
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+W_2 =
+\begin{bmatrix}
+0.1 &amp; 0.2 &amp; 0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 \\
+0.2 &amp; 0.1 &amp; 0.4 &amp; 0.3 &amp; 0.6 &amp; 0.5 \\
+0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 &amp; 0.7 &amp; 0.8 \\
+0.4 &amp; 0.3 &amp; 0.6 &amp; 0.5 &amp; 0.8 &amp; 0.7 \\
+0.5 &amp; 0.6 &amp; 0.7 &amp; 0.8 &amp; 0.9 &amp; 1.0 \\
+0.6 &amp; 0.5 &amp; 0.8 &amp; 0.7 &amp; 1.0 &amp; 0.9 \\
+0.7 &amp; 0.8 &amp; 0.9 &amp; 1.0 &amp; 1.1 &amp; 1.2 \\
+0.8 &amp; 0.7 &amp; 1.0 &amp; 0.9 &amp; 1.2 &amp; 1.1
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="step-71"><strong>Step 7.1：計算中間層</strong></h4>
+<div class="arithmatex">\[
+\text{Mid} = \text{LN1} \cdot W_1
+\]</div>
+<p>shape: (2×6) ⋅ (6×8) → (2×8)</p>
+<p><strong>第一行計算結果</strong>（略去逐元素乘加，因為你說矩陣乘法可以直接寫結果）：</p>
+<div class="arithmatex">\[
+[-0.308, -0.260, -0.048, -0.0002, 0.210, 0.258, 0.470, 0.518]
+\]</div>
+<p><strong>第二行</strong>：</p>
+<div class="arithmatex">\[
+[-0.187, -0.135, 0.079, 0.131, 0.345, 0.397, 0.611, 0.663]
+\]</div>
+<hr />
+<h4 id="step-72gelu"><strong>Step 7.2：GELU 激活</strong></h4>
+<p>近似 GELU(x) ≈ 0.5x(1 + tanh(√(2/π)(x + 0.044715x³)))</p>
+<p>這裡簡化成 ReLU（方便演示數值）：
+第一行：</p>
+<div class="arithmatex">\[
+[0, 0, 0, 0, 0.210, 0.258, 0.470, 0.518]
+\]</div>
+<p>第二行：</p>
+<div class="arithmatex">\[
+[0, 0, 0.079, 0.131, 0.345, 0.397, 0.611, 0.663]
+\]</div>
+<hr />
+<h4 id="step-73"><strong>Step 7.3：輸出層</strong></h4>
+<div class="arithmatex">\[
+\text{FFNOut} = \text{Activated} \cdot W_2
+\]</div>
+<p>shape: (2×8) ⋅ (8×6) → (2×6)</p>
+<p>第一行：</p>
+<div class="arithmatex">\[
+[0, 0, 0, 0, 0.210, 0.258, 0.470, 0.518] \cdot W_2=
+[0.850, 0.898, 1.150, 1.198, 1.450, 1.498]
+\]</div>
+<p>第二行：</p>
+<div class="arithmatex">\[
+[0, 0, 0.079, 0.131, 0.345, 0.397, 0.611, 0.663] \cdot W_2=
+[1.076, 1.124, 1.376, 1.424, 1.676, 1.724]
+\]</div>
+<hr />
+<h3 id="step-8-layernorm"><strong>Step 8：殘差連接 + LayerNorm</strong></h3>
+<p>殘差連接：</p>
+<div class="arithmatex">\[
+\text{Res2} = \text{LN1} + \text{FFNOut}
+\]</div>
+<p>$$=
+\begin{bmatrix}
+-1.054+0.850 &amp; -1.334+0.898 &amp; -0.194+1.150 &amp; 0.122+1.198 &amp; 1.072+1.450 &amp; 1.388+1.498 \
+-1.357+1.076 &amp; -1.337+1.124 &amp; 0.286+1.376 &amp; 0.306+1.424 &amp; 1.040+1.676 &amp; 1.061+1.724
+\end{bmatrix}
+$$
+=</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+-0.204 &amp; -0.436 &amp; 0.956 &amp; 1.320 &amp; 2.522 &amp; 2.886 \\
+-0.281 &amp; -0.213 &amp; 1.662 &amp; 1.730 &amp; 2.716 &amp; 2.785
+\end{bmatrix}
+\]</div>
+<hr />
+<p>LayerNorm（同 Step 3 過程）得到：</p>
+<div class="arithmatex">\[
+\text{FinalOut} \approx
+\begin{bmatrix}
+-1.234 &amp; -1.342 &amp; -0.184 &amp; 0.050 &amp; 1.072 &amp; 1.638 \\
+-1.311 &amp; -1.245 &amp; 0.284 &amp; 0.320 &amp; 1.047 &amp; 1.505
+\end{bmatrix}
+\]</div>
+<p>shape: (2×6)</p>
+<h3 id="step-9"><strong>Step 9：多層疊加輸入</strong></h3>
+<p>上一層（第 1 層）輸出：</p>
+<div class="arithmatex">\[
+X^{(1)} = \text{FinalOut} =
+\begin{bmatrix}
+-1.234 &amp; -1.342 &amp; -0.184 &amp; 0.050 &amp; 1.072 &amp; 1.638 \\
+-1.311 &amp; -1.245 &amp; 0.284 &amp; 0.320 &amp; 1.047 &amp; 1.505
+\end{bmatrix}
+\]</div>
+<p>shape: (2×6)</p>
+<hr />
+<h4 id="91-cross-attention"><strong>9.1 Cross-Attention</strong></h4>
+<ul>
+<li><span class="arithmatex">\( Q = X^{(1)} \cdot W_Q \)</span> → shape (2×4)  </li>
+<li><span class="arithmatex">\( K = X_{img} \cdot W_K \)</span>（與第一層相同）  </li>
+<li><span class="arithmatex">\( V = X_{img} \cdot W_V \)</span>（與第一層相同）  </li>
+</ul>
+<p>計算：</p>
+<div class="arithmatex">\[
+Q^{(2)} =
+\begin{bmatrix}
+0.550 &amp; 0.411 &amp; 0.300 &amp; 0.161 \\
+0.520 &amp; 0.390 &amp; 0.340 &amp; 0.210
+\end{bmatrix}
+\]</div>
+<p>Attention 分數：</p>
+<div class="arithmatex">\[
+\text{Scores} =
+\begin{bmatrix}
+0.543 &amp; 0.204 &amp; 0.793 &amp; 0.627 \\
+0.545 &amp; 0.205 &amp; 0.795 &amp; 0.629
+\end{bmatrix}
+\]</div>
+<p>Softmax 後：</p>
+<div class="arithmatex">\[
+\text{Attn} \approx
+\begin{bmatrix}
+0.245 &amp; 0.174 &amp; 0.314 &amp; 0.266 \\
+0.245 &amp; 0.174 &amp; 0.315 &amp; 0.266
+\end{bmatrix}
+\]</div>
+<p>加權求和：</p>
+<div class="arithmatex">\[
+\text{OutAttn}^{(2)} =
+\begin{bmatrix}
+0.696 &amp; 0.674 &amp; 0.696 &amp; 0.674 \\
+0.697 &amp; 0.675 &amp; 0.697 &amp; 0.675
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="92-output-projection"><strong>9.2 Output Projection</strong></h4>
+<div class="arithmatex">\[
+\text{ProjOut}^{(2)} =
+\begin{bmatrix}
+0.878 &amp; 0.884 &amp; 1.366 &amp; 1.372 &amp; 1.590 &amp; 1.596 \\
+0.879 &amp; 0.885 &amp; 1.367 &amp; 1.373 &amp; 1.591 &amp; 1.597
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="93-layernorm"><strong>9.3 殘差 + LayerNorm</strong></h4>
+<p>殘差：</p>
+<p>$$
+\text{Res1}^{(2)} = X^{(1)} + \text{ProjOut}^{(2)}
+$$
+=</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+-0.356 &amp; -0.458 &amp; 1.182 &amp; 1.422 &amp; 2.662 &amp; 3.234 \\
+-0.432 &amp; -0.360 &amp; 1.651 &amp; 1.693 &amp; 2.638 &amp; 3.102
+\end{bmatrix}
+\]</div>
+<p>LayerNorm 後：</p>
+<div class="arithmatex">\[
+\text{LN1}^{(2)} \approx
+\begin{bmatrix}
+-1.210 &amp; -1.320 &amp; -0.120 &amp; 0.050 &amp; 1.050 &amp; 1.650 \\
+-1.280 &amp; -1.190 &amp; 0.300 &amp; 0.340 &amp; 1.040 &amp; 1.500
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="94-ffn"><strong>9.4 FFN</strong></h4>
+<p>中間層 → ReLU → 輸出：</p>
+<div class="arithmatex">\[
+\text{FFNOut}^{(2)} \approx
+\begin{bmatrix}
+0.860 &amp; 0.900 &amp; 1.140 &amp; 1.180 &amp; 1.440 &amp; 1.480 \\
+1.070 &amp; 1.110 &amp; 1.350 &amp; 1.390 &amp; 1.650 &amp; 1.690
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="95-layernorm"><strong>9.5 殘差 + LayerNorm</strong></h4>
+<p>殘差：</p>
+<div class="arithmatex">\[
+\text{Res2}^{(2)} =
+\begin{bmatrix}
+-0.350 &amp; -0.420 &amp; 1.020 &amp; 1.230 &amp; 2.490 &amp; 3.130 \\
+-0.210 &amp; -0.080 &amp; 1.650 &amp; 1.730 &amp; 2.690 &amp; 3.190
+\end{bmatrix}
+\]</div>
+<p>LayerNorm：</p>
+<div class="arithmatex">\[
+X^{(2)} \approx
+\begin{bmatrix}
+-1.200 &amp; -1.300 &amp; -0.100 &amp; 0.070 &amp; 1.060 &amp; 1.570 \\
+-1.150 &amp; -1.050 &amp; 0.320 &amp; 0.360 &amp; 1.050 &amp; 1.470
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="96-3-q-former-block"><strong>9.6：第 3 層 Q-Former Block</strong></h4>
+<p>同樣流程，輸入 <span class="arithmatex">\(X^{(2)}\)</span>。</p>
+<p><strong>Cross-Attn 輸出</strong>：</p>
+<div class="arithmatex">\[
+\text{OutAttn}^{(3)} \approx
+\begin{bmatrix}
+0.699 &amp; 0.676 &amp; 0.699 &amp; 0.676 \\
+0.700 &amp; 0.677 &amp; 0.700 &amp; 0.677
+\end{bmatrix}
+\]</div>
+<p><strong>Output Projection</strong>：</p>
+<div class="arithmatex">\[
+\text{ProjOut}^{(3)} \approx
+\begin{bmatrix}
+0.882 &amp; 0.888 &amp; 1.370 &amp; 1.376 &amp; 1.594 &amp; 1.600 \\
+0.883 &amp; 0.889 &amp; 1.371 &amp; 1.377 &amp; 1.595 &amp; 1.601
+\end{bmatrix}
+\]</div>
+<p><strong>殘差 + LN → FFN → 殘差 + LN 後輸出</strong>：</p>
+<div class="arithmatex">\[
+X^{(3)} \approx
+\begin{bmatrix}
+-1.190 &amp; -1.290 &amp; -0.090 &amp; 0.080 &amp; 1.070 &amp; 1.580 \\
+-1.140 &amp; -1.040 &amp; 0.330 &amp; 0.370 &amp; 1.060 &amp; 1.480
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="97-4-q-former-block">9.7：第 4 層 Q-Former Block</h4>
+<p>輸入 <span class="arithmatex">\(X^{(3)}\)</span> 重複上述步驟。</p>
+<p>最終輸出：</p>
+<div class="arithmatex">\[
+X^{(4)} \approx
+\begin{bmatrix}
+-1.185 &amp; -1.285 &amp; -0.085 &amp; 0.085 &amp; 1.075 &amp; 1.585 \\
+-1.135 &amp; -1.035 &amp; 0.335 &amp; 0.375 &amp; 1.065 &amp; 1.485
+\end{bmatrix}
+\]</div>
+<p>shape: (2×6)</p>
+<p>這 2 個向量就是 <strong>learnable query tokens</strong> 最終的多模態表示。</p>
+<hr />
+<h3 id="step-10-llm-hidden-size"><strong>Step 10：投影到 LLM hidden size</strong></h3>
+<p>假設我們的 LLM hidden size = 8（真實可能是 4096，但這裡用小維度方便演示）。</p>
+<p>投影矩陣：</p>
+<div class="arithmatex">\[
+W_{\text{proj}} \in \mathbb{R}^{6 \times 8}
+\]</div>
+<div class="arithmatex">\[
+W_{\text{proj}} =
+\begin{bmatrix}
+0.1 &amp; 0.2 &amp; 0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 &amp; 0.7 &amp; 0.8 \\
+0.2 &amp; 0.1 &amp; 0.4 &amp; 0.3 &amp; 0.6 &amp; 0.5 &amp; 0.8 &amp; 0.7 \\
+0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 &amp; 0.7 &amp; 0.8 &amp; 0.9 &amp; 1.0 \\
+0.4 &amp; 0.3 &amp; 0.6 &amp; 0.5 &amp; 0.8 &amp; 0.7 &amp; 1.0 &amp; 0.9 \\
+0.5 &amp; 0.6 &amp; 0.7 &amp; 0.8 &amp; 0.9 &amp; 1.0 &amp; 1.1 &amp; 1.2 \\
+0.6 &amp; 0.5 &amp; 0.8 &amp; 0.7 &amp; 1.0 &amp; 0.9 &amp; 1.2 &amp; 1.1
+\end{bmatrix}
+\]</div>
+<p>計算：</p>
+<div class="arithmatex">\[
+X^{(4)}_{\text{LLM}} = X^{(4)} \cdot W_{\text{proj}}
+\]</div>
+<p>shape: (2×6) ⋅ (6×8) → (2×8)</p>
+<hr />
+<p><strong>第一行計算</strong>：</p>
+<div class="arithmatex">\[
+[-1.185, -1.285, -0.085, 0.085, 1.075, 1.585] \cdot W_{\text{proj}} =
+[1.002, 0.926, 1.788, 1.712, 2.574, 2.498, 3.360, 3.284]
+\]</div>
+<p><strong>第二行計算</strong>：</p>
+<div class="arithmatex">\[
+[-1.135, -1.035, 0.335, 0.375, 1.065, 1.485] \cdot W_{\text{proj}} =
+[1.304, 1.228, 2.090, 2.014, 2.876, 2.800, 3.662, 3.586]
+\]</div>
+<hr />
+<h4 id="_9">投影後結果：</h4>
+<div class="arithmatex">\[
+X^{(4)}_{\text{LLM}} =
+\begin{bmatrix}
+1.002 &amp; 0.926 &amp; 1.788 &amp; 1.712 &amp; 2.574 &amp; 2.498 &amp; 3.360 &amp; 3.284 \\
+1.304 &amp; 1.228 &amp; 2.090 &amp; 2.014 &amp; 2.876 &amp; 2.800 &amp; 3.662 &amp; 3.586
+\end{bmatrix}
+\]</div>
+<p><strong>shape</strong>: (2 × 8)<br />
+這就是我們的 <strong>視覺 token</strong> 在 LLM embedding 空間的表示。</p>
+<hr />
+<h4 id="step-1-token-embeddings"><strong>Step 1：準備文本 token embeddings</strong></h4>
+<p>假設 LLM 收到的文本是：
+<div class="highlight"><pre><span></span><code>&quot;一隻 貓&quot;
+</code></pre></div>
+假設 tokenizer 產生了 3 個 token（含 BOS）：</p>
+<div class="arithmatex">\[
+\text{[BOS]}, \text{["一隻"]}, \text{["貓"]}
+\]</div>
+<p>embedding 後得到：</p>
+<div class="arithmatex">\[
+E_{\text{text}} =
+\begin{bmatrix}
+0.5 &amp; 0.6 &amp; 0.7 &amp; 0.8 &amp; 0.9 &amp; 1.0 &amp; 1.1 &amp; 1.2 \\
+0.4 &amp; 0.5 &amp; 0.6 &amp; 0.7 &amp; 0.8 &amp; 0.9 &amp; 1.0 &amp; 1.1 \\
+0.3 &amp; 0.4 &amp; 0.5 &amp; 0.6 &amp; 0.7 &amp; 0.8 &amp; 0.9 &amp; 1.0
+\end{bmatrix}
+\]</div>
+<p><strong>shape</strong>: (3 × 8)</p>
+<hr />
+<h4 id="step-2-token-token"><strong>Step 2：拼接視覺 token + 文本 token</strong></h4>
+<p>拼接順序：<br />
+[視覺 token 1, 視覺 token 2, BOS, "一隻", "貓"]</p>
+<p>矩陣拼接：</p>
+<div class="arithmatex">\[
+E_{\text{total}} =
+\begin{bmatrix}
+1.002 &amp; 0.926 &amp; 1.788 &amp; 1.712 &amp; 2.574 &amp; 2.498 &amp; 3.360 &amp; 3.284 \\
+1.304 &amp; 1.228 &amp; 2.090 &amp; 2.014 &amp; 2.876 &amp; 2.800 &amp; 3.662 &amp; 3.586 \\
+0.500 &amp; 0.600 &amp; 0.700 &amp; 0.800 &amp; 0.900 &amp; 1.000 &amp; 1.100 &amp; 1.200 \\
+0.400 &amp; 0.500 &amp; 0.600 &amp; 0.700 &amp; 0.800 &amp; 0.900 &amp; 1.000 &amp; 1.100 \\
+0.300 &amp; 0.400 &amp; 0.500 &amp; 0.600 &amp; 0.700 &amp; 0.800 &amp; 0.900 &amp; 1.000
+\end{bmatrix}
+\]</div>
+<p><strong>shape</strong>: (5 × 8)</p>
+<hr />
+<h4 id="step-3-llm"><strong>Step 3：送進 LLM</strong></h4>
+<p>這個 <span class="arithmatex">\( E_{\text{total}} \)</span> 就是 LLM Transformer 的輸入 embedding 矩陣：
+- 前兩行是 Q‑Former 提供的 <strong>視覺上下文</strong>
+- 後三行是文字的 token embeddings
+- LLM 的多層 self-attention 就會同時讀取視覺和文字訊息，生成回應</p>
+<hr />
+<h4 id="step-4_1"><strong>Step 4：痛點與價值</strong></h4>
+<p>這一步的關鍵痛點是：
+- <strong>不同模態的特徵維度不一致</strong><br />
+  Q‑Former hidden size（例 768）與 LLM hidden size（例 4096）不同，必須用一個 <strong>線性投影矩陣 <span class="arithmatex">\(W_{\text{proj}}\)</span></strong> 做對齊。
+- <strong>多模態融合位置</strong><br />
+  在這裡採用「將視覺 token 插在文字序列開頭」的策略，讓 LLM 把視覺特徵視為上下文的一部分。<br />
+  這樣 LLM 不用修改架構，就能處理多模態輸入。</p>
+<h1 id="bert">Bert</h1>
+<p><img alt="alt text" src="../assets/%E4%BD%A0%E4%B8%80%E5%AE%9A%E8%A6%81%E6%87%82%E5%BE%97%20AI%20%E7%AD%86%E8%A8%98/image-6.png" /></p>
+<h2 id="1-bert">1. BERT 模型可以用於什麼任務？</h2>
+<p>BERT（<strong>Bidirectional Encoder Representations from Transformers</strong>）是一種「預訓練模型」。它的核心思想是：先在超大規模的無標註文本上學習通用的語言規律（預訓練），然後通過簡單的微調（Fine-tuning）就可以適應各種下游任務。</p>
+<p><strong>BERT 幾乎可以用於所有主流的 NLP 任務，主要分為以下幾大類：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"><strong>任務類型</strong></th>
+<th style="text-align: left;"><strong>簡介</strong></th>
+<th style="text-align: left;"><strong>具體例子</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>句子/文本分類</strong></td>
+<td style="text-align: left;">判斷整個句子或段落的情感、主題、類別等。</td>
+<td style="text-align: left;">- 情感分析（正面/負面/中性）<br>- 垃圾郵件識別<br>- 新聞主題分類</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>序列標註</strong></td>
+<td style="text-align: left;">為句子中的每一個單詞（Token）打上一個標籤。</td>
+<td style="text-align: left;">- <strong>命名實體識別</strong>：找出句子中的人名、地名、機構名等。<br>- <strong>詞性標註</strong>：判斷每個詞的詞性（名詞、動詞等）。<br>- <strong>語義角色標註</strong></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>語義相似度判斷</strong></td>
+<td style="text-align: left;">判斷兩個句子在語義上是否相似或相關。</td>
+<td style="text-align: left;">- 重複問題識別<br>- 問答系統匹配<br>- 語句改寫（Paraphrase）檢測</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>問答任務</strong></td>
+<td style="text-align: left;">給定一個問題和一段上下文，從上下文中找出答案。</td>
+<td style="text-align: left;">- <strong>抽取式問答</strong>：如 SQuAD 數據集，答案直接是上下文中的一段文字。<br>- 智能客服、閱讀理解的自動化</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>文本摘要</strong></td>
+<td style="text-align: left;">對長文本進行壓縮，生成簡潔的摘要。</td>
+<td style="text-align: left;">- 新聞摘要生成<br>- 長文檔核心思想提取</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>機器翻譯</strong></td>
+<td style="text-align: left;">雖然 BERT 本身不是序列到序列模型，但其思想和編碼器部分可以被整合到翻譯模型中，提升翻譯質量。</td>
+<td style="text-align: left;">- 作為改進機器翻譯系統的一個組件</td>
+</tr>
+</tbody>
+</table>
+<p><strong>核心特點</strong>：對於所有這些任務，你不需要為每個任務從頭設計一個複雜的網絡。你只需要在預訓練好的 BERT 模型後面添加一個簡單的輸出層（如一個全連接層），然後用特定任務的數據進行<strong>微調</strong>即可，大大降低了應用門檻。</p>
+<hr />
+<h2 id="2-bert">2. BERT 解決了什麼舊有痛點？</h2>
+<p>在 BERT 出現之前，主流的 NLP 模型（如 LSTM、Word2Vec、GloVe）存在幾個顯著的痛點，BERT 成功地解決了它們：</p>
+<h3 id="_10">痛點一：<strong>上下文無關的單詞表示</strong></h3>
+<ul>
+<li><strong>舊有模型</strong>：Word2Vec 或 GloVe 等靜態詞向量模型為每個單詞生成一個<strong>固定的</strong>向量表示。無論上下文如何，單詞「蘋果」的向量總是相同，無法區分「<strong>蘋果</strong>公司」和「吃<strong>蘋果</strong>」中的不同含義。</li>
+<li><strong>BERT 的解決方案</strong>：<strong>動態上下文詞向量</strong>。BERT 會根據單詞在句子中的具體上下文，為其生成一個獨特的向量表示。這意味著「銀行」在「河岸邊的銀行」和「去銀行存錢」中會有完全不同的向量，極大地提升了模型對語言歧義的理解能力。</li>
+</ul>
+<h3 id="_11">痛點二：<strong>單向語言模型的信息局限</strong></h3>
+<ul>
+<li><strong>舊有模型</strong>：在 BERT 之前，最先進的預訓練模型（如 OpenAI GPT）採用<strong>單向</strong>的語言模型。它們在訓練時只能從左到右或者從右到左看上下文，無法同時利用<strong>雙向</strong>信息。<ul>
+<li>例如，在預測「我很開心，因為我中___了！」中的空白詞時，模型只能看到「我很開心，因為我中」的歷史信息，而無法利用後面關鍵的「了！」來輔助判斷（應該是「獎」）。</li>
+</ul>
+</li>
+<li><strong>BERT 的解決方案</strong>：<strong>雙向編碼器</strong>。BERT 通過其革命性的<strong>掩碼語言模型（Masked Language Model, MLM）</strong>任務，在預訓練時隨機遮蓋句子中 15% 的單詞，然後讓模型根據<strong>左右雙向的上下文</strong>來預測被遮蓋的單詞。這使得模型對語言的理解更加深刻和完整。</li>
+</ul>
+<h3 id="_12">痛點三：<strong>需要大量任務特定的數據和架構</strong></h3>
+<ul>
+<li><strong>舊有模型</strong>：對於每個新的 NLP 任務，研究人員通常需要從零開始設計一個複雜的網絡結構，並且需要大量的<strong>標註數據</strong>來訓練，成本高昂且泛化能力有限。</li>
+<li><strong>BERT 的解決方案</strong>：<strong>預訓練 + 微調 范式</strong>。<ol>
+<li><strong>預訓練</strong>：在海量無標註文本（如維基百科、圖書語料庫）上進行一次性的、成本高昂的預訓練，讓模型學會通用的語法、語義和世界知識。</li>
+<li><strong>微調</strong>：對於具體的下游任務（如情感分析、問答），只需要使用相對少量的標註數據，在預訓練模型的基礎上進行快速的微調即可達到極佳的性能。這相當於把通用的「語言大腦」快速特化成某個領域的「專家」。</li>
+</ol>
+</li>
+</ul>
+<h3 id="_13">痛點四：<strong>對長距離依賴關係建模能力弱</strong></h3>
+<ul>
+<li><strong>舊有模型</strong>：RNN、LSTM 等模型在處理長文本時，存在梯度消失或爆炸的問題，難以有效捕捉句子開頭和結尾之間的依賴關係。</li>
+<li><strong>BERT 的解決方案</strong>：<strong>Transformer 架構</strong>。BERT 完全基於 Transformer 的編碼器部分，其<strong>自注意力機制</strong>允許序列中的任何一個單詞直接與任何另一個單詞發生交互，無論它們之間的距離有多遠。這使其能非常高效地捕捉長距離依賴關係。</li>
+</ul>
+<hr />
+<h2 id="_14">總結</h2>
+<p><strong>BERT 的核心革命性在於：</strong>
+它通過<strong>雙向 Transformer 編碼器</strong>結構和<strong>掩碼語言模型</strong>的預訓練任務，首次實現了<strong>深度雙向、上下文相關的</strong>詞向量表示，並確立了<strong>預訓練-微調</strong>這一 NLP 新范式，一舉解決了之前模型的多個根本性痛點，從而在幾乎所有 NLP 任務上實現了巨大的性能提升，開啟了 NLP 的「預訓練大模型」時代。</p>
+<h1 id="gpt">GPT</h1>
+<h1 id="vision-transformer">Vision Transformer</h1>
+<p><img alt="alt text" src="../assets/%E4%BD%A0%E4%B8%80%E5%AE%9A%E8%A6%81%E6%87%82%E5%BE%97%20AI%20%E7%AD%86%E8%A8%98/image-4.png" /></p>
+<h2 id="_15"><strong>歷史背景</strong></h2>
+<ul>
+<li><strong>2020 年</strong>，谷歌研究團隊在論文《An Image is Worth 16x16 Words》中提出了 <strong>Vision Transformer (ViT)</strong>，將 <strong>Transformer 模型</strong>（原本在 NLP 領域的成功）引入到計算機視覺領域。</li>
+<li><strong>核心理念</strong>: </li>
+<li>將圖像切分為固定大小的補丁（patches），每個補丁類似於 NLP 中的「詞」（Token）。</li>
+<li>使用 Transformer 的注意力機制來建模圖像中不同補丁之間的關係。</li>
+</ul>
+<hr />
+<h2 id="_16"><strong>解決的痛點</strong></h2>
+<ol>
+<li><strong>克服 CNN 的局限性</strong></li>
+<li><strong>痛點</strong>: 傳統卷積神經網路（CNN）依賴於局部感受野，難以捕捉全局關聯。</li>
+<li>
+<p><strong>解決方法</strong>: ViT 使用 <strong>Self-Attention 機制</strong>，能夠直接捕捉圖像中補丁之間的全局依賴關係，無需通過多層堆疊的卷積層來逐漸擴展感受野。</p>
+</li>
+<li>
+<p><strong>減少對手工設計的依賴</strong></p>
+</li>
+<li><strong>痛點</strong>: CNN 的設計需要大量的專家知識（例如卷積核大小、池化策略等）。</li>
+<li>
+<p><strong>解決方法</strong>: ViT 的設計簡單，只需要將圖像分割為補丁，並將其視為序列輸入，與 NLP 中的 Transformer 模型結構一致，減少了手工設計的需求。</p>
+</li>
+<li>
+<p><strong>適應大規模數據訓練</strong></p>
+</li>
+<li><strong>痛點</strong>: CNN 在小數據集上表現良好，但需要專門的設計（如數據增強）來避免過擬合。</li>
+<li>
+<p><strong>解決方法</strong>: ViT 在大規模數據集（如 ImageNet-21k）上預訓練後，能夠很好地遷移到小數據集上進行微調，顯示出非常強的泛化性能。</p>
+</li>
+<li>
+<p><strong>多模態統一</strong></p>
+</li>
+<li><strong>痛點</strong>: CNN 與 NLP 的模型之間設計差異大，限制了多模態學習（如圖像-文本融合）。</li>
+<li><strong>解決方法</strong>: Transformer 在 NLP 和視覺領域的應用可以共享相同的架構，為多模態學習（例如 CLIP、DALL-E 等）奠定了基礎。</li>
+</ol>
+<hr />
+<h2 id="vision-transformer-vit">Vision Transformer (ViT) 數學運算流程</h2>
+<h3 id="_17"><strong>假設的輸入</strong></h3>
+<p>假設輸入為一張 RGB 圖像：
+- <strong>圖像尺寸</strong>: <span class="arithmatex">\(224 \times 224 \times 3\)</span>
+  - Height: <span class="arithmatex">\(224\)</span>
+  - Width: <span class="arithmatex">\(224\)</span>
+  - Channels: <span class="arithmatex">\(3\)</span></p>
+<p>模型的超參數設置如下：
+- <strong>Patch Size</strong>: <span class="arithmatex">\(16 \times 16\)</span>（圖像被分割成 <span class="arithmatex">\(16 \times 16\)</span> 的小塊）。
+- <strong>Hidden Dimension (<span class="arithmatex">\(d_{\text{model}}\)</span>)</strong>: <span class="arithmatex">\(768\)</span>（Transformer 的嵌入特徵維度）。
+- <strong>Number of Patches</strong>:</p>
+<p>$$
+  N = \frac{\text{Height}}{\text{Patch Size}} \times \frac{\text{Width}}{\text{Patch Size}} = \frac{224}{16} \times \frac{224}{16} = 14 \times 14 = 196
+  ]
+$$  圖像被分割成 <span class="arithmatex">\(196\)</span> 個 <span class="arithmatex">\(16 \times 16\)</span> 的小塊。
+- <strong>Number of Transformer Layers</strong>: <span class="arithmatex">\(L = 12\)</span>。
+- <strong>Number of Heads in Multi-Head Attention</strong>: <span class="arithmatex">\(h = 12\)</span>。
+- <strong>MLP Hidden Dimension</strong>: <span class="arithmatex">\(3072\)</span>（MLP 中間層的隱藏維度）。</p>
+<hr />
+<h3 id="step-1-patches"><strong>Step 1: 圖像分割成 Patches</strong></h3>
+<ol>
+<li><strong>分割圖像為 Patches</strong>：
+   將圖像分割成 <span class="arithmatex">\(16 \times 16\)</span> 的小塊。每個小塊的大小為：</li>
+</ol>
+<p>$$
+   16 \times 16 \times 3
+   ]
+$$
+2. <strong>展平每個 Patch</strong>：
+   每個 <span class="arithmatex">\(16 \times 16 \times 3\)</span> 的小塊被展平為一個向量：</p>
+<p>$$
+   \text{Flattened Patch} = \text{Reshape}(16 \times 16 \times 3) = 768
+   ]
+$$   每個 Patch 的形狀為 <span class="arithmatex">\(\mathbb{R}^{768}\)</span>。</p>
+<ol>
+<li><strong>得到所有 Patches 的矩陣</strong>：
+   將 <span class="arithmatex">\(196\)</span> 個展平的 Patch 組合成一個矩陣：</li>
+</ol>
+<p>$$
+   P \in \mathbb{R}^{196 \times 768}
+   ]
+$$</p>
+<hr />
+<h3 id="step-2-linear-projection-of-patches"><strong>Step 2: Linear Projection of Patches</strong></h3>
+<ol>
+<li><strong>線性投影</strong>：
+   使用一個線性投影矩陣 <span class="arithmatex">\(W_E\)</span> 將每個 Patch 投影到 Transformer 的特徵空間：</li>
+</ol>
+<p>$$
+   E = P \cdot W_E
+   ]
+$$   其中：
+   - <span class="arithmatex">\(P \in \mathbb{R}^{196 \times 768}\)</span> 是所有 Patches 的矩陣。
+   - <span class="arithmatex">\(W_E \in \mathbb{R}^{768 \times 768}\)</span> 是線性投影矩陣。
+   - <span class="arithmatex">\(E \in \mathbb{R}^{196 \times 768}\)</span> 是投影後的 Patch 嵌入。</p>
+<ol>
+<li><strong>添加 Class Embedding</strong>：
+   添加一個可學習的 class embedding <span class="arithmatex">\(E_{\text{cls}} \in \mathbb{R}^{1 \times 768}\)</span>，用於表示整張圖像的全局信息：</li>
+</ol>
+<p>$$
+   E' = \text{Concat}(E_{\text{cls}}, E)
+   ]
+$$   現在，<span class="arithmatex">\(E'\)</span> 的 shape 為：</p>
+<p>$$
+   E' \in \mathbb{R}^{197 \times 768}
+   ]
+$$   （包含 <span class="arithmatex">\(196\)</span> 個 Patch 和 <span class="arithmatex">\(1\)</span> 個 class embedding）。</p>
+<hr />
+<h3 id="step-3-position-embedding"><strong>Step 3: 加入 Position Embedding</strong></h3>
+<ol>
+<li><strong>添加位置編碼</strong>：
+   為每個 Patch 和 class embedding 添加位置編碼（<a href="#position-embedding">Position Embedding</a>），詳細可以參考：</li>
+</ol>
+<p>$$
+   E_{\text{pos}} = E' + P_{\text{pos}}
+   ]
+$$   其中：
+   - <span class="arithmatex">\(P_{\text{pos}} \in \mathbb{R}^{197 \times 768}\)</span> 是可學習的位置嵌入矩陣。</p>
+<ol>
+<li><strong>結果的形狀</strong>：
+   添加位置編碼後的輸入矩陣：</li>
+</ol>
+<p>$$
+   E_{\text{pos}} \in \mathbb{R}^{197 \times 768}
+   ]
+$$</p>
+<hr />
+<h3 id="step-4-transformer-encoder"><strong>Step 4: Transformer Encoder</strong></h3>
+<p>Transformer Encoder 包含 <span class="arithmatex">\(L = 12\)</span> 層 Transformer Block，每層包含以下兩個主要部分：
+1. <strong>Multi-Head Attention</strong>
+2. <strong>Feed-Forward Network (MLP)</strong></p>
+<hr />
+<h4 id="step-41-multi-head-attention"><strong>Step 4.1: Multi-Head Attention</strong></h4>
+<ol>
+<li><strong>生成 Query (<span class="arithmatex">\(Q\)</span>)、Key (<span class="arithmatex">\(K\)</span>) 和 Value (<span class="arithmatex">\(V\)</span>)</strong>：
+   使用三個線性投影矩陣 <span class="arithmatex">\(W_Q\)</span>、<span class="arithmatex">\(W_K\)</span>、<span class="arithmatex">\(W_V\)</span> 將輸入 <span class="arithmatex">\(E_{\text{pos}}\)</span> 投影到 Query、Key 和 Value 空間：</li>
+</ol>
+<p>$$
+   Q = E_{\text{pos}} \cdot W_Q, \quad K = E_{\text{pos}} \cdot W_K, \quad V = E_{\text{pos}} \cdot W_V
+   ]
+$$   其中：
+   - <span class="arithmatex">\(W_Q, W_K, W_V \in \mathbb{R}^{768 \times d_k}\)</span>，且 <span class="arithmatex">\(d_k = \frac{d_{\text{model}}}{h} = \frac{768}{12} = 64\)</span>。
+   - <span class="arithmatex">\(Q, K, V \in \mathbb{R}^{197 \times 64}\)</span>（每個頭的 Query、Key 和 Value）。</p>
+<ol>
+<li><strong>計算 Scaled Dot-Product Attention</strong>：</li>
+</ol>
+<p>$$
+   \text{Attention}(Q, K, V) = \text{Softmax}\left(\frac{Q \cdot K^T}{\sqrt{d_k}}\right) \cdot V
+   ]
+$$   其中：
+   - <span class="arithmatex">\(Q \cdot K^T \in \mathbb{R}^{197 \times 197}\)</span>，表示每個 Token 對其他 Token 的注意力分數。
+   - 通過 Softmax，得到注意力矩陣 <span class="arithmatex">\(A \in \mathbb{R}^{197 \times 197}\)</span>。</p>
+<ol>
+<li><strong>加權求和</strong>：
+   將注意力矩陣 <span class="arithmatex">\(A\)</span> 應用到 <span class="arithmatex">\(V\)</span> 上：</li>
+</ol>
+<p>$$
+   Z = A \cdot V
+   ]
+$$   <span class="arithmatex">\(Z\)</span> 的 shape 為：</p>
+<p>$$
+   Z \in \mathbb{R}^{197 \times 64}
+   ]
+$$
+4. <strong>拼接多頭輸出</strong>：
+   將 <span class="arithmatex">\(12\)</span> 個頭的輸出拼接起來：</p>
+<p>$$
+   Z_{\text{concat}} = \text{Concat}(Z_1, Z_2, \dots, Z_{12})
+   ]
+$$   <span class="arithmatex">\(Z_{\text{concat}}\)</span> 的 shape 為：</p>
+<p>$$
+   Z_{\text{concat}} \in \mathbb{R}^{197 \times 768}
+   ]
+$$
+5. <strong>通過線性投影</strong>：
+   使用線性投影矩陣 <span class="arithmatex">\(W_O \in \mathbb{R}^{768 \times 768}\)</span>：</p>
+<p>$$
+   Z_{\text{final}} = Z_{\text{concat}} \cdot W_O
+   ]
+$$   <span class="arithmatex">\(Z_{\text{final}}\)</span> 的 shape 為：</p>
+<p>$$
+   Z_{\text{final}} \in \mathbb{R}^{197 \times 768}
+   ]
+$$</p>
+<hr />
+<h4 id="step-42-feed-forward-network-mlp"><strong>Step 4.2: Feed-Forward Network (MLP)</strong></h4>
+<ol>
+<li><strong>MLP 結構</strong>：</li>
+</ol>
+<p>$$
+   \text{MLP}(x) = \sigma(x \cdot W_1 + b_1) \cdot W_2 + b_2
+   ]
+$$   其中：
+   - <span class="arithmatex">\(W_1 \in \mathbb{R}^{768 \times 3072}\)</span>
+   - <span class="arithmatex">\(W_2 \in \mathbb{R}^{3072 \times 768}\)</span>
+   - <span class="arithmatex">\(b_1 \in \mathbb{R}^{3072}\)</span>，<span class="arithmatex">\(b_2 \in \mathbb{R}^{768}\)</span>。</p>
+<ol>
+<li><strong>MLP 的輸入輸出</strong>：</li>
+<li>輸入 <span class="arithmatex">\(x \in \mathbb{R}^{197 \times 768}\)</span>。</li>
+<li>輸出 <span class="arithmatex">\(\text{MLP}(x) \in \mathbb{R}^{197 \times 768}\)</span>。</li>
+</ol>
+<hr />
+<h4 id="step-43-layer-normalization"><strong>Step 4.3: Layer Normalization 和殘差連接</strong></h4>
+<ol>
+<li><strong>Layer Normalization</strong>：
+   對每層輸入進行標準化：</li>
+</ol>
+<p>$$
+   \text{Norm}(x) = \frac{x - \mu}{\sigma}
+   ]
+$$
+2. <strong>殘差連接</strong>：
+   每層的輸出加上原始輸入：</p>
+<p>$$
+   x' = \text{Norm}(x + \text{SubLayer}(x))
+   ]
+$$</p>
+<hr />
+<h3 id="step-5_2"><strong>Step 5: 最終分類輸出</strong></h3>
+<ol>
+<li><strong>提取 Class Token</strong>：
+   最終 Transformer Encoder 的輸出中，class embedding <span class="arithmatex">\(E_{\text{cls}}'\)</span>：</li>
+</ol>
+<p>$$
+   E_{\text{cls}}' \in \mathbb{R}^{1 \times 768}
+   ]
+$$
+2. <strong>MLP Head</strong>：
+   使用全連接層將 class embedding 映射到類別空間：</p>
+<p>$$
+   \text{Class Scores} = E_{\text{cls}}' \cdot W_{\text{head}} + b_{\text{head}}
+   ]
+$$   其中：
+   - <span class="arithmatex">\(W_{\text{head}} \in \mathbb{R}^{768 \times \text{num_classes}}\)</span>
+   - <span class="arithmatex">\(b_{\text{head}} \in \mathbb{R}^{\text{num_classes}}\)</span></p>
+<ol>
+<li><strong>輸出分類分數</strong>：</li>
+</ol>
+<p>$$
+   \text{Class Scores} \in \mathbb{R}^{\text{num_classes}}
+   ]
+$$</p>
+<hr />
+<h3 id="_18"><strong>總結流程</strong></h3>
+<ol>
+<li><strong>Patch 分割</strong>：將圖像分割成 <span class="arithmatex">\(196\)</span> 個 <span class="arithmatex">\(768\)</span>-維的 Patches。</li>
+<li><strong>Transformer Encoder</strong>：通過 <span class="arithmatex">\(12\)</span> 層 Transformer Block，提取全局特徵。</li>
+<li><strong>分類輸出</strong>：使用 class embedding 和 MLP Head，輸出分類結果。</li>
+</ol>
+<p>ViT 的核心是利用 Transformer 的全局注意力機制，捕捉圖像中不同區域的關聯性，實現高效的圖像分類。</p>
+<h1 id="clip">CLIP</h1>
+<p><img alt="alt text" src="../assets/%E4%BD%A0%E4%B8%80%E5%AE%9A%E8%A6%81%E6%87%82%E5%BE%97%20AI%20%E7%AD%86%E8%A8%98/image-5.png" /></p>
+<h2 id="clip_1">CLIP 可以用於的任務以及能解決的痛點</h2>
+<p>CLIP（Contrastive Language–Image Pretraining）是一種多模態模型，其設計目的是結合文字和圖像的模態，實現通用的人工智能能力。以下將詳細解釋 CLIP 可以應用於的任務以及它解決的核心痛點。</p>
+<hr />
+<h3 id="clip_2">CLIP 可以用於的任務</h3>
+<h4 id="1-zero-shot-image-classification">1. <strong>零樣本圖像分類（Zero-shot Image Classification）</strong></h4>
+<p>CLIP 能夠直接根據文字描述對圖像進行分類，而無需針對特定類別進行微調。<br />
+<strong>例子</strong>：給定一張動物的照片，CLIP 可以根據標籤「一隻狗的照片」或「一隻貓的照片」來進行推斷。</p>
+<p><strong>應用場景</strong>：
+- 識別新類別的物體而不需要重新訓練。
+- 在多樣化的場景中進行分類（例如醫療影像、衛星照片等領域）。</p>
+<hr />
+<h4 id="2-image-text-retrieval">2. <strong>圖像-文字檢索（Image-Text Retrieval）</strong></h4>
+<p>CLIP 能夠有效地在大規模數據中進行圖像和文字的匹配。<br />
+<strong>例子</strong>：給定文字描述「一隻在草地上奔跑的狗」，CLIP 可以檢索出符合描述的圖像。</p>
+<p><strong>應用場景</strong>：
+- 圖像搜索引擎：根據文字描述快速找到相關圖片。
+- 多模態內容管理：在大型數據集中進行匹配與索引。</p>
+<hr />
+<h4 id="3-image-generation-assistance">3. <strong>圖像生成輔助（Image Generation Assistance）</strong></h4>
+<p>CLIP 與生成模型（例如 DALL·E）結合使用時，可以幫助生成符合文字描述的圖像。<br />
+<strong>例子</strong>：根據描述「一隻穿著帽子的狗」，CLIP 可以幫助生成模型生成此類圖像。</p>
+<p><strong>應用場景</strong>：
+- 藝術創作：生成符合語意的圖像。
+- 虛擬世界建模：根據文字設計和生成場景或物件。</p>
+<hr />
+<h4 id="4-multimodal-analysis-and-qa">4. <strong>多模態分析與問答（Multimodal Analysis and Q&amp;A）</strong></h4>
+<p>CLIP 能夠在圖像與文字的交互中進行分析，支持多模態問答系統的開發。<br />
+<strong>例子</strong>：問題「這張圖片中的主要物體是什麼？」CLIP 可以根據嵌入向量回答正確的物體名稱。</p>
+<p><strong>應用場景</strong>：
+- 智能助理：基於圖片回答問題。
+- 教育系統：圖像和文字相結合的互動式學習平台。</p>
+<hr />
+<h3 id="clip_3">CLIP 能解決的痛點</h3>
+<h4 id="1_4">1. <strong>標註數據成本高</strong></h4>
+<ul>
+<li><strong>問題</strong>：傳統的監督學習模型需要大量標註數據，標註成本高且耗時。</li>
+<li><strong>解決方案</strong>：CLIP 使用來自互聯網的大規模未標註數據（如圖像和文字配對），避免依賴人工標註。</li>
+</ul>
+<hr />
+<h4 id="2_3">2. <strong>缺乏泛化能力</strong></h4>
+<ul>
+<li><strong>問題</strong>：傳統模型通常只能識別訓練過的類別，對新類別或場景的泛化能力有限。</li>
+<li><strong>解決方案</strong>：CLIP 能夠在零樣本情境下根據文字描述進行分類，無需重新訓練即可泛化到未見過的類別。</li>
+</ul>
+<hr />
+<h4 id="3">3. <strong>單模態模型的局限</strong></h4>
+<ul>
+<li><strong>問題</strong>：傳統模型通常只處理單一模態（如僅處理圖像或文字），無法同時理解圖像與文字的關聯。</li>
+<li><strong>解決方案</strong>：CLIP 將圖像和文字嵌入到同一向量空間中，實現跨模態的理解與推理。</li>
+</ul>
+<hr />
+<h4 id="4">4. <strong>靈活性不足</strong></h4>
+<ul>
+<li><strong>問題</strong>：很多模型需要針對特定任務進行微調，限制了它們的靈活性。</li>
+<li><strong>解決方案</strong>：CLIP 是通用模型，能夠應用於多種任務（如分類、檢索、生成等），不需要針對每個任務進行微調。</li>
+</ul>
+<hr />
+<h4 id="5">5. <strong>多模態交互困難</strong></h4>
+<ul>
+<li><strong>問題</strong>：圖像和文字是兩種不同的模態，如何讓模型在它們之間建立語義聯繫是難題。</li>
+<li><strong>解決方案</strong>：CLIP 使用對比學習（Contrastive Learning）方法，讓圖像和文字的嵌入向量互相關聯，提高跨模態交互能力。</li>
+</ul>
+<hr />
+<h2 id="_19">詳細數學計算</h2>
+<h3 id="contrastive-pre-training"><strong>對比式預訓練 (Contrastive Pre-training) 的數學運算流程</strong></h3>
+<p>以下將使用一個具體的例子來解釋 CLIP 的對比式預訓練流程，並詳細說明每一步的數學運算及其意義。</p>
+<hr />
+<h4 id="_20"><strong>例子輸入</strong></h4>
+<p>假設我們有以下的文字描述和對應的圖片：
+1. 文字描述：
+   - <span class="arithmatex">\(T_1\)</span>: "Pepper the aussie pup"<br />
+   - <span class="arithmatex">\(T_2\)</span>: "A beautiful sunset"<br />
+   - <span class="arithmatex">\(T_3\)</span>: "A plate of sushi"  </p>
+<ol>
+<li>圖片：</li>
+<li><span class="arithmatex">\(I_1\)</span>: 一張狗的照片  </li>
+<li><span class="arithmatex">\(I_2\)</span>: 一張日落的照片  </li>
+<li><span class="arithmatex">\(I_3\)</span>: 一張壽司的照片  </li>
+</ol>
+<p>目標是讓模型學會將文字和圖片嵌入到同一語意空間，並使正確的文字-圖片配對具有更高的相似度，不正確的配對具有更低的相似度。</p>
+<hr />
+<h3 id="1_5"><strong>步驟 1：文字和圖片的嵌入</strong></h3>
+<h4 id="11_1"><strong>1.1 文字編碼器</strong></h4>
+<p>CLIP 使用一個文字編碼器（例如 Transformer <a href="Bert">Bert</a> 模型）將文字描述 <span class="arithmatex">\(T_1, T_2, T_3\)</span> 嵌入到一個高維向量空間。<br />
+數學表示為：</p>
+<div class="arithmatex">\[
+z_{T_i} = f_{\text{text}}(T_i) \quad \forall i \in \{1, 2, 3\}
+\]</div>
+<p>假設嵌入向量如下：</p>
+<div class="arithmatex">\[
+z_{T_1} = [0.8, 0.1, 0.5], \quad z_{T_2} = [0.3, 0.9, 0.7], \quad z_{T_3} = [0.5, 0.6, 0.8]
+\]</div>
+<h4 id="12_1"><strong>1.2 圖像編碼器</strong></h4>
+<p>CLIP 使用一個圖像編碼器（例如 ResNet 模型）將圖片 <span class="arithmatex">\(I_1, I_2, I_3\)</span> 嵌入到同一高維向量空間。<br />
+數學表示為：</p>
+<div class="arithmatex">\[
+z_{I_j} = f_{\text{image}}(I_j) \quad \forall j \in \{1, 2, 3\}
+\]</div>
+<p>假設嵌入向量如下：</p>
+<div class="arithmatex">\[
+z_{I_1} = [0.7, 0.2, 0.6], \quad z_{I_2} = [0.4, 0.8, 0.7], \quad z_{I_3} = [0.6, 0.5, 0.9]
+\]</div>
+<h4 id="_21"><strong>意義</strong>：</h4>
+<ul>
+<li>此步驟的目的是將文字和圖片嵌入到共享的語意向量空間中，為後續的相似度計算提供基礎。</li>
+</ul>
+<hr />
+<h3 id="2_4"><strong>步驟 2：計算相似度矩陣</strong></h3>
+<h4 id="21"><strong>2.1 餘弦相似度公式</strong></h4>
+<p>文字向量和圖片向量的相似度可以用 <strong>餘弦相似度（Cosine Similarity）</strong> 來計算，公式如下：</p>
+<div class="arithmatex">\[
+\text{Sim}(z_{T_i}, z_{I_j}) = \frac{z_{T_i} \cdot z_{I_j}}{\|z_{T_i}\| \cdot \|z_{I_j}\|}
+\]</div>
+<p>其中：
+- <span class="arithmatex">\(z_{T_i} \cdot z_{I_j}\)</span> 是向量的內積。
+- <span class="arithmatex">\(\|z_{T_i}\|\)</span> 和 <span class="arithmatex">\(\|z_{I_j}\|\)</span> 是向量的 L2 範數（即向量長度）。</p>
+<h4 id="22"><strong>2.2 計算相似度矩陣</strong></h4>
+<p>對於所有的文字向量 <span class="arithmatex">\(z_{T_i}\)</span> 和圖片向量 <span class="arithmatex">\(z_{I_j}\)</span>，計算相似度矩陣（假設有 <span class="arithmatex">\(N=3\)</span> 個文字和圖片）。以下是具體計算：</p>
+<ol>
+<li><strong>計算 <span class="arithmatex">\( \text{Sim}(z_{T_1}, z_{I_1}) \)</span>：</strong></li>
+</ol>
+<p>$$
+   \text{Sim}(z_{T_1}, z_{I_1}) = \frac{(0.8 \cdot 0.7) + (0.1 \cdot 0.2) + (0.5 \cdot 0.6)}{\sqrt{(0.8^2 + 0.1^2 + 0.5^2)} \cdot \sqrt{(0.7^2 + 0.2^2 + 0.6^2)}}
+   ]
+$$   假設計算結果為 <span class="arithmatex">\(0.96\)</span>。</p>
+<ol>
+<li><strong>重複計算所有配對的相似度：</strong></li>
+</ol>
+<p>$$
+   \text{SimMatrix} = 
+   \begin{bmatrix}
+   0.96 &amp; 0.85 &amp; 0.74 \
+   0.81 &amp; 0.95 &amp; 0.88 \
+   0.78 &amp; 0.83 &amp; 0.97
+   \end{bmatrix}
+   ]
+$$</p>
+<h4 id="_22"><strong>意義</strong>：</h4>
+<ul>
+<li>相似度矩陣的每一項（例如 <span class="arithmatex">\( \text{Sim}(z_{T_1}, z_{I_1}) \)</span>）表示文字 <span class="arithmatex">\(T_1\)</span> 和圖片 <span class="arithmatex">\(I_1\)</span> 的關聯程度。</li>
+<li>正確配對（例如 <span class="arithmatex">\(T_1\)</span> 和 <span class="arithmatex">\(I_1\)</span>）應具有較高的相似度。</li>
+</ul>
+<hr />
+<h3 id="3_1"><strong>步驟 3：計算對比損失</strong></h3>
+<h4 id="31"><strong>3.1 配對概率</strong></h4>
+<p>對於正確配對（例如 <span class="arithmatex">\(T_1\)</span> 與 <span class="arithmatex">\(I_1\)</span>），計算其匹配概率：</p>
+<div class="arithmatex">\[
+P_{\text{image-to-text}}(I_j \to T_i) = \frac{\exp(\text{Sim}(z_{T_i}, z_{I_j}) / \tau)}{\sum_{k=1}^N \exp(\text{Sim}(z_{T_i}, z_{I_k}) / \tau)}
+\]</div>
+<div class="arithmatex">\[
+P_{\text{text-to-image}}(T_i \to I_j) = \frac{\exp(\text{Sim}(z_{T_i}, z_{I_j}) / \tau)}{\sum_{k=1}^N \exp(\text{Sim}(z_{T_k}, z_{I_j}) / \tau)}
+\]</div>
+<p>其中：
+- <span class="arithmatex">\(\tau\)</span> 是溫度係數，用於調整分布的平滑程度。
+- 分子是正確配對的相似度，分母是該文字或圖片與所有配對的相似度總和。</p>
+<h4 id="32"><strong>3.2 對比損失公式</strong></h4>
+<p>對比損失是負對數似然（Negative Log Likelihood, NLL），分別對圖片到文字和文字到圖片進行計算：</p>
+<div class="arithmatex">\[
+\mathcal{L}_{\text{image-to-text}} = -\frac{1}{N} \sum_{i=1}^N \log P_{\text{image-to-text}}(I_i \to T_i)
+\]</div>
+<div class="arithmatex">\[
+\mathcal{L}_{\text{text-to-image}} = -\frac{1}{N} \sum_{i=1}^N \log P_{\text{text-to-image}}(T_i \to I_i)
+\]</div>
+<p>最終損失為兩者的平均值：</p>
+<div class="arithmatex">\[
+\mathcal{L} = \frac{1}{2} (\mathcal{L}_{\text{image-to-text}} + \mathcal{L}_{\text{text-to-image}})
+\]</div>
+<h4 id="_23"><strong>意義</strong>：</h4>
+<ul>
+<li>此步驟的目的是最大化正確配對的概率，最小化錯誤配對的概率。</li>
+<li>通過最小化損失，模型學會提高正確配對的相似度。</li>
+</ul>
+<hr />
+<h3 id="4_1"><strong>步驟 4：模型學習的目標</strong></h3>
+<ul>
+<li><strong>正確配對</strong>：文字和圖片的正確配對具有更高的相似度。</li>
+<li><strong>錯誤配對</strong>：文字和圖片的錯誤配對具有更低的相似度。</li>
+<li>經過訓練，文字和圖片嵌入到同一語意空間，從而使模型能夠在多模態任務中表現出色。</li>
+</ul>
+<h1 id="blip">BLIP</h1>
+<p><img alt="alt text" src="../assets/%E4%BD%A0%E4%B8%80%E5%AE%9A%E8%A6%81%E6%87%82%E5%BE%97%20AI%20%E7%AD%86%E8%A8%98/image-8.png" />
+BLIP（Bootstrapping Language-Image Pre-training）因為同時結合了 <strong>對比學習 (ITC)</strong>、<strong>匹配學習 (ITM)</strong> 和 <strong>語言建模 (LM)</strong>，所以能應用到許多 <strong>跨模態任務</strong>。常見應用任務可以分成三大類：</p>
+<hr />
+<h2 id="_24">可用於的任務有</h2>
+<h3 id="1_6">🔹 1. 圖文對齊 / 檢索任務</h3>
+<ul>
+<li><strong>Image-to-Text Retrieval</strong>：給定一張圖片，檢索最相關的文字描述。</li>
+<li><strong>Text-to-Image Retrieval</strong>：給定一段文字，檢索最相關的圖片。
+  👉 依賴 <strong>ITC（Image-Text Contrastive Learning）</strong>，和 CLIP 類似。</li>
+</ul>
+<hr />
+<h3 id="2_5">🔹 2. 圖文理解任務</h3>
+<ul>
+<li><strong>Image-Text Matching (ITM)</strong>：判斷一張圖片和一段文字是否語義匹配。</li>
+<li><strong>VQA (Visual Question Answering)</strong>：輸入圖片 + 問題 → 模型生成答案。</li>
+<li><strong>NLVR (Natural Language Visual Reasoning)</strong>：判斷文字描述是否正確描述圖片內容。
+  👉 依賴 <strong>ITM + Image-grounded Text Encoder</strong>。</li>
+</ul>
+<hr />
+<h3 id="3_2">🔹 3. 圖文生成任務</h3>
+<ul>
+<li><strong>Image Captioning</strong>：輸入圖片，生成自然語言描述。</li>
+<li><strong>Visual Storytelling</strong>：根據圖片生成更長的故事化文本。</li>
+<li><strong>Image-grounded Dialogue</strong>：輸入圖片 + 對話上下文，生成下一輪對話。
+  👉 依賴 <strong>LM（Language Modeling with Image grounding）</strong>。</li>
+</ul>
+<hr />
+<h3 id="_25">✨ 延伸應用</h3>
+<ul>
+<li><strong>Zero-shot 任務</strong>：因為 BLIP 在大規模圖文數據上預訓練，可在下游任務直接使用，幾乎不需要微調。</li>
+<li><strong>Few-shot / Prompt-based 任務</strong>：透過 prompt，可以在小樣本下快速適應（類似 GPT-3 的方式）。</li>
+</ul>
+<hr />
+<p>📌 <strong>總結一句話</strong>：
+BLIP 能處理 <strong>檢索、理解、生成</strong> 三大類跨模態任務：
+👉 檢索（ITC）、理解（ITM）、生成（LM）。</p>
+<hr />
+<h3 id="blip-clip">BLIP 跟 CLIP 的能力比較</h3>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>CLIP</th>
+<th>BLIP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>檢索 (Retrieval)</strong></td>
+<td>✅ 強</td>
+<td>✅ 強（還能做 ITM 微調）</td>
+</tr>
+<tr>
+<td><strong>Zero-shot 分類</strong></td>
+<td>✅ 很強</td>
+<td>✅ 可做，但非主要目標</td>
+</tr>
+<tr>
+<td><strong>圖像描述 (Captioning)</strong></td>
+<td>❌ 不支援</td>
+<td>✅ 支援</td>
+</tr>
+<tr>
+<td><strong>VQA (視覺問答)</strong></td>
+<td>❌ 不支援</td>
+<td>✅ 支援</td>
+</tr>
+<tr>
+<td><strong>對話生成</strong></td>
+<td>❌</td>
+<td>✅（透過 LM）</td>
+</tr>
+<tr>
+<td><strong>數據清理能力</strong></td>
+<td>❌</td>
+<td>✅ Caption bootstrapping</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_26">數學運算講解</h2>
+<h3 id="image-encoder">Image Encoder</h3>
+<p><img alt="alt text" src="../assets/%E4%BD%A0%E4%B8%80%E5%AE%9A%E8%A6%81%E6%87%82%E5%BE%97%20AI%20%E7%AD%86%E8%A8%98/image-9.png" />
+太棒了，我們把 <strong>BLIP 的 Image Encoder（其本體就是 ViT/Transformer Encoder）</strong> 用「真實配置但可手算」的多頭注意力逐步跑一遍：<strong>Patch Embedding → 加 
+$$CLS] 與位置編碼 → (Pre-LN) 多頭自注意力 → 殘差 → (Pre-LN) MLP(GELU) → 殘差</strong>。
+為了能把每一步都算出數字，我採用小維度但<strong>保留多頭注意力與 LayerNorm/GELU/殘差</strong>的真實流程。</p>
+<hr />
+<h4 id="0">0) 設定（可手算版本 ≈ 真實流程的小型化）</h4>
+<ul>
+<li>影像（灰階）4×4：</li>
+</ul>
+<div class="arithmatex">\[
+\begin{bmatrix}
+1&amp;2&amp;3&amp;4\\
+5&amp;6&amp;7&amp;8\\
+9&amp;10&amp;11&amp;12\\
+13&amp;14&amp;15&amp;16
+\end{bmatrix}
+\]</div>
+<ul>
+<li>Patch 大小：2×2 → 共 4 個 patch，展平成長度 4：</li>
+</ul>
+<div class="arithmatex">\[
+P_1=[1,2,5,6],\;P_2=[3,4,7,8],\;P_3=[9,10,13,14],\;P_4=[11,12,15,16]
+\]</div>
+<ul>
+<li>模型維度 <span class="arithmatex">\(d_{\text{model}}=4\)</span>，<strong>多頭注意力</strong> <span class="arithmatex">\(h=2\)</span>，每頭維度 <span class="arithmatex">\(d_k=d_v=2\)</span>。</li>
+<li><strong>Pre-LayerNorm 架構</strong>（ViT/BLIP 常用）：進 Attention 與 MLP 前都先做 LayerNorm。</li>
+<li>為了可手算，權重矩陣用小數；流程與真實模型一致（真實模型的權重會學得更複雜）。</li>
+</ul>
+<hr />
+<h4 id="1-patch-embeddingconvlinear">1) Patch Embedding（Conv/Linear 投影）</h4>
+<p>把每個 patch（長度 4）乘上投影 <span class="arithmatex">\(W_p\!\in\!\mathbb{R}^{4\times4}\)</span> 得到 4維向量。</p>
+<div class="arithmatex">\[
+W_p=\begin{bmatrix}
+0.10&amp;0&amp;0&amp;0.05\\
+0&amp;0.10&amp;0&amp;0.05\\
+0&amp;0&amp;0.10&amp;0.05\\
+0.05&amp;0.05&amp;0.05&amp;0.10
+\end{bmatrix},\quad b_p=\mathbf{0}
+\]</div>
+<div class="arithmatex">\[
+\begin{aligned}
+E_1&amp;=P_1W_p=[0.4,\,0.5,\,0.8,\,1.0]\\
+E_2&amp;=P_2W_p=[0.7,\,0.8,\,1.1,\,1.5]\\
+E_3&amp;=P_3W_p=[1.6,\,1.7,\,2.0,\,3.0]\\
+E_4&amp;=P_4W_p=[1.9,\,2.0,\,2.3,\,3.5]
+\end{aligned}
+\]</div>
+<hr />
+<h4 id="2_6">2) 加上</h4>
+<p>$$CLS] 與位置編碼</p>
+<div class="arithmatex">\[
+\text{CLS}=[0.1,0.2,0.3,0.4],\quad
+\text{pos}_{\text{CLS}}=[0.01,0.02,0.03,0.04]
+\]</div>
+<div class="arithmatex">\[
+\text{pos}_1=[0.1,0,0,0],\;
+\text{pos}_2=[0,0.1,0,0],\;
+\text{pos}_3=[0,0,0.1,0],\;
+\text{pos}_4=[0.05,0.05,0.05,0.05]
+\]</div>
+<p>序列（長度 5：CLS+4 個 patch）：</p>
+<div class="arithmatex">\[
+X=
+\begin{bmatrix}
+0.11&amp;0.22&amp;0.33&amp;0.44\\
+0.50&amp;0.50&amp;0.80&amp;1.00\\
+0.70&amp;0.90&amp;1.10&amp;1.50\\
+1.60&amp;1.70&amp;2.10&amp;3.00\\
+1.95&amp;2.05&amp;2.35&amp;3.55
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="3-pre-ln-mha">3) (Pre-LN) 多頭自注意力 MHA</h4>
+<h5 id="31-layernorm-token">3.1 LayerNorm（逐 token）</h5>
+<p>對每個 token 各自做 LN（<span class="arithmatex">\(\gamma=1,\beta=0,\epsilon=10^{-5}\)</span>）：</p>
+<div class="arithmatex">\[
+X_{\text{LN}}=
+\begin{bmatrix}
+-1.3412&amp;-0.4471&amp;0.4471&amp;1.3412\\
+-0.9427&amp;-0.9427&amp;0.4714&amp;1.4141\\
+-1.1831&amp;-0.5071&amp;0.1690&amp;1.5212\\
+-0.9053&amp;-0.7243&amp;0.0000&amp;1.6296\\
+-0.8230&amp;-0.6663&amp;-0.1960&amp;1.6853
+\end{bmatrix}
+\]</div>
+<h5 id="32-qkv">3.2 兩個頭的 <span class="arithmatex">\(Q,K,V\)</span> 投影</h5>
+<p>（真實 ViT 會用一個大矩陣再切頭；這裡直接給每頭的矩陣）</p>
+<ul>
+<li><strong>Head-1</strong>（<span class="arithmatex">\(W_Q^1,W_K^1,W_V^1\in\mathbb{R}^{4\times2}\)</span>）：</li>
+</ul>
+<div class="arithmatex">\[
+\begin{aligned}
+W_Q^1&amp;=\begin{bmatrix}0.2&amp;0\\0&amp;0.2\\0.3&amp;0\\0&amp;0.3\end{bmatrix},\;
+W_K^1=\begin{bmatrix}0.1&amp;0\\0&amp;0.1\\0.2&amp;0\\0&amp;0.2\end{bmatrix},\\
+W_V^1&amp;=\begin{bmatrix}0.4&amp;0\\0&amp;0.4\\0.1&amp;0\\0&amp;0.1\end{bmatrix}
+\end{aligned}
+\]</div>
+<div class="arithmatex">\[
+Q^1=X_{\text{LN}}W_Q^1=
+\begin{bmatrix}
+-0.1341&amp;0.3129\\
+-0.0471&amp;0.2357\\
+-0.1859&amp;0.3549\\
+-0.1811&amp;0.3440\\
+-0.2234&amp;0.3723
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+K^1=X_{\text{LN}}W_K^1=
+\begin{bmatrix}
+-0.0447&amp;0.2235\\
+\;\;0.0000&amp;0.1885\\
+-0.0845&amp;0.2535\\
+-0.0905&amp;0.2535\\
+-0.1215&amp;0.2704
+\end{bmatrix},\quad
+V^1=X_{\text{LN}}W_V^1=
+\begin{bmatrix}
+-0.4918&amp;-0.0447\\
+-0.3299&amp;-0.2357\\
+-0.4564&amp;-0.0507\\
+-0.3621&amp;-0.1267\\
+-0.3488&amp;-0.0980
+\end{bmatrix}
+\]</div>
+<ul>
+<li><strong>Head-2</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+\begin{aligned}
+W_Q^2&amp;=\begin{bmatrix}0.1&amp;0\\0&amp;0.1\\0&amp;0.2\\0.2&amp;0\end{bmatrix},\;
+W_K^2=\begin{bmatrix}0.05&amp;0\\0&amp;0.05\\0&amp;0.1\\0.1&amp;0\end{bmatrix},\\
+W_V^2&amp;=\begin{bmatrix}0.2&amp;0\\0&amp;0.2\\0.3&amp;0\\0&amp;0.3\end{bmatrix}
+\end{aligned}
+\]</div>
+<div class="arithmatex">\[
+Q^2=
+\begin{bmatrix}
+-0.1341&amp;0.3129\\
+-0.0471&amp;0.2357\\
+-0.1859&amp;0.3549\\
+-0.1811&amp;0.3440\\
+-0.2234&amp;0.3723
+\end{bmatrix},\;
+K^2=
+\begin{bmatrix}
+0.0671&amp;0.0224\\
+0.0943&amp;0.0000\\
+0.0930&amp;-0.0085\\
+0.1177&amp;-0.0362\\
+0.1274&amp;-0.0529
+\end{bmatrix},\;
+V^2=
+\begin{bmatrix}
+-0.1341&amp;0.3129\\
+-0.0471&amp;0.2357\\
+-0.1859&amp;0.3549\\
+-0.1811&amp;0.3440\\
+-0.2234&amp;0.3723
+\end{bmatrix}
+\]</div>
+<h5 id="33-softmax">3.3 注意力分數、Softmax、每頭輸出</h5>
+<p>縮放因子 <span class="arithmatex">\(1/\sqrt{d_k}=1/\sqrt{2}\)</span>。</p>
+<ul>
+<li><strong>Head-1 分數與權重</strong>（顯示 5×5 全部）：</li>
+</ul>
+<div class="arithmatex">\[
+S^1=\frac{Q^1{K^1}^{\!\top}}{\sqrt{2}}=
+\begin{bmatrix}
+0.0537&amp;0.0417&amp;0.0641&amp;0.0647&amp;0.0714\\
+0.0387&amp;0.0314&amp;0.0451&amp;0.0453&amp;0.0491\\
+0.0620&amp;0.0473&amp;0.0747&amp;0.0755&amp;0.0838\\
+0.0601&amp;0.0459&amp;0.0725&amp;0.0733&amp;0.0813\\
+0.0659&amp;0.0496&amp;0.0801&amp;0.0810&amp;0.0904
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+A^1=\text{softmax}(S^1)\approx
+\begin{bmatrix}
+0.1989&amp;0.1965&amp;0.2010&amp;0.2011&amp;0.2025\\
+0.1994&amp;0.1979&amp;0.2006&amp;0.2007&amp;0.2014\\
+0.1986&amp;0.1958&amp;0.2012&amp;0.2014&amp;0.2030\\
+0.1987&amp;0.1959&amp;0.2012&amp;0.2013&amp;0.2030\\
+0.1985&amp;0.1953&amp;0.2013&amp;0.2015&amp;0.2034
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+\text{HeadOut}^1=A^1V^1\approx
+\begin{bmatrix}
+-0.3978&amp;-0.1107\\
+-0.3978&amp;-0.1109\\
+-0.3978&amp;-0.1106\\
+-0.3978&amp;-0.1106\\
+-0.3978&amp;-0.1106
+\end{bmatrix}
+\]</div>
+<ul>
+<li><strong>Head-2 分數與權重</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+S^2=\frac{Q^2{K^2}^{\!\top}}{\sqrt{2}}=
+\begin{bmatrix}
+0.0071&amp;0.0089&amp;0.0085&amp;0.0100&amp;0.0104\\
+0.0089&amp;0.0126&amp;0.0124&amp;0.0157&amp;0.0170\\
+0.0085&amp;0.0124&amp;0.0123&amp;0.0159&amp;0.0174\\
+0.0100&amp;0.0157&amp;0.0159&amp;0.0214&amp;0.0239\\
+0.0104&amp;0.0170&amp;0.0174&amp;0.0239&amp;0.0269
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+A^2\approx
+\begin{bmatrix}
+0.1996&amp;0.2000&amp;0.1999&amp;0.2002&amp;0.2003\\
+0.1991&amp;0.1998&amp;0.1998&amp;0.2005&amp;0.2007\\
+0.1990&amp;0.1998&amp;0.1998&amp;0.2005&amp;0.2008\\
+0.1985&amp;0.1997&amp;0.1997&amp;0.2008&amp;0.2013\\
+0.1983&amp;0.1996&amp;0.1996&amp;0.2010&amp;0.2016
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+\text{HeadOut}^2=A^2V^2\approx
+\begin{bmatrix}
+-0.1544&amp;\;\;0.3240\\
+-0.1544&amp;\;\;0.3240\\
+-0.1544&amp;\;\;0.3241\\
+-0.1545&amp;\;\;0.3241\\
+-0.1545&amp;\;\;0.3241
+\end{bmatrix}
+\]</div>
+<h5 id="34">3.4 拼接各頭並做輸出投影、殘差</h5>
+<p>拼接 <span class="arithmatex">\([\text{HeadOut}^1\|\text{HeadOut}^2]\in\mathbb{R}^{5\times4}\)</span>，再乘輸出投影 <span class="arithmatex">\(W_O\in\mathbb{R}^{4\times4}\)</span>：</p>
+<div class="arithmatex">\[
+W_O=\begin{bmatrix}
+0.6&amp;0&amp;0.2&amp;0\\
+0&amp;0.6&amp;0&amp;0.2\\
+0.2&amp;0&amp;0.6&amp;0\\
+0&amp;0.2&amp;0&amp;0.6
+\end{bmatrix}
+\]</div>
+<p>得到 Attention 輸出 <span class="arithmatex">\(Z_{\text{attn}} = [\text{Head}_1\|\text{Head}_2]W_O\)</span>：</p>
+<div class="arithmatex">\[
+Z_{\text{attn}}\approx
+\begin{bmatrix}
+-0.2696&amp;-0.0016&amp;-0.1722&amp;\;\;0.1723\\
+-0.2696&amp;-0.0017&amp;-0.1722&amp;\;\;0.1722\\
+-0.2696&amp;-0.0016&amp;-0.1722&amp;\;\;0.1723\\
+-0.2696&amp;-0.0016&amp;-0.1723&amp;\;\;0.1723\\
+-0.2696&amp;-0.0015&amp;-0.1723&amp;\;\;0.1724
+\end{bmatrix}
+\]</div>
+<p><strong>殘差加回原輸入 <span class="arithmatex">\(X\)</span>：</strong></p>
+<div class="arithmatex">\[
+O^{(1)} = X + Z_{\text{attn}} \approx
+\begin{bmatrix}
+-0.1596&amp;0.2184&amp;0.1578&amp;0.6123\\
+\;\;0.2304&amp;0.4983&amp;0.6278&amp;1.1722\\
+\;\;0.4304&amp;0.8984&amp;0.9278&amp;1.6723\\
+\;\;1.3304&amp;1.6984&amp;1.9277&amp;3.1723\\
+\;\;1.6804&amp;2.0485&amp;2.1777&amp;3.7224
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="4-pre-ln-mlpgelu">4) (Pre-LN) 前饋網路 MLP（GELU）</h4>
+<h5 id="41-layernorm">4.1 LayerNorm</h5>
+<div class="arithmatex">\[
+U=\text{LN}(O^{(1)})\approx
+\begin{bmatrix}
+-1.3367&amp;0.0406&amp;-0.1800&amp;1.4761\\
+-1.1707&amp;-0.3902&amp;-0.0128&amp;1.5737\\
+-1.2411&amp;-0.1885&amp;-0.1225&amp;1.5521\\
+-1.0144&amp;-0.4824&amp;-0.1510&amp;1.6478\\
+-0.9308&amp;-0.4594&amp;-0.2939&amp;1.6841
+\end{bmatrix}
+\]</div>
+<h5 id="42-mlp">4.2 兩層 MLP</h5>
+<div class="arithmatex">\[
+\text{FFN}(x)=W_2\,\text{GELU}(W_1x)+b_2\quad(\text{殘差於之後相加})
+\]</div>
+<p>取（可手算的）：</p>
+<div class="arithmatex">\[
+W_1=
+\begin{bmatrix}
+0.5&amp;0&amp;0&amp;0&amp;0.1&amp;0&amp;0&amp;0\\
+0&amp;0.5&amp;0&amp;0&amp;0&amp;0.1&amp;0&amp;0\\
+0&amp;0&amp;0.5&amp;0&amp;0&amp;0&amp;0.1&amp;0\\
+0&amp;0&amp;0&amp;0.5&amp;0&amp;0&amp;0&amp;0.1
+\end{bmatrix}_{4\times8},
+\quad
+W_2=
+\begin{bmatrix}
+0.4&amp;0&amp;0.1&amp;0\\
+0&amp;0.4&amp;0&amp;0.1\\
+0.1&amp;0&amp;0.4&amp;0\\
+0&amp;0.1&amp;0&amp;0.4\\
+0.2&amp;0&amp;0&amp;0\\
+0&amp;0.2&amp;0&amp;0\\
+0&amp;0&amp;0.2&amp;0\\
+0&amp;0&amp;0&amp;0.2
+\end{bmatrix}_{8\times4}
+\]</div>
+<p>以 <strong>GELU</strong>（tanh 近似）計算：</p>
+<div class="arithmatex">\[
+H=\text{GELU}(U W_1),\qquad
+\text{FF}=H W_2
+\]</div>
+<p>得到</p>
+<div class="arithmatex">\[
+\text{FF}\approx
+\begin{bmatrix}
+-0.0835&amp;0.0613&amp;-0.0353&amp;0.2447\\
+-0.0763&amp;0.0249&amp;-0.0177&amp;0.2563\\
+-0.0805&amp;0.0413&amp;-0.0295&amp;0.2555\\
+-0.0750&amp;0.0218&amp;-0.0312&amp;0.2708\\
+-0.0748&amp;0.0253&amp;-0.0438&amp;0.2792
+\end{bmatrix}
+\]</div>
+<h5 id="43-block">4.3 殘差相加（Block 輸出）</h5>
+<div class="arithmatex">\[
+O^{(2)} = O^{(1)} + \text{FF} \approx
+\boxed{
+\begin{bmatrix}
+-0.2431&amp;0.2797&amp;0.1225&amp;0.8570\\
+\;\;0.1541&amp;0.5232&amp;0.6100&amp;1.4285\\
+\;\;0.3499&amp;0.9398&amp;0.8983&amp;1.9278\\
+\;\;1.2554&amp;1.7202&amp;1.8965&amp;3.4432\\
+\;\;1.6056&amp;2.0738&amp;2.1340&amp;4.0015
+\end{bmatrix}}
+\]</div>
+<hr />
+<h4 id="5-cls">5) 影像全局表徵（CLS 向量）</h4>
+<p>經過 <strong>一層</strong> Image Encoder 後，<strong>CLS token</strong>（第 1 行）即為整張影像的全局表徵（真實模型會堆疊多層）：</p>
+<div class="arithmatex">\[
+\boxed{\text{Image Embedding}_{\text{CLS}} \approx [-0.2431,\;0.2797,\;0.1225,\;0.8570]}
+\]</div>
+<hr />
+<h5 id="blipvit">小結（與真實 BLIP/ViT 的對齊）</h5>
+<ul>
+<li>已完整跑過 <strong>Pre-LN → 多頭注意力（2頭）→ 殘差 → Pre-LN → MLP(GELU) → 殘差</strong> 的一個 Encoder block。</li>
+<li>真實 BLIP 的 Image Encoder 會用更大維度（如 <span class="arithmatex">\(d_{\text{model}}=768\)</span>）、更多頭（如 12/16 頭）、GELU、LayerNorm、學得的 <span class="arithmatex">\(W_Q,W_K,W_V,W_O,W_1,W_2\)</span>，並<strong>重複 N 次</strong>。</li>
+<li>上面每一步（矩陣形狀、縮放 <span class="arithmatex">\(1/\sqrt{d_k}\)</span>、softmax、殘差與 LN）都與實際一致，只是用小矩陣讓你能<strong>逐行手算與驗證</strong>。</li>
+</ul>
+<p>如果你要，我可以用同樣「帶數值逐步運算」把右側的 <strong>Image-grounded Text Encoder（Cross-Attention）</strong> 與 <strong>Image-grounded Text Decoder（LM）</strong> 也完整跑一遍，讓整張圖（ITC/ITM/LM 三個頭）全部串起來。</p>
+<h1 id="blip2">BLIP2</h1>
+<p>BLIP-2 通过一种巧妙的方式，<strong>大幅降低了训练大规模视觉-语言模型（VLM）的成本和难度</strong>，同时<strong>有效缓解了模型性能退化的问题</strong>。它主要解决了以下几个核心痛点：</p>
+<h2 id="1_7">1.解決痛點</h2>
+<h3 id="11_2">💰 1.1 训练成本高昂</h3>
+<p>在此之前，训练强大的视觉-语言模型（如 Flamingo-80B）需要进行<strong>端到端的联合训练</strong>，即同时更新图像编码器、跨模态连接器和语言模型的权重。这类模型参数动辄数百亿，训练通常需要<strong>数百万美元的计算资源</strong>和大量的时间（例如“100+ A100 GPU 周”），这远远超出了大多数研究机构和个人的承受能力。</p>
+<ul>
+<li><strong>BLIP-2 的解决方案</strong>：BLIP-2 选择<strong>冻结（frozen）</strong> 预训练好的图像编码器（如 CLIP-ViT）和大语言模型（LLM，如 OPT、FlanT5）的权重。在训练过程中，<strong>只更新其引入的轻量级模块 Q-Former 的参数</strong>（约 1.88 亿参数）。这种方式将训练成本从“百万美元级”大幅降低至“千美元级”，使得更多人能够参与多模态研究。</li>
+</ul>
+<h3 id="12-catastrophic-forgetting">🧠 1.2. 灾难性遗忘（Catastrophic Forgetting）</h3>
+<p>当传统方法对预训练好的大语言模型进行端到端微调以适应多模态任务时，语言模型<strong>原本强大的语言知识和生成能力会显著下降</strong>。例如，实验结果提到 OPT-6.7B 模型在微调后，其纯语言生成任务的 BLEU 指标下降了 12%。这就导致了“模型学会了看图，却不会说话了”的矛盾现象。</p>
+<ul>
+<li><strong>BLIP-2 的解决方案</strong>：通过<strong>冻结大语言模型（LLM）的参数</strong>，BLIP-2 完美地<strong>保留了 LLM 的全部语言能力和知识</strong>。Q-Former 的作用是将视觉信息转换成 LLM 能够理解的“视觉提示”（Soft Visual Prompts），然后由 LLM 基于这些提示和自身的知识来生成文本。这样，LLM 本身不再需要为适应视觉特征而改变，从而避免了灾难性遗忘。</li>
+</ul>
+<h3 id="13-modality-gap">🌉 1.3. 模态鸿沟（Modality Gap）</h3>
+<p>视觉特征（来自图像编码器）和文本特征（来自语言模型）在<strong>维度、分布和语义层面上存在巨大差异</strong>。图像编码器输出的通常是高维、稀疏的像素级特征（例如 ViT-L/14 输出 257×1024 维），而 LLM 期望的输入是低维、高度语义化的文本嵌入。简单地将两者拼接在一起，LLM 很难直接理解和处理，导致信息融合失败，性能不佳。</p>
+<ul>
+<li><strong>BLIP-2 的解决方案</strong>：Q-Former 的核心作用就是<strong>弥合这道模态鸿沟</strong>。它通过<strong>一组可学习的查询嵌入（Learnable Queries）</strong>，利用交叉注意力机制从冻结的图像编码器输出中<strong>提取出与文本最相关的视觉信息</strong>，并将其压缩成一个固定大小的、语义丰富的表征（例如 32×768 维）。这个表征就像一位<strong>熟练的翻译官</strong>，将“视觉语言”翻译成 LLM 能听懂的“文本语言”。</li>
+</ul>
+<h3 id="14">⚡ 1.4. 实现高效且强大的多模态学习</h3>
+<p>BLIP-2 的<strong>两阶段预训练策略</strong>（如上图所示）确保了其高效性：
+*   <strong>第一阶段</strong>：冻结图像编码器，训练 Q-Former。通过<strong>三个预训练目标（ITC, ITG, ITM）</strong>，迫使 Q-Former 学会如何从图像中提取与文本高度相关的视觉特征。
+*   <strong>第二阶段</strong>：冻结 LLM，训练 Q-Former 如何将第一阶段学到的视觉表征<strong>有效地传递给 LLM</strong>，以指导其进行文本生成。</p>
+<h3 id="_27">🧪 效果与影响</h3>
+<p>BLIP-2 不仅在多项视觉-语言任务（如 VQA、图像描述、图文检索）上取得了<strong>零样本（zero-shot） state-of-the-art (SOTA) 的性能</strong>，更重要的是，它<strong>极大地推动了多模态研究的发展</strong>。其“<strong>冻结主干网络+轻量级适配器</strong>”的设计范式，为后续许多多模态大模型（如 LLaVA、InstructBLIP 等）提供了重要的设计思路和基础，使得研究者能够更高效地利用日益强大的单模态模型来构建多模态系统。</p>
+<p>总而言之，BLIP-2 的核心贡献在于：它用一种<strong>计算高效、性能强劲且易于扩展</strong>的方式，巧妙地<strong>利用并融合了快速发展的单模态模型</strong>（特别是大语言模型），为多模态 AI 的发展开辟了一条新的道路。</p>
+<h2 id="2_7">2.可用於的任務</h2>
+<p>2.1. <strong>圖像描述（Image Captioning）</strong>
+- 給定一張圖片，自動生成自然語言描述。
+- 應用：無障礙輔助（給視障者描述場景）、影像檢索等。</p>
+<p>2.2. <strong>視覺問答（Visual Question Answering, VQA）</strong>
+- 根據圖片和文字問題，生成正確答案。
+- 例如：輸入一張足球比賽的圖片並問「誰在踢球？」。</p>
+<p>2.3. <strong>多模態對話（Multimodal Dialogue）</strong>
+- 與使用者進行基於圖片和文字的對話。
+- 例如：上傳旅遊照片並討論照片中的地點、人物、事件等。</p>
+<p>2.4. <strong>零樣本與少樣本學習（Zero-shot / Few-shot Learning）</strong>
+- 在沒有額外訓練的情況下，直接將圖片與文字任務輸入模型，利用大型語言模型的能力完成任務。
+- 如：圖片分類、圖像推理。</p>
+<p>2.5. <strong>跨模態檢索（Cross-modal Retrieval）</strong>
+- 圖片找文字、文字找圖片。
+- 例如：用一句描述找到相應圖片（Text-to-Image Retrieval）。</p>
+<p>2.6. <strong>視覺推理（Visual Reasoning）</strong>
+- 對圖像中的物體、場景進行邏輯推理和因果分析。
+- 例如：根據圖片判斷事件發生的原因或下一步可能發生的事。</p>
+<p>2.7. <strong>圖片內容摘要（Image Summarization）</strong>
+- 生成簡短的圖片摘要，適合用於新聞、社交媒體等。</p>
+<p>2.8. <strong>輔助生成（Image-grounded Text Generation）</strong>
+- 利用圖片作為背景信息，生成相關的文章、故事等創作內容。</p>
+<hr />
+<p>💡 <strong>BLIP-2 的特點</strong>：
+- 採用「Q-Former」模塊，把圖像特徵轉換為適合 LLM 理解的向量。
+- 可以與不同的 LLM（如 FlanT5、OPT、Vicuna 等）結合，靈活性高。
+- 支援零樣本能力，能直接用於下游任務，幾乎不需要針對任務的重新訓練。</p>
+<h2 id="_28">架構理解</h2>
+<p>可以詳細查看<a href="#q-former">跳到 Q-Former</a></p>
+<h3 id="image-text-matching"><strong>Image-Text Matching</strong></h3>
+<p>我們這次案例設定：
+- <strong>輸入圖片</strong>：一隻戴墨鏡的貓
+- <strong>輸入文字</strong>："a cat wearing sunglasses"
+- 目標任務：判斷圖片與文字是否匹配（Image-Text Matching）</p>
+<p>我會從 Image Encoder 開始，模擬一個簡化的 BLIP-2 Q-Former 前向流程。</p>
+<hr />
+<h4 id="step-1image-encoder"><strong>Step 1：Image Encoder（凍結）</strong></h4>
+<p>假設 Image Encoder 是一個 ViT，輸入圖片被切成 patch，最後輸出一組圖像特徵向量。</p>
+<p>為了簡單起見：
+- 圖片被編碼成 <strong>4 個 patch</strong>
+- 每個 patch 特徵維度 = 3（實際模型會是 768 或 1024，但為了演算方便我們用 3）</p>
+<p>輸出矩陣：</p>
+<div class="arithmatex">\[
+\text{Image_Features} \in \mathbb{R}^{4\times 3}
+\]</div>
+<p>數值假設：</p>
+<div class="arithmatex">\[
+\text{Image_Features} =
+\begin{bmatrix}
+0.1 &amp; 0.2 &amp; 0.3 \\
+0.0 &amp; 0.1 &amp; 0.4 \\
+0.2 &amp; 0.2 &amp; 0.2 \\
+0.3 &amp; 0.1 &amp; 0.0
+\end{bmatrix}
+\]</div>
+<hr />
+<p>💡 <strong>痛點解釋</strong>：<br />
+如果直接把全部 patch 特徵丟進 Transformer，計算量會很大（注意力計算是 O(n²)）。BLIP-2 用 <strong>Learned Queries</strong> 來壓縮圖片資訊，這樣可以更高效，並且讓模型只提取對任務有用的視覺訊息。</p>
+<hr />
+<h4 id="step-2learned-queries"><strong>Step 2：Learned Queries 初始化</strong></h4>
+<p>假設我們有 <strong>2 個可學習查詢向量</strong>：</p>
+<div class="arithmatex">\[
+\text{Queries} \in \mathbb{R}^{2\times 3}
+\]</div>
+<p>數值假設：</p>
+<div class="arithmatex">\[
+\text{Queries} =
+\begin{bmatrix}
+0.5 &amp; 0.6 &amp; 0.7 \\
+0.4 &amp; 0.5 &amp; 0.6
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="step-3self-attention-queries"><strong>Step 3：Self Attention（在 Queries 上）</strong></h4>
+<p>這一步讓查詢向量之間先互相交流（不跟圖片特徵交互）。</p>
+<p>輸出矩陣（假設 Self Attention 後數值變為）：</p>
+<div class="arithmatex">\[
+\text{SA_Output} \in \mathbb{R}^{2\times 3}
+\]</div>
+<div class="arithmatex">\[
+\text{SA_Output} =
+\begin{bmatrix}
+0.55 &amp; 0.65 &amp; 0.75 \\
+0.45 &amp; 0.55 &amp; 0.65
+\end{bmatrix}
+\]</div>
+<hr />
+<p>💡 <strong>痛點解釋</strong>：<br />
+這讓查詢向量先建立彼此的依賴關係，避免後面 Cross Attention 時，每個查詢都孤立地從圖像取資訊。</p>
+<hr />
+<h4 id="step-4cross-attentionqueries-image-features"><strong>Step 4：Cross Attention（Queries 與 Image Features）</strong></h4>
+<p>這時候查詢（SA_Output）會去跟 Image Features 做 Cross Attention，把圖片資訊融合進來。</p>
+<p>輸出矩陣（假設 Cross Attention 後數值變為）：</p>
+<div class="arithmatex">\[
+\text{CA_Output} \in \mathbb{R}^{2\times 3}
+\]</div>
+<div class="arithmatex">\[
+\text{CA_Output} =
+\begin{bmatrix}
+0.25 &amp; 0.35 &amp; 0.45 \\
+0.20 &amp; 0.30 &amp; 0.40
+\end{bmatrix}
+\]</div>
+<hr />
+<p>💡 <strong>痛點解釋</strong>：<br />
+這一步是 Q-Former 的核心，它不像 CLIP 把整張圖展平，而是用少量 Queries 抓取重點特徵（例如貓的耳朵、墨鏡的形狀），提升效率。</p>
+<hr />
+<h4 id="step-5feed-forward"><strong>Step 5：Feed Forward</strong></h4>
+<p>Cross Attention 的輸出進入前饋神經網路（FFN），進一步非線性變換。</p>
+<p>輸出矩陣：</p>
+<div class="arithmatex">\[
+\text{FF_Output} \in \mathbb{R}^{2\times 3}
+\]</div>
+<div class="arithmatex">\[
+\text{FF_Output} =
+\begin{bmatrix}
+0.3 &amp; 0.4 &amp; 0.5 \\
+0.25 &amp; 0.35 &amp; 0.45
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="step-6image-text-matching"><strong>Step 6：Image-Text Matching（多模態融合後與文字特徵對齊）</strong></h4>
+<p>假設我們的文字編碼器（BERT-like）對文字 "a cat wearing sunglasses" 編碼後輸出：</p>
+<div class="arithmatex">\[
+\text{Text_Features} \in \mathbb{R}^{2\times 3}
+\]</div>
+<div class="arithmatex">\[
+\text{Text_Features} =
+\begin{bmatrix}
+0.3 &amp; 0.4 &amp; 0.6 \\
+0.2 &amp; 0.3 &amp; 0.4
+\end{bmatrix}
+\]</div>
+<p>我們將 FF_Output 與 Text_Features 做平均池化後拼接，然後做相似度計算（這裡簡化為點積運算）。</p>
+<hr />
+<h5 id="_29">池化後：</h5>
+<p>圖像查詢向量池化：</p>
+<div class="arithmatex">\[
+\text{Image_Vec} = \frac{1}{2} 
+\begin{bmatrix}
+0.3 &amp; 0.4 &amp; 0.5 \\
+0.25 &amp; 0.35 &amp; 0.45
+\end{bmatrix}=
+\begin{bmatrix}
+0.275 &amp; 0.375 &amp; 0.475
+\end{bmatrix}
+\]</div>
+<p>文字向量池化：</p>
+<div class="arithmatex">\[
+\text{Text_Vec} = \frac{1}{2} 
+\begin{bmatrix}
+0.3 &amp; 0.4 &amp; 0.6 \\
+0.2 &amp; 0.3 &amp; 0.4
+\end{bmatrix}=
+\begin{bmatrix}
+0.25 &amp; 0.35 &amp; 0.5
+\end{bmatrix}
+\]</div>
+<hr />
+<h5 id="_30">相似度（點積）：</h5>
+<div class="arithmatex">\[
+\text{Score} = \text{Image_Vec} \cdot \text{Text_Vec} 
+= (0.275\times 0.25) + (0.375\times 0.35) + (0.475\times 0.5) 
+\]</div>
+<div class="arithmatex">\[
+\text{Score} = 0.06875 + 0.13125 + 0.2375 = 0.4375
+\]</div>
+<hr />
+<h4 id="step-7"><strong>Step 7：判斷匹配</strong></h4>
+<p>假設閾值為 0.4：
+- <span class="arithmatex">\( 0.4375 &gt; 0.4 \)</span> → 預測：<strong>匹配</strong>
+- 意思是模型認為 "a cat wearing sunglasses" 跟輸入圖片是對應的。</p>
+<h1 id="flamingo">Flamingo</h1>
+<h1 id="llava">LLaVA</h1>
+<h1 id="position-embedding">Position Embedding</h1>
+<h2 id="rope">RoPE</h2>
+<h2 id="mrope">MRoPE</h2>
+<h1 id="normalization">Normalization</h1>
+<h2 id="layer-normalization">Layer Normalization</h2>
+<h2 id="rmsnorm">RMSNorm</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

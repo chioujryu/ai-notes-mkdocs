@@ -1,0 +1,3054 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../2_CLIP/">
+      
+      
+        <link rel="next" href="../4_BLIP-2/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>BLIP - My AI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#blip" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="My AI Documentation" class="md-header__button md-logo" aria-label="My AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My AI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              BLIP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/chioujryu/my-mkdocs-AI-docs/tree/main" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    my-mkdocs-AI-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="My AI Documentation" class="md-nav__button md-logo" aria-label="My AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My AI Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/chioujryu/my-mkdocs-AI-docs/tree/main" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    my-mkdocs-AI-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loss
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Loss
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/Loss/Cross-Entropy/Cross-Entropy.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cross-Entropy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/Loss/Cross-Entropy/BCELoss.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BCELoss
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Basics/Normalization.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Detection_Segmentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Detection_Segmentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Detection_Segmentation/DETR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DETR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Detection_Segmentation/Grounding_DINO.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grounding DINO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Detection_Segmentation/Mask2Former/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mask2Former
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Detection_Segmentation/Mask_DINO.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mask DINO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Detection_Segmentation/Grounding-SAM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grounding-SAM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequence Labeling
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sequence Labeling
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/Sequence_Labeling/NER/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/Sequence_Labeling/BIO_BILOU/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BIO/ BILOU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/Attention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Transformer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/Transformer/Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/Transformer/Switch_Transformer.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch Transformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/Transformer/Swin_Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swin Transformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Positional_Encoding
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Positional_Encoding
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/Positional_Encoding/Sinusoidal_Positional_Encoding.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sinusoidal Positional Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/Positional_Encoding/Relative_Positional_Encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Relative Positional Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/Positional_Encoding/Better_Relative_PE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Better Relative PE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/Positional_Encoding/Rotary_Position_Embedding_RoPE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rotary Position Embedding RoPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/Positional_Encoding/ALiBi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ALiBi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/BERT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BERT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/GPT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/GPT-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPT-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LLM/T5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLM
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VLM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_vision-transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ViT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_CLIP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLIP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BLIP
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BLIP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可用於的任務有
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可用於的任務有">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 1. 圖文對齊 / 檢索任務
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 2. 圖文理解任務
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 3. 圖文生成任務
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✨ 延伸應用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blip-clip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BLIP 跟 CLIP 的能力比較
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        數學運算講解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="數學運算講解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#image-encoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image Encoder
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Image Encoder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0) 設定（可手算版本 ≈ 真實流程的小型化）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-patch-embeddingconvlinear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1) Patch Embedding（Conv/Linear 投影）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) 加上
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pre-ln-mha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3) (Pre-LN) 多頭自注意力 MHA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-pre-ln-mlpgelu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) (Pre-LN) 前饋網路 MLP（GELU）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-cls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5) 影像全局表徵（CLS 向量）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_BLIP-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BLIP-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_SigLIP-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SigLIP-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_Grounding-DINO.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grounding-DINO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7_Grounding-SAM.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grounding-SAM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8_LLaVA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLaVA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9_Florence_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Florence-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_nanoVLM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nanoVLM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_Qwen2.5-VL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Qwen2.5-VL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diffusion
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diffusion
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VAE
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VAE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/VAE/VAE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VAE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/VAE/VQ-VAE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VQ-VAE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sampler
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sampler
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/Sampler/DDPM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DDPM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/Sampler/DDIM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DDIM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/Sampler/DPM-Solver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DPM-Solver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/LDM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/DiT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DiT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/Stable-Diffusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stable Diffusion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Diffusion/HunyuanImage-2.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HunyuanImage 2.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Image-to-Text
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Image-to-Text
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Image-to-Text/Florence_2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Florence 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        可用於的任務有
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可用於的任務有">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 1. 圖文對齊 / 檢索任務
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 2. 圖文理解任務
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔹 3. 圖文生成任務
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✨ 延伸應用
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blip-clip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BLIP 跟 CLIP 的能力比較
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        數學運算講解
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="數學運算講解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#image-encoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Image Encoder
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Image Encoder">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0) 設定（可手算版本 ≈ 真實流程的小型化）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-patch-embeddingconvlinear" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1) Patch Embedding（Conv/Linear 投影）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2) 加上
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-pre-ln-mha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3) (Pre-LN) 多頭自注意力 MHA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-pre-ln-mlpgelu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) (Pre-LN) 前饋網路 MLP（GELU）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-cls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5) 影像全局表徵（CLS 向量）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="blip">BLIP</h1>
+<p><img alt="alt text" src="../assets/BLIP/image.png" />
+BLIP（Bootstrapping Language-Image Pre-training）因為同時結合了 <strong>對比學習 (ITC)</strong>、<strong>匹配學習 (ITM)</strong> 和 <strong>語言建模 (LM)</strong>，所以能應用到許多 <strong>跨模態任務</strong>。常見應用任務可以分成三大類：</p>
+<hr />
+<h2 id="_1">可用於的任務有</h2>
+<h3 id="1">🔹 1. 圖文對齊 / 檢索任務</h3>
+<ul>
+<li><strong>Image-to-Text Retrieval</strong>：給定一張圖片，檢索最相關的文字描述。</li>
+<li><strong>Text-to-Image Retrieval</strong>：給定一段文字，檢索最相關的圖片。
+  👉 依賴 <strong>ITC（Image-Text Contrastive Learning）</strong>，和 CLIP 類似。</li>
+</ul>
+<hr />
+<h3 id="2">🔹 2. 圖文理解任務</h3>
+<ul>
+<li><strong>Image-Text Matching (ITM)</strong>：判斷一張圖片和一段文字是否語義匹配。</li>
+<li><strong>VQA (Visual Question Answering)</strong>：輸入圖片 + 問題 → 模型生成答案。</li>
+<li><strong>NLVR (Natural Language Visual Reasoning)</strong>：判斷文字描述是否正確描述圖片內容。
+  👉 依賴 <strong>ITM + Image-grounded Text Encoder</strong>。</li>
+</ul>
+<hr />
+<h3 id="3">🔹 3. 圖文生成任務</h3>
+<ul>
+<li><strong>Image Captioning</strong>：輸入圖片，生成自然語言描述。</li>
+<li><strong>Visual Storytelling</strong>：根據圖片生成更長的故事化文本。</li>
+<li><strong>Image-grounded Dialogue</strong>：輸入圖片 + 對話上下文，生成下一輪對話。
+  👉 依賴 <strong>LM（Language Modeling with Image grounding）</strong>。</li>
+</ul>
+<hr />
+<h3 id="_2">✨ 延伸應用</h3>
+<ul>
+<li><strong>Zero-shot 任務</strong>：因為 BLIP 在大規模圖文數據上預訓練，可在下游任務直接使用，幾乎不需要微調。</li>
+<li><strong>Few-shot / Prompt-based 任務</strong>：透過 prompt，可以在小樣本下快速適應（類似 GPT-3 的方式）。</li>
+</ul>
+<hr />
+<p>📌 <strong>總結一句話</strong>：
+BLIP 能處理 <strong>檢索、理解、生成</strong> 三大類跨模態任務：
+👉 檢索（ITC）、理解（ITM）、生成（LM）。</p>
+<hr />
+<h3 id="blip-clip">BLIP 跟 CLIP 的能力比較</h3>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>CLIP</th>
+<th>BLIP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>檢索 (Retrieval)</strong></td>
+<td>✅ 強</td>
+<td>✅ 強（還能做 ITM 微調）</td>
+</tr>
+<tr>
+<td><strong>Zero-shot 分類</strong></td>
+<td>✅ 很強</td>
+<td>✅ 可做，但非主要目標</td>
+</tr>
+<tr>
+<td><strong>圖像描述 (Captioning)</strong></td>
+<td>❌ 不支援</td>
+<td>✅ 支援</td>
+</tr>
+<tr>
+<td><strong>VQA (視覺問答)</strong></td>
+<td>❌ 不支援</td>
+<td>✅ 支援</td>
+</tr>
+<tr>
+<td><strong>對話生成</strong></td>
+<td>❌</td>
+<td>✅（透過 LM）</td>
+</tr>
+<tr>
+<td><strong>數據清理能力</strong></td>
+<td>❌</td>
+<td>✅ Caption bootstrapping</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_3">數學運算講解</h2>
+<h3 id="image-encoder">Image Encoder</h3>
+<p><img alt="alt text" src="assets/你一定要懂得 AI 筆記/image-9.png" />
+太棒了，我們把 <strong>BLIP 的 Image Encoder（其本體就是 ViT/Transformer Encoder）</strong> 用「真實配置但可手算」的多頭注意力逐步跑一遍：<strong>Patch Embedding → 加 
+$$CLS] 與位置編碼 → (Pre-LN) 多頭自注意力 → 殘差 → (Pre-LN) MLP(GELU) → 殘差</strong>。
+為了能把每一步都算出數字，我採用小維度但<strong>保留多頭注意力與 LayerNorm/GELU/殘差</strong>的真實流程。</p>
+<hr />
+<h4 id="0">0) 設定（可手算版本 ≈ 真實流程的小型化）</h4>
+<ul>
+<li>影像（灰階）4×4：</li>
+</ul>
+<div class="arithmatex">\[
+\begin{bmatrix}
+1&amp;2&amp;3&amp;4\\
+5&amp;6&amp;7&amp;8\\
+9&amp;10&amp;11&amp;12\\
+13&amp;14&amp;15&amp;16
+\end{bmatrix}
+\]</div>
+<ul>
+<li>Patch 大小：2×2 → 共 4 個 patch，展平成長度 4：</li>
+</ul>
+<div class="arithmatex">\[
+P_1=[1,2,5,6],\;P_2=[3,4,7,8],\;P_3=[9,10,13,14],\;P_4=[11,12,15,16]
+\]</div>
+<ul>
+<li>模型維度 <span class="arithmatex">\(d_{\text{model}}=4\)</span>，<strong>多頭注意力</strong> <span class="arithmatex">\(h=2\)</span>，每頭維度 <span class="arithmatex">\(d_k=d_v=2\)</span>。</li>
+<li><strong>Pre-LayerNorm 架構</strong>（ViT/BLIP 常用）：進 Attention 與 MLP 前都先做 LayerNorm。</li>
+<li>為了可手算，權重矩陣用小數；流程與真實模型一致（真實模型的權重會學得更複雜）。</li>
+</ul>
+<hr />
+<h4 id="1-patch-embeddingconvlinear">1) Patch Embedding（Conv/Linear 投影）</h4>
+<p>把每個 patch（長度 4）乘上投影 <span class="arithmatex">\(W_p\!\in\!\mathbb{R}^{4\times4}\)</span> 得到 4維向量。</p>
+<div class="arithmatex">\[
+W_p=\begin{bmatrix}
+0.10&amp;0&amp;0&amp;0.05\\
+0&amp;0.10&amp;0&amp;0.05\\
+0&amp;0&amp;0.10&amp;0.05\\
+0.05&amp;0.05&amp;0.05&amp;0.10
+\end{bmatrix},\quad b_p=\mathbf{0}
+\]</div>
+<div class="arithmatex">\[
+\begin{aligned}
+E_1&amp;=P_1W_p=[0.4,\,0.5,\,0.8,\,1.0]\\
+E_2&amp;=P_2W_p=[0.7,\,0.8,\,1.1,\,1.5]\\
+E_3&amp;=P_3W_p=[1.6,\,1.7,\,2.0,\,3.0]\\
+E_4&amp;=P_4W_p=[1.9,\,2.0,\,2.3,\,3.5]
+\end{aligned}
+\]</div>
+<hr />
+<h4 id="2_1">2) 加上</h4>
+<p>$$CLS] 與位置編碼</p>
+<div class="arithmatex">\[
+\text{CLS}=[0.1,0.2,0.3,0.4],\quad
+\text{pos}_{\text{CLS}}=[0.01,0.02,0.03,0.04]
+\]</div>
+<div class="arithmatex">\[
+\text{pos}_1=[0.1,0,0,0],\;
+\text{pos}_2=[0,0.1,0,0],\;
+\text{pos}_3=[0,0,0.1,0],\;
+\text{pos}_4=[0.05,0.05,0.05,0.05]
+\]</div>
+<p>序列（長度 5：CLS+4 個 patch）：</p>
+<div class="arithmatex">\[
+X=
+\begin{bmatrix}
+0.11&amp;0.22&amp;0.33&amp;0.44\\
+0.50&amp;0.50&amp;0.80&amp;1.00\\
+0.70&amp;0.90&amp;1.10&amp;1.50\\
+1.60&amp;1.70&amp;2.10&amp;3.00\\
+1.95&amp;2.05&amp;2.35&amp;3.55
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="3-pre-ln-mha">3) (Pre-LN) 多頭自注意力 MHA</h4>
+<h5 id="31-layernorm-token">3.1 LayerNorm（逐 token）</h5>
+<p>對每個 token 各自做 LN（<span class="arithmatex">\(\gamma=1,\beta=0,\epsilon=10^{-5}\)</span>）：</p>
+<div class="arithmatex">\[
+X_{\text{LN}}=
+\begin{bmatrix}
+-1.3412&amp;-0.4471&amp;0.4471&amp;1.3412\\
+-0.9427&amp;-0.9427&amp;0.4714&amp;1.4141\\
+-1.1831&amp;-0.5071&amp;0.1690&amp;1.5212\\
+-0.9053&amp;-0.7243&amp;0.0000&amp;1.6296\\
+-0.8230&amp;-0.6663&amp;-0.1960&amp;1.6853
+\end{bmatrix}
+\]</div>
+<h5 id="32-qkv">3.2 兩個頭的 <span class="arithmatex">\(Q,K,V\)</span> 投影</h5>
+<p>（真實 ViT 會用一個大矩陣再切頭；這裡直接給每頭的矩陣）</p>
+<ul>
+<li><strong>Head-1</strong>（<span class="arithmatex">\(W_Q^1,W_K^1,W_V^1\in\mathbb{R}^{4\times2}\)</span>）：</li>
+</ul>
+<div class="arithmatex">\[
+\begin{aligned}
+W_Q^1&amp;=\begin{bmatrix}0.2&amp;0\\0&amp;0.2\\0.3&amp;0\\0&amp;0.3\end{bmatrix},\;
+W_K^1=\begin{bmatrix}0.1&amp;0\\0&amp;0.1\\0.2&amp;0\\0&amp;0.2\end{bmatrix},\\
+W_V^1&amp;=\begin{bmatrix}0.4&amp;0\\0&amp;0.4\\0.1&amp;0\\0&amp;0.1\end{bmatrix}
+\end{aligned}
+\]</div>
+<div class="arithmatex">\[
+Q^1=X_{\text{LN}}W_Q^1=
+\begin{bmatrix}
+-0.1341&amp;0.3129\\
+-0.0471&amp;0.2357\\
+-0.1859&amp;0.3549\\
+-0.1811&amp;0.3440\\
+-0.2234&amp;0.3723
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+K^1=X_{\text{LN}}W_K^1=
+\begin{bmatrix}
+-0.0447&amp;0.2235\\
+\;\;0.0000&amp;0.1885\\
+-0.0845&amp;0.2535\\
+-0.0905&amp;0.2535\\
+-0.1215&amp;0.2704
+\end{bmatrix},\quad
+V^1=X_{\text{LN}}W_V^1=
+\begin{bmatrix}
+-0.4918&amp;-0.0447\\
+-0.3299&amp;-0.2357\\
+-0.4564&amp;-0.0507\\
+-0.3621&amp;-0.1267\\
+-0.3488&amp;-0.0980
+\end{bmatrix}
+\]</div>
+<ul>
+<li><strong>Head-2</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+\begin{aligned}
+W_Q^2&amp;=\begin{bmatrix}0.1&amp;0\\0&amp;0.1\\0&amp;0.2\\0.2&amp;0\end{bmatrix},\;
+W_K^2=\begin{bmatrix}0.05&amp;0\\0&amp;0.05\\0&amp;0.1\\0.1&amp;0\end{bmatrix},\\
+W_V^2&amp;=\begin{bmatrix}0.2&amp;0\\0&amp;0.2\\0.3&amp;0\\0&amp;0.3\end{bmatrix}
+\end{aligned}
+\]</div>
+<div class="arithmatex">\[
+Q^2=
+\begin{bmatrix}
+-0.1341&amp;0.3129\\
+-0.0471&amp;0.2357\\
+-0.1859&amp;0.3549\\
+-0.1811&amp;0.3440\\
+-0.2234&amp;0.3723
+\end{bmatrix},\;
+K^2=
+\begin{bmatrix}
+0.0671&amp;0.0224\\
+0.0943&amp;0.0000\\
+0.0930&amp;-0.0085\\
+0.1177&amp;-0.0362\\
+0.1274&amp;-0.0529
+\end{bmatrix},\;
+V^2=
+\begin{bmatrix}
+-0.1341&amp;0.3129\\
+-0.0471&amp;0.2357\\
+-0.1859&amp;0.3549\\
+-0.1811&amp;0.3440\\
+-0.2234&amp;0.3723
+\end{bmatrix}
+\]</div>
+<h5 id="33-softmax">3.3 注意力分數、Softmax、每頭輸出</h5>
+<p>縮放因子 <span class="arithmatex">\(1/\sqrt{d_k}=1/\sqrt{2}\)</span>。</p>
+<ul>
+<li><strong>Head-1 分數與權重</strong>（顯示 5×5 全部）：</li>
+</ul>
+<div class="arithmatex">\[
+S^1=\frac{Q^1{K^1}^{\!\top}}{\sqrt{2}}=
+\begin{bmatrix}
+0.0537&amp;0.0417&amp;0.0641&amp;0.0647&amp;0.0714\\
+0.0387&amp;0.0314&amp;0.0451&amp;0.0453&amp;0.0491\\
+0.0620&amp;0.0473&amp;0.0747&amp;0.0755&amp;0.0838\\
+0.0601&amp;0.0459&amp;0.0725&amp;0.0733&amp;0.0813\\
+0.0659&amp;0.0496&amp;0.0801&amp;0.0810&amp;0.0904
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+A^1=\text{softmax}(S^1)\approx
+\begin{bmatrix}
+0.1989&amp;0.1965&amp;0.2010&amp;0.2011&amp;0.2025\\
+0.1994&amp;0.1979&amp;0.2006&amp;0.2007&amp;0.2014\\
+0.1986&amp;0.1958&amp;0.2012&amp;0.2014&amp;0.2030\\
+0.1987&amp;0.1959&amp;0.2012&amp;0.2013&amp;0.2030\\
+0.1985&amp;0.1953&amp;0.2013&amp;0.2015&amp;0.2034
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+\text{HeadOut}^1=A^1V^1\approx
+\begin{bmatrix}
+-0.3978&amp;-0.1107\\
+-0.3978&amp;-0.1109\\
+-0.3978&amp;-0.1106\\
+-0.3978&amp;-0.1106\\
+-0.3978&amp;-0.1106
+\end{bmatrix}
+\]</div>
+<ul>
+<li><strong>Head-2 分數與權重</strong>：</li>
+</ul>
+<div class="arithmatex">\[
+S^2=\frac{Q^2{K^2}^{\!\top}}{\sqrt{2}}=
+\begin{bmatrix}
+0.0071&amp;0.0089&amp;0.0085&amp;0.0100&amp;0.0104\\
+0.0089&amp;0.0126&amp;0.0124&amp;0.0157&amp;0.0170\\
+0.0085&amp;0.0124&amp;0.0123&amp;0.0159&amp;0.0174\\
+0.0100&amp;0.0157&amp;0.0159&amp;0.0214&amp;0.0239\\
+0.0104&amp;0.0170&amp;0.0174&amp;0.0239&amp;0.0269
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+A^2\approx
+\begin{bmatrix}
+0.1996&amp;0.2000&amp;0.1999&amp;0.2002&amp;0.2003\\
+0.1991&amp;0.1998&amp;0.1998&amp;0.2005&amp;0.2007\\
+0.1990&amp;0.1998&amp;0.1998&amp;0.2005&amp;0.2008\\
+0.1985&amp;0.1997&amp;0.1997&amp;0.2008&amp;0.2013\\
+0.1983&amp;0.1996&amp;0.1996&amp;0.2010&amp;0.2016
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+\text{HeadOut}^2=A^2V^2\approx
+\begin{bmatrix}
+-0.1544&amp;\;\;0.3240\\
+-0.1544&amp;\;\;0.3240\\
+-0.1544&amp;\;\;0.3241\\
+-0.1545&amp;\;\;0.3241\\
+-0.1545&amp;\;\;0.3241
+\end{bmatrix}
+\]</div>
+<h5 id="34">3.4 拼接各頭並做輸出投影、殘差</h5>
+<p>拼接 <span class="arithmatex">\([\text{HeadOut}^1\|\text{HeadOut}^2]\in\mathbb{R}^{5\times4}\)</span>，再乘輸出投影 <span class="arithmatex">\(W_O\in\mathbb{R}^{4\times4}\)</span>：</p>
+<div class="arithmatex">\[
+W_O=\begin{bmatrix}
+0.6&amp;0&amp;0.2&amp;0\\
+0&amp;0.6&amp;0&amp;0.2\\
+0.2&amp;0&amp;0.6&amp;0\\
+0&amp;0.2&amp;0&amp;0.6
+\end{bmatrix}
+\]</div>
+<p>得到 Attention 輸出 <span class="arithmatex">\(Z_{\text{attn}} = [\text{Head}_1\|\text{Head}_2]W_O\)</span>：</p>
+<div class="arithmatex">\[
+Z_{\text{attn}}\approx
+\begin{bmatrix}
+-0.2696&amp;-0.0016&amp;-0.1722&amp;\;\;0.1723\\
+-0.2696&amp;-0.0017&amp;-0.1722&amp;\;\;0.1722\\
+-0.2696&amp;-0.0016&amp;-0.1722&amp;\;\;0.1723\\
+-0.2696&amp;-0.0016&amp;-0.1723&amp;\;\;0.1723\\
+-0.2696&amp;-0.0015&amp;-0.1723&amp;\;\;0.1724
+\end{bmatrix}
+\]</div>
+<p><strong>殘差加回原輸入 <span class="arithmatex">\(X\)</span>：</strong></p>
+<div class="arithmatex">\[
+O^{(1)} = X + Z_{\text{attn}} \approx
+\begin{bmatrix}
+-0.1596&amp;0.2184&amp;0.1578&amp;0.6123\\
+\;\;0.2304&amp;0.4983&amp;0.6278&amp;1.1722\\
+\;\;0.4304&amp;0.8984&amp;0.9278&amp;1.6723\\
+\;\;1.3304&amp;1.6984&amp;1.9277&amp;3.1723\\
+\;\;1.6804&amp;2.0485&amp;2.1777&amp;3.7224
+\end{bmatrix}
+\]</div>
+<hr />
+<h4 id="4-pre-ln-mlpgelu">4) (Pre-LN) 前饋網路 MLP（GELU）</h4>
+<h5 id="41-layernorm">4.1 LayerNorm</h5>
+<div class="arithmatex">\[
+U=\text{LN}(O^{(1)})\approx
+\begin{bmatrix}
+-1.3367&amp;0.0406&amp;-0.1800&amp;1.4761\\
+-1.1707&amp;-0.3902&amp;-0.0128&amp;1.5737\\
+-1.2411&amp;-0.1885&amp;-0.1225&amp;1.5521\\
+-1.0144&amp;-0.4824&amp;-0.1510&amp;1.6478\\
+-0.9308&amp;-0.4594&amp;-0.2939&amp;1.6841
+\end{bmatrix}
+\]</div>
+<h5 id="42-mlp">4.2 兩層 MLP</h5>
+<div class="arithmatex">\[
+\text{FFN}(x)=W_2\,\text{GELU}(W_1x)+b_2\quad(\text{殘差於之後相加})
+\]</div>
+<p>取（可手算的）：</p>
+<div class="arithmatex">\[
+W_1=
+\begin{bmatrix}
+0.5&amp;0&amp;0&amp;0&amp;0.1&amp;0&amp;0&amp;0\\
+0&amp;0.5&amp;0&amp;0&amp;0&amp;0.1&amp;0&amp;0\\
+0&amp;0&amp;0.5&amp;0&amp;0&amp;0&amp;0.1&amp;0\\
+0&amp;0&amp;0&amp;0.5&amp;0&amp;0&amp;0&amp;0.1
+\end{bmatrix}_{4\times8},
+\quad
+W_2=
+\begin{bmatrix}
+0.4&amp;0&amp;0.1&amp;0\\
+0&amp;0.4&amp;0&amp;0.1\\
+0.1&amp;0&amp;0.4&amp;0\\
+0&amp;0.1&amp;0&amp;0.4\\
+0.2&amp;0&amp;0&amp;0\\
+0&amp;0.2&amp;0&amp;0\\
+0&amp;0&amp;0.2&amp;0\\
+0&amp;0&amp;0&amp;0.2
+\end{bmatrix}_{8\times4}
+\]</div>
+<p>以 <strong>GELU</strong>（tanh 近似）計算：</p>
+<div class="arithmatex">\[
+H=\text{GELU}(U W_1),\qquad
+\text{FF}=H W_2
+\]</div>
+<p>得到</p>
+<div class="arithmatex">\[
+\text{FF}\approx
+\begin{bmatrix}
+-0.0835&amp;0.0613&amp;-0.0353&amp;0.2447\\
+-0.0763&amp;0.0249&amp;-0.0177&amp;0.2563\\
+-0.0805&amp;0.0413&amp;-0.0295&amp;0.2555\\
+-0.0750&amp;0.0218&amp;-0.0312&amp;0.2708\\
+-0.0748&amp;0.0253&amp;-0.0438&amp;0.2792
+\end{bmatrix}
+\]</div>
+<h5 id="43-block">4.3 殘差相加（Block 輸出）</h5>
+<div class="arithmatex">\[
+O^{(2)} = O^{(1)} + \text{FF} \approx
+\boxed{
+\begin{bmatrix}
+-0.2431&amp;0.2797&amp;0.1225&amp;0.8570\\
+\;\;0.1541&amp;0.5232&amp;0.6100&amp;1.4285\\
+\;\;0.3499&amp;0.9398&amp;0.8983&amp;1.9278\\
+\;\;1.2554&amp;1.7202&amp;1.8965&amp;3.4432\\
+\;\;1.6056&amp;2.0738&amp;2.1340&amp;4.0015
+\end{bmatrix}}
+\]</div>
+<hr />
+<h4 id="5-cls">5) 影像全局表徵（CLS 向量）</h4>
+<p>經過 <strong>一層</strong> Image Encoder 後，<strong>CLS token</strong>（第 1 行）即為整張影像的全局表徵（真實模型會堆疊多層）：</p>
+<div class="arithmatex">\[
+\boxed{\text{Image Embedding}_{\text{CLS}} \approx [-0.2431,\;0.2797,\;0.1225,\;0.8570]}
+\]</div>
+<hr />
+<h5 id="blipvit">小結（與真實 BLIP/ViT 的對齊）</h5>
+<ul>
+<li>已完整跑過 <strong>Pre-LN → 多頭注意力（2頭）→ 殘差 → Pre-LN → MLP(GELU) → 殘差</strong> 的一個 Encoder block。</li>
+<li>真實 BLIP 的 Image Encoder 會用更大維度（如 <span class="arithmatex">\(d_{\text{model}}=768\)</span>）、更多頭（如 12/16 頭）、GELU、LayerNorm、學得的 <span class="arithmatex">\(W_Q,W_K,W_V,W_O,W_1,W_2\)</span>，並<strong>重複 N 次</strong>。</li>
+<li>上面每一步（矩陣形狀、縮放 <span class="arithmatex">\(1/\sqrt{d_k}\)</span>、softmax、殘差與 LN）都與實際一致，只是用小矩陣讓你能<strong>逐行手算與驗證</strong>。</li>
+</ul>
+<p>如果你要，我可以用同樣「帶數值逐步運算」把右側的 <strong>Image-grounded Text Encoder（Cross-Attention）</strong> 與 <strong>Image-grounded Text Decoder（LM）</strong> 也完整跑一遍，讓整張圖（ITC/ITM/LM 三個頭）全部串起來。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

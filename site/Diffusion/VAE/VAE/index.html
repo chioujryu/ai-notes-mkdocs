@@ -1,0 +1,3124 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../../VLM/11_Qwen2.5-VL/">
+      
+      
+        <link rel="next" href="../VQ-VAE/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>VAE - My AI Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vae" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="My AI Documentation" class="md-header__button md-logo" aria-label="My AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            My AI Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              VAE
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/chioujryu/my-mkdocs-AI-docs/tree/main" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    my-mkdocs-AI-docs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="My AI Documentation" class="md-nav__button md-logo" aria-label="My AI Documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    My AI Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/chioujryu/my-mkdocs-AI-docs/tree/main" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    my-mkdocs-AI-docs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Basics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Basics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Loss
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Loss
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Basics/Loss/Cross-Entropy/Cross-Entropy.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cross-Entropy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Basics/Loss/Cross-Entropy/BCELoss.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BCELoss
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Basics/Normalization.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Normalization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Detection_Segmentation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Detection_Segmentation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Detection_Segmentation/DETR/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DETR
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Detection_Segmentation/Grounding_DINO.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grounding DINO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Detection_Segmentation/Mask2Former/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mask2Former
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Detection_Segmentation/Mask_DINO.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mask DINO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Detection_Segmentation/Grounding-SAM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grounding-SAM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sequence Labeling
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sequence Labeling
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LLM/Sequence_Labeling/NER/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NER
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LLM/Sequence_Labeling/BIO_BILOU/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BIO/ BILOU
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LLM/Attention/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attention
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Transformer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LLM/Transformer/Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Transformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LLM/Transformer/Switch_Transformer.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Switch Transformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LLM/Transformer/Swin_Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swin Transformer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Positional_Encoding
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Positional_Encoding
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LLM/Positional_Encoding/Sinusoidal_Positional_Encoding.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sinusoidal Positional Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LLM/Positional_Encoding/Relative_Positional_Encoding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Relative Positional Encoding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LLM/Positional_Encoding/Better_Relative_PE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Better Relative PE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LLM/Positional_Encoding/Rotary_Position_Embedding_RoPE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rotary Position Embedding RoPE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LLM/Positional_Encoding/ALiBi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ALiBi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LLM/BERT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BERT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LLM/GPT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LLM/GPT-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GPT-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../LLM/T5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VLM
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VLM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../VLM/1_vision-transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ViT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../VLM/2_CLIP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLIP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../VLM/3_BLIP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BLIP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../VLM/4_BLIP-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BLIP-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../VLM/5_SigLIP-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SigLIP-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../VLM/6_Grounding-DINO.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grounding-DINO
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../VLM/7_Grounding-SAM.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grounding-SAM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../VLM/8_LLaVA/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLaVA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../VLM/9_Florence_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Florence-2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../VLM/10_nanoVLM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    nanoVLM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../VLM/11_Qwen2.5-VL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Qwen2.5-VL
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diffusion
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Diffusion
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_1" id="__nav_6_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VAE
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    VAE
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VAE
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VAE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、歷史速寫（重點里程碑）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vae_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、VAE 解決了哪些痛點？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、可以用於什麼任務？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vae_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、什麼情境優先考慮 VAE？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、前向傳播 數學運算
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、前向傳播 數學運算">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        任務設定（真實場景）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        輸入資料
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encoder：特徵抽取與潛在分佈參數
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reparameterization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reparameterization：帶雜訊的可微採樣
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decoder：從潛在空間重建輸入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vae_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VAE 的損失（觀念 + 本批次數值）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VAE 的損失（觀念 + 本批次數值）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        已知（來自前向傳遞）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1bce-with-logits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1：重建項（BCE with logits）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2kl-mathcal-n0i" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2：KL 正則（把後驗拉近 \(\mathcal N(0,I)\)）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-elbo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3：總損失（負 ELBO）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結：這套 Loss 解的痛點
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VQ-VAE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    VQ-VAE
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sampler
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sampler
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sampler/DDPM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DDPM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sampler/DDIM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DDIM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Sampler/DPM-Solver/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DPM-Solver
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../LDM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LDM
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DiT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DiT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Stable-Diffusion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stable Diffusion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../HunyuanImage-2.1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HunyuanImage 2.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Image-to-Text
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Image-to-Text
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Image-to-Text/Florence_2.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Florence 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        一、歷史速寫（重點里程碑）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vae_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        二、VAE 解決了哪些痛點？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        三、可以用於什麼任務？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vae_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        四、什麼情境優先考慮 VAE？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        五、前向傳播 數學運算
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="五、前向傳播 數學運算">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        任務設定（真實場景）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        輸入資料
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Encoder：特徵抽取與潛在分佈參數
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reparameterization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reparameterization：帶雜訊的可微採樣
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decoder" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decoder：從潛在空間重建輸入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vae_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VAE 的損失（觀念 + 本批次數值）
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VAE 的損失（觀念 + 本批次數值）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        已知（來自前向傳遞）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1bce-with-logits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1：重建項（BCE with logits）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2kl-mathcal-n0i" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2：KL 正則（把後驗拉近 \(\mathcal N(0,I)\)）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-elbo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3：總損失（負 ELBO）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        小結：這套 Loss 解的痛點
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="vae">VAE</h1>
+<h2 id="_1"><strong>一、歷史速寫（重點里程碑）</strong></h2>
+<ul>
+<li><strong>2013–2014</strong>：Kingma &amp; Welling 提出 <em>Auto-Encoding Variational Bayes</em>（VAE）；Rezende 等人同時期提出相近方法。<strong>重參數化技巧</strong>（reparameterization trick）是關鍵，讓抽樣可用反向傳播訓練。</li>
+<li><strong>2016</strong>：<strong>β-VAE</strong>（Higgins et al.）把 KL 權重調大，促進<strong>可解耦的潛空間</strong>（disentanglement）。</li>
+<li><strong>2017–2019</strong>：<strong>VQ-VAE</strong>（將連續潛向量量化為碼本）、<strong>PixelVAE / Ladder/Hierarchical VAE</strong>（層級結構，畫質與穩定性更好），以及針對「後驗崩潰」的訓練技巧（KL 退火、free-bits）。</li>
+<li><strong>2020</strong>：<strong>NVAE</strong> 等大型卷積/層級 VAE 展示高解析生成能力。</li>
+<li><strong>2022 起</strong>：<strong>Latent Diffusion</strong>（如 Stable Diffusion）把擴散過程搬到 VAE 的<strong>連續潛空間</strong>；VAE 成為「高維資料→低維潛表徵」的<strong>前端壓縮器</strong>。</li>
+</ul>
+<h2 id="vae_1"><strong>二、VAE 解決了哪些痛點？</strong></h2>
+<ol>
+<li><strong>不可解的後驗分佈</strong>
+   傳統潛變量模型做最大似然時，<span class="arithmatex">\(p(z|x)\)</span> 難算。VAE 用**變分下界（ELBO）**把它變成可優化的目標：
+   <span class="arithmatex">\(\log p(x)\ge \mathbb E_{q(z|x)}[\log p(x|z)]-\mathrm{KL}(q(z|x)\|p(z))\)</span>。</li>
+<li><strong>抽樣不可微 → 無法端到端訓練</strong>
+   <strong>重參數化</strong>：<span class="arithmatex">\(z=\mu+\sigma\odot\epsilon\)</span>（<span class="arithmatex">\(\epsilon\sim\mathcal N(0,I)\)</span>），讓梯度能穿過「抽樣」這一步。</li>
+<li><strong>高維資料的計算成本</strong>
+   透過<strong>潛空間</strong>建模，降維後再生成/重建，訓練推論更省算力。</li>
+<li><strong>需要不確定性估計</strong>
+   VAE 給出 <span class="arithmatex">\(q(z|x)\)</span> 的均值與變異，天生帶<strong>不確定性</strong>；對異常偵測、補值、風險感知有用。</li>
+<li><strong>可控與可插值的表徵</strong>
+   KL 正則把後驗拉向先驗（常用 <span class="arithmatex">\(\mathcal N(0,I)\)</span>），潛空間更平滑、可插值，利於屬性控制與條件生成。</li>
+</ol>
+<blockquote>
+<p>取捨：VAE 訓練穩、覆蓋廣，但純 VAE 生成常<strong>偏軟/糊</strong>；若追求銳利畫質，會加感知/對抗損失、用 VQ-VAE，或把 VAE 當前端配合<strong>擴散/GAN</strong>。</p>
+</blockquote>
+<h2 id="_2"><strong>三、可以用於什麼任務？</strong></h2>
+<p><strong>通用生成 / 表徵</strong></p>
+<ul>
+<li>影像、語音、表格資料的<strong>生成與資料擴增</strong></li>
+<li><strong>條件生成（CVAE）</strong>：按標籤、屬性或文字嵌入生成對應樣本</li>
+<li><strong>表示學習</strong>：取得可解釋、可插值的潛向量（β-VAE 做 disentanglement）</li>
+<li><strong>有損壓縮 / 傳輸</strong>：編碼到低維 <span class="arithmatex">\(z\)</span> 再解碼重建</li>
+</ul>
+<p><strong>品質與修復</strong></p>
+<ul>
+<li><strong>異常偵測</strong>：只用正常樣本訓練；測試時以重建誤差或 <span class="arithmatex">\(-\)</span>ELBO 當異常分數</li>
+<li><strong>去噪 / 補洞（inpainting）/ 超解析度 / 著色</strong>：視為在生成過程中校正缺失或噪聲</li>
+</ul>
+<p><strong>特定資料型態</strong></p>
+<ul>
+<li><strong>影像/影片</strong>：圖像生成、屬性編輯、未來幀預測（序列化/層級 VAE）</li>
+<li><strong>音訊/語音</strong>：語者轉換、音訊生成與去噪（常見 VQ-VAE 或 VAE+Flow）</li>
+<li><strong>自然語言</strong>：句子生成、情緒/屬性控制（需處理 posterior collapse）</li>
+<li><strong>時間序列</strong>：帶不確定性的預測、缺失值補全、異常偵測（VRNN/SVAE）</li>
+<li><strong>圖資料（GraphVAE）</strong>：圖/分子結構生成、連結預測</li>
+<li><strong>分子與蛋白</strong>：分子設計與<strong>屬性導向優化</strong>（在潛空間做搜尋）</li>
+<li><strong>推薦系統</strong>：<strong>VAE-based 協同過濾</strong>，對隱式回饋效果好</li>
+</ul>
+<p><strong>與其他模型的搭配</strong></p>
+<ul>
+<li><strong>VAE+GAN / AAE</strong>：用對抗損失補銳利度</li>
+<li><strong>VQ-VAE</strong>：離散碼本，提升高保真影像/音訊生成</li>
+<li><strong>Latent Diffusion 前端</strong>：如 Stable Diffusion，把昂貴的去噪過程放到 VAE 的低維連續潛空間，兼顧畫質與算力</li>
+</ul>
+<h2 id="vae_2"><strong>四、什麼情境優先考慮 VAE？</strong></h2>
+<ul>
+<li>想要<strong>可控、可插值</strong>的潛空間與<strong>不確定性估計</strong></li>
+<li>有<strong>缺失值/異常偵測</strong>、<strong>資料增補</strong>需求</li>
+<li>需要在<strong>有限算力</strong>下處理高維資料（可當壓縮前端 + 其他生成器）</li>
+</ul>
+<p>如果你想，我可以用一個小尺寸的實例，帶你把一筆輸入<strong>逐步代入 VAE，含完整矩陣、重參數化與 ELBO 計算</strong>（像上堂課那樣把數字算到底）。</p>
+<h2 id="_3"><strong>五、前向傳播 數學運算</strong></h2>
+<p><img alt="alt text" src="../image.png" /></p>
+<h3 id="_4">任務設定（真實場景）</h3>
+<ul>
+<li>小圖塊是 2×2 的灰階影像，展平成 4 維向量，數值已做 0–1 正規化。</li>
+<li>批次大小 batch size = 3（一次三個樣本）。</li>
+<li>VAE 結構：Encoder（4→3→[μ, logσ²] with latent dim=2）、reparameterization、Decoder（2→3→4, sigmoid 輸出）。</li>
+</ul>
+<hr />
+<h3 id="_5">輸入資料</h3>
+<p><strong>痛點</strong>：原始像素空間（4 維）雖小，但實際影像任務常更高維；我們示範降維與「帶不確定性」的編碼方式。</p>
+<p>輸入批次 <span class="arithmatex">\(X \in \mathbb{R}^{3\times 4}\)</span>：</p>
+<div class="arithmatex">\[
+X =
+\begin{bmatrix}
+0.10 &amp; 0.80 &amp; 0.20 &amp; 0.60 \\
+0.90 &amp; 0.40 &amp; 0.30 &amp; 0.10 \\
+0.50 &amp; 0.70 &amp; 0.90 &amp; 0.20
+\end{bmatrix}
+\quad (3\times 4)
+\]</div>
+<hr />
+<h3 id="encoder">Encoder：特徵抽取與潛在分佈參數</h3>
+<p><strong>痛點</strong>：只用單一向量表示（Deterministic AE）→ 容易過擬合、泛化差；VAE 讓每個樣本對應<strong>分佈</strong>（<span class="arithmatex">\(\mu,\log\sigma^2\)</span>），能表示不確定性並支援<strong>生成</strong>。</p>
+<h5 id="1-43-relu">1) 線性層 4→3，接 ReLU</h5>
+<p>權重與偏置：</p>
+<div class="arithmatex">\[
+W_1 =
+\begin{bmatrix}
+0.20 &amp; -0.10 &amp; 0.30\\
+0.40 &amp; 0.50 &amp; -0.20\\
+-0.30 &amp; 0.60 &amp; 0.10\\
+0.25 &amp; -0.40 &amp; 0.35
+\end{bmatrix}
+\ (4\times 3),\quad
+b_1=\begin{bmatrix}0.05&amp;0.10&amp;-0.05\end{bmatrix}\ (1\times 3)
+\]</div>
+<p>先做矩陣乘法（只需寫成 <span class="arithmatex">\(A\cdot B=C\)</span>）：</p>
+<div class="arithmatex">\[
+Z_1 = X \cdot W_1 =
+\begin{bmatrix}
+0.43 &amp; 0.27 &amp; 0.10 \\
+0.275 &amp; 0.25 &amp; 0.255 \\
+0.16 &amp; 0.76 &amp; 0.17
+\end{bmatrix}
+\quad (3\times 3)
+\]</div>
+<p>加偏置（逐列廣播）並做 ReLU：</p>
+<div class="arithmatex">\[
+H_1 = \mathrm{ReLU}(Z_1 + b_1) =
+\begin{bmatrix}
+0.48 &amp; 0.37 &amp; 0.05 \\
+0.325 &amp; 0.35 &amp; 0.205 \\
+0.21 &amp; 0.86 &amp; 0.12
+\end{bmatrix}
+\quad (3\times 3)
+\]</div>
+<blockquote>
+<p>這步<strong>解痛點</strong>：把原始像素轉成更抽象的特徵（去除雜訊、提取結構）。</p>
+</blockquote>
+<h5 id="2">2) 輸出潛在分佈參數</h5>
+<p><span class="arithmatex">\(\mu,\ \log \sigma^2 \quad \text{(latent dim = 2)}\)</span></p>
+<p>參數：</p>
+<div class="arithmatex">\[
+W_{\mu}=
+\begin{bmatrix}
+0.30 &amp; -0.20\\
+0.10 &amp; 0.40\\
+-0.50 &amp; 0.25
+\end{bmatrix}
+\ (3\times 2),\ 
+b_{\mu}=\begin{bmatrix}0.00&amp;0.05\end{bmatrix}\ (1\times 2)
+\]</div>
+<div class="arithmatex">\[
+W_{logvar}=
+\begin{bmatrix}
+0.20 &amp; 0.10\\
+-0.30 &amp; 0.15\\
+0.40 &amp; -0.25
+\end{bmatrix}
+\ (3\times 2),\ 
+b_{logvar}=\begin{bmatrix}-0.10&amp;0.00\end{bmatrix}\ (1\times 2)
+\]</div>
+<p>矩陣乘法與加偏置：</p>
+<div class="arithmatex">\[
+H_1\cdot W_{\mu}=
+\begin{bmatrix}
+0.156000 &amp; 0.064500\\
+0.030000 &amp; 0.126250\\
+0.089000 &amp; 0.332000
+\end{bmatrix}
+\ (3\times 2),\quad
+\mu = H_1\cdot W_{\mu} + b_{\mu} =
+\begin{bmatrix}
+0.156000 &amp; 0.114500\\
+0.030000 &amp; 0.176250\\
+0.089000 &amp; 0.382000
+\end{bmatrix}
+\ (3\times 2)
+\]</div>
+<div class="arithmatex">\[
+H_1\cdot W_{logvar}=
+\begin{bmatrix}
+0.005000 &amp; 0.091000\\
+0.042000 &amp; 0.033750\\
+-0.168000 &amp; 0.120000
+\end{bmatrix}
+\ (3\times 2),\quad
+\log\sigma^2 = H_1\cdot W_{logvar} + b_{logvar} =
+\begin{bmatrix}
+-0.095000 &amp; 0.091000\\
+-0.058000 &amp; 0.033750\\
+-0.268000 &amp; 0.120000
+\end{bmatrix}
+\ (3\times 2)
+\]</div>
+<hr />
+<h3 id="reparameterization">Reparameterization：帶雜訊的可微採樣</h3>
+<p><strong>痛點</strong>：直接從 <span class="arithmatex">\(\mathcal{N}(\mu,\sigma^2)\)</span> 取樣不可微，無法反傳梯度。重參數化 <span class="arithmatex">\(z=\mu+\sigma\odot\epsilon\)</span>（<span class="arithmatex">\(\epsilon\sim\mathcal{N}(0,1)\)</span>）讓梯度能流過 <span class="arithmatex">\(\mu,\sigma\)</span>。</p>
+<p>先把 <span class="arithmatex">\(\log\sigma^2\)</span> 轉成 <span class="arithmatex">\(\sigma=\exp(\tfrac{1}{2}\log\sigma^2)\)</span>：</p>
+<div class="arithmatex">\[
+\sigma =
+\begin{bmatrix}
+0.953610 &amp; 1.046551\\
+0.971416 &amp; 1.017018\\
+0.874590 &amp; 1.061837
+\end{bmatrix}
+\ (3\times 2)
+\]</div>
+<p>固定本次的高斯噪聲（教學用，實務會每步刷新）：</p>
+<div class="arithmatex">\[
+\epsilon =
+\begin{bmatrix}
+0.10 &amp; -0.30\\
+-1.20 &amp; 0.50\\
+0.75 &amp; -0.10
+\end{bmatrix}
+\ (3\times 2)
+\]</div>
+<p>得到潛在向量：</p>
+<div class="arithmatex">\[
+z = \mu + \sigma \odot \epsilon =
+\begin{bmatrix}
+0.251361 &amp; -0.199465\\
+-1.136699 &amp; 0.684759\\
+0.744943 &amp; 0.275816
+\end{bmatrix}
+\ (3\times 2)
+\]</div>
+<blockquote>
+<p>這步<strong>解痛點</strong>：同一張圖可抽多次樣、得不同 <span class="arithmatex">\(z\)</span> → 提升生成多樣性與不確定性表達。</p>
+</blockquote>
+<hr />
+<h3 id="decoder">Decoder：從潛在空間重建輸入</h3>
+<p><strong>痛點</strong>：僅靠 AE 的點估計容易學到「記憶體」（過擬合）。VAE 的隨機化解碼迫使模型學到更平滑、可生成的表示。</p>
+<h5 id="3-23-relu">3) 線性層 2→3，接 ReLU</h5>
+<p>參數：</p>
+<div class="arithmatex">\[
+W_{d1}=
+\begin{bmatrix}
+0.45 &amp; -0.35 &amp; 0.15\\
+-0.20 &amp; 0.30 &amp; 0.50
+\end{bmatrix}
+\ (2\times 3),\ 
+b_{d1}=\begin{bmatrix}0.05&amp;-0.10&amp;0.00\end{bmatrix}\ (1\times 3)
+\]</div>
+<p>矩陣乘法與加偏置：</p>
+<div class="arithmatex">\[
+z\cdot W_{d1} =
+\begin{bmatrix}
+0.153006 &amp; -0.147816 &amp; -0.062028\\
+-0.648017 &amp; 0.602923 &amp; 0.172025\\
+0.280061 &amp; -0.177985 &amp; 0.249650
+\end{bmatrix}
+\ (3\times 3)
+\]</div>
+<div class="arithmatex">\[
+H_{d1}=\mathrm{ReLU}(z\cdot W_{d1}+b_{d1}) =
+\begin{bmatrix}
+0.203006 &amp; 0.000000 &amp; 0.000000\\
+0.000000 &amp; 0.502923 &amp; 0.172025\\
+0.330061 &amp; 0.000000 &amp; 0.249650
+\end{bmatrix}
+\ (3\times 3)
+\]</div>
+<h5 id="4-34-sigmoid-01">4) 輸出層 3→4，接 Sigmoid（因為像素在 0–1）</h5>
+<p>參數：</p>
+<div class="arithmatex">\[
+W_{out}=
+\begin{bmatrix}
+0.25 &amp; -0.15 &amp; 0.10 &amp; 0.05\\
+0.40 &amp; 0.20 &amp; -0.30 &amp; 0.35\\
+-0.10 &amp; 0.45 &amp; 0.25 &amp; -0.20
+\end{bmatrix}
+\ (3\times 4),\ 
+b_{out}=\begin{bmatrix}0.00&amp;0.05&amp;-0.05&amp;0.10\end{bmatrix}\ (1\times 4)
+\]</div>
+<p>矩陣乘法與加偏置：</p>
+<div class="arithmatex">\[
+H_{d1}\cdot W_{out} =
+\begin{bmatrix}
+0.050751 &amp; -0.030451 &amp; 0.020301 &amp; 0.010150\\
+0.183967 &amp; 0.177996 &amp; -0.107871 &amp; 0.141618\\
+0.057550 &amp; 0.062833 &amp; 0.095418 &amp; -0.033427
+\end{bmatrix}
+\ (3\times 4)
+\]</div>
+<div class="arithmatex">\[
+\text{logits } Y = H_{d1}\cdot W_{out} + b_{out} =
+\begin{bmatrix}
+0.050751 &amp; 0.019549 &amp; -0.029699 &amp; 0.110150\\
+0.183967 &amp; 0.227996 &amp; -0.157871 &amp; 0.241618\\
+0.057550 &amp; 0.112833 &amp; 0.045418 &amp; 0.066573
+\end{bmatrix}
+\ (3\times 4)
+\]</div>
+<p>取 sigmoid 得重建 <span class="arithmatex">\(\hat X\)</span>：</p>
+<div class="arithmatex">\[
+\hat X=\sigma(Y)=
+\begin{bmatrix}
+0.512685 &amp; 0.504887 &amp; 0.492576 &amp; 0.527510\\
+0.545862 &amp; 0.556753 &amp; 0.460614 &amp; 0.560112\\
+0.514384 &amp; 0.528178 &amp; 0.511353 &amp; 0.516637
+\end{bmatrix}
+\ (3\times 4)
+\]</div>
+<blockquote>
+<p>這步<strong>解痛點</strong>：把低維 <span class="arithmatex">\(z\)</span> 重新「解碼」回像素機率，支援下游<strong>重建誤差</strong>與<strong>生成影像</strong>。</p>
+</blockquote>
+<hr />
+<h3 id="vae_3">VAE 的損失（觀念 + 本批次數值）</h3>
+<h4 id="_6">已知（來自前向傳遞）</h4>
+<p>輸入像素（0–1）：</p>
+<div class="arithmatex">\[
+X =
+\begin{bmatrix}
+0.10 &amp; 0.80 &amp; 0.20 &amp; 0.60 \\
+0.90 &amp; 0.40 &amp; 0.30 &amp; 0.10 \\
+0.50 &amp; 0.70 &amp; 0.90 &amp; 0.20
+\end{bmatrix}
+\quad (3\times 4)
+\]</div>
+<p>解碼器 <strong>logits</strong>（未經 Sigmoid）：</p>
+<div class="arithmatex">\[
+Y =
+\begin{bmatrix}
+0.050751 &amp; 0.019549 &amp; -0.029699 &amp; 0.110150\\
+0.183967 &amp; 0.227996 &amp; -0.157871 &amp; 0.241618\\
+0.057550 &amp; 0.112833 &amp; 0.045418 &amp; 0.066573
+\end{bmatrix}
+\quad (3\times 4)
+\]</div>
+<p>Encoder 的潛在分佈參數：</p>
+<div class="arithmatex">\[
+\mu=
+\begin{bmatrix}
+0.156000 &amp; 0.114500\\
+0.030000 &amp; 0.176250\\
+0.089000 &amp; 0.382000
+\end{bmatrix}
+\quad (3\times 2),
+\qquad
+\log\sigma^2=
+\begin{bmatrix}
+-0.095000 &amp; 0.091000\\
+-0.058000 &amp; 0.033750\\
+-0.268000 &amp; 0.120000
+\end{bmatrix}
+\quad (3\times 2)
+\]</div>
+<blockquote>
+<p>解痛點：用 <strong>logits 搭配 BCE-with-logits</strong>，比「先 Sigmoid 再 BCE」穩定，避免數值飽和。</p>
+</blockquote>
+<hr />
+<h4 id="step-1bce-with-logits">Step 1：重建項（BCE with logits）</h4>
+<p>（教學展示先把 <span class="arithmatex">\(Y\)</span> 經 Sigmoid 變成機率 <span class="arithmatex">\(\hat X\)</span>；實作可直接用 with-logits 公式。）</p>
+<div class="arithmatex">\[
+\hat X=\sigma(Y)=
+\begin{bmatrix}
+0.512685 &amp; 0.504887 &amp; 0.492576 &amp; 0.527510\\
+0.545862 &amp; 0.556753 &amp; 0.460614 &amp; 0.560112\\
+0.514384 &amp; 0.528178 &amp; 0.511353 &amp; 0.516637
+\end{bmatrix}
+\quad (3\times 4)
+\]</div>
+<p>逐元素 BCE：</p>
+<div class="arithmatex">\[
+L_{\text{BCE}} = -\Big[X\odot\log\hat X + (1-X)\odot\log(1-\hat X)\Big]=
+\begin{bmatrix}
+0.713770 &amp; 0.687330 &amp; 0.684348 &amp; 0.683648\\
+0.623785 &amp; 0.722431 &amp; 0.664685 &amp; 0.797074\\
+0.693561 &amp; 0.672171 &amp; 0.675238 &amp; 0.713673
+\end{bmatrix}
+\quad (3\times 4)
+\]</div>
+<p>對每個樣本把 4 個像素相加：</p>
+<div class="arithmatex">\[
+\text{BCE}_{\text{per-sample}}=
+\begin{bmatrix}
+2.769096\\
+2.807975\\
+2.754643
+\end{bmatrix}
+\quad (3\times 1),
+\qquad
+\sum \text{BCE}=8.331713
+\]</div>
+<blockquote>
+<p>解痛點：這一項驅動<strong>重建逼近輸入</strong>（保真）；用 logits 版本保證<strong>梯度穩定</strong>。</p>
+</blockquote>
+<hr />
+<h4 id="step-2kl-mathcal-n0i">Step 2：KL 正則（把後驗拉近 <span class="arithmatex">\(\mathcal N(0,I)\)</span>）</h4>
+<p>先把 <span class="arithmatex">\(\log\sigma^2\)</span> 指數回 <span class="arithmatex">\(\sigma^2\)</span>，同時計算 <span class="arithmatex">\(\mu^2\)</span>：</p>
+<div class="arithmatex">\[
+\sigma^2=\exp(\log\sigma^2)=
+\begin{bmatrix}
+0.909373 &amp; 1.095269\\
+0.943650 &amp; 1.034326\\
+0.764908 &amp; 1.127497
+\end{bmatrix}
+\quad (3\times 2),
+\qquad
+\mu^2=
+\begin{bmatrix}
+0.024336 &amp; 0.013110\\
+0.000900 &amp; 0.031064\\
+0.007921 &amp; 0.145924
+\end{bmatrix}
+\quad (3\times 2)
+\]</div>
+<p>每一維的 KL（對角高斯）：</p>
+<div class="arithmatex">\[
+\text{KL}_{\text{per-dim}}
+=\tfrac12\Big(\sigma^2+\mu^2-1-\log\sigma^2\Big)=
+\begin{bmatrix}
+0.014354 &amp; 0.008690\\
+0.001275 &amp; 0.015820\\
+0.020414 &amp; 0.076710
+\end{bmatrix}
+\quad (3\times 2)
+\]</div>
+<p>對每個樣本把 2 維加總：</p>
+<div class="arithmatex">\[
+\text{KL}_{\text{per-sample}}=
+\begin{bmatrix}
+0.023044\\
+0.017095\\
+0.097125
+\end{bmatrix}
+\quad (3\times 1),
+\qquad
+\sum \text{KL}=0.137264
+\]</div>
+<blockquote>
+<p>解痛點：KL 讓潛在空間<strong>規整</strong>、可<strong>插值/取樣</strong>，降低過擬合、提升生成一致性。</p>
+</blockquote>
+<hr />
+<h4 id="step-3-elbo">Step 3：總損失（負 ELBO）</h4>
+<div class="arithmatex">\[
+\text{Loss}=\sum\text{BCE}+\sum\text{KL}
+=8.331713+0.137264
+=8.468977
+\]</div>
+<p>也可看每個樣本的總損失（方便除錯/觀察）：</p>
+<div class="arithmatex">\[
+\text{Loss}_{\text{per-sample}}=
+\begin{bmatrix}
+2.769096\\
+2.807975\\
+2.754643
+\end{bmatrix}
++
+\begin{bmatrix}
+0.023044\\
+0.017095\\
+0.097125
+\end{bmatrix}
+=
+\begin{bmatrix}
+2.792140\\
+2.825070\\
+2.851768
+\end{bmatrix}
+\quad (3\times 1)
+\]</div>
+<blockquote>
+<p>若採「平均」做法，<span class="arithmatex">\(\text{Loss}_\text{mean}=8.468977/3\approx 2.822993\)</span>。</p>
+</blockquote>
+<hr />
+<h4 id="loss">小結：這套 Loss 解的痛點</h4>
+<ol>
+<li><strong>BCE（重建）</strong>：逼近輸入、保真度↑。</li>
+<li><strong>KL（正則）</strong>：讓 <span class="arithmatex">\(q_\phi(z|x)\)</span> 近似 <span class="arithmatex">\(\mathcal N(0,I)\)</span>，潛在空間更<strong>可控、可生成</strong>。</li>
+<li><strong>with-logits</strong> 設計：數值穩定、訓練更順。</li>
+</ol>
+<blockquote>
+<p>到這裡，你已經把<strong>真實前向的數值</strong>完整帶入並算出 <strong>VAE 的 ELBO 損失</strong>。如果你想，我可以再用<strong>Gaussian 解碼器</strong>版本或<strong>β-VAE</strong>（調整 KL 權重）重算一遍，幫你比較差異。</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
