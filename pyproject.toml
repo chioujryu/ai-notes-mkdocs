@@ -12,6 +12,9 @@ dependencies = [
 
   # 你在 markdown_extensions 裡用到的 pymdownx.* 都來自這個（mkdocs-material 通常也會依賴它）
   "pymdown-extensions>=10,<11",
+
+  # pdf 可以在網頁上瀏覽
+  "mkdocs-with-pdf",
 ]
 
 [build-system]
