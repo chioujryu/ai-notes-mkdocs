@@ -33,6 +33,7 @@ jobs:
           # pip install -r requirements.txt
           # 沒有就先用最基本：
           pip install mkdocs
+          pip install mkdocs mkdocs-material
 
       - name: Build site
         run: mkdocs build --strict
