@@ -1,0 +1,22 @@
+[project]
+name = "my-mkdocs-ai-docs"
+version = "0.1.0"
+description = "Documentation site built with MkDocs + Material"
+requires-python = ">=3.10"
+dependencies = [
+  # Material for MkDocs (官方建議鎖在同一個 major 版本，例如 9.*)
+  "mkdocs-material==9.*",
+
+  # 你的 mkdocs.yml 有使用 theme.locale；要啟用 MkDocs 的 theme localization 需安裝這個 extra
+  "mkdocs[i18n]>=1.6,<2",
+
+  # 你在 markdown_extensions 裡用到的 pymdownx.* 都來自這個（mkdocs-material 通常也會依賴它）
+  "pymdown-extensions>=10,<11",
+]
+
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = false

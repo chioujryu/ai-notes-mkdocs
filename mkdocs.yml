@@ -1,0 +1,122 @@
+site_name: My AI Documentation # 您的網站名稱，可自行修改
+# site_url: https://mydomain.org/mysite
+repo_url: https://github.com/chioujryu/my-mkdocs-AI-docs/tree/main # 仓库地址
+repo_name: my-mkdocs-AI-docs # 仓库名称
+# edit_uri: blob/main/docs/ # 编辑路径
+# site_description: # 站点描述
+# site_author: # 作者
+# copyright: # 版权声明
+
+# 使用 Material for MkDocs 主題
+theme:
+    name: material
+    highlightjs: true
+    hljs_languages:
+        - yaml
+        - rust
+    analytics:
+        gtag: G-ABC123
+    include_homepage_in_sidebar: True  # 在侧边栏菜单中列出主页。
+    prev_next_buttons_location: both # 设置 “Next” 和 “Previous” 按钮的位置：bottom, top, both , or none
+    navigation_depth: 4 # 侧边栏导航标题最大层级，默认4
+    collapse_navigation: True # 只在当前页面的侧边栏中包含页面标题。
+    titles_only: False # 只在侧边栏中包括文章标题，不包括所有子标题。默认值:False。
+    sticky_navigation: True #侧边栏在滚动页面时随主页内容滚动
+    locale: zh_CN # 语言配置，需要安装mkdocs[i18n]：pip install mkdocs[i18n]
+
+# theme:
+#   name: material
+
+
+# 配置擴展功能
+markdown_extensions:
+  - toc:
+      toc_depth: 4
+  # 1. 數學公式支持 (核心!)
+  - pymdownx.arithmatex:
+      generic: true
+
+  # 2. 語法高亮
+  - pymdownx.highlight
+  # 3. 支持任務列表、刪除線、上標、下標等
+  - pymdownx.superfences
+  - pymdownx.tasklist
+  - pymdownx.tilde
+  - admonition
+  - pymdownx.details
+
+# 可選：配置 MathJax 渲染引擎 (用於渲染 LaTeX)
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js # 這會載入數學公式載入比較久
+
+# 可選：配置導航欄
+nav:
+  - Home: index.md
+  - Basics:
+    - Loss:
+      - Cross-Entropy: Basics/Loss/Cross-Entropy/Cross-Entropy.md
+      - BCELoss: Basics/Loss/Cross-Entropy/BCELoss.md
+    - Normalization: Basics/Normalization.md
+  - Detection_Segmentation:
+    # Detection
+    - DETR: Detection_Segmentation/DETR.md
+    - Grounding DINO: Detection_Segmentation/Grounding_DINO.md
+    # Segmentation
+    - Mask2Former: Detection_Segmentation/Mask2Former.md
+    - Mask DINO: Detection_Segmentation/Mask_DINO.md
+    - Grounding-SAM: Detection_Segmentation/Grounding-SAM.md
+  - LLM: 
+    - Sequence Labeling: 
+      - NER: LLM/Sequence_Labeling/NER.md
+      - BIO/ BILOU: LLM/Sequence_Labeling/BIO_BILOU.md
+    - Attention: LLM/Attention.md
+    - Transformer: 
+      - Transformer: LLM/Transformer/Transformer.md
+      - Switch Transformer: LLM/Transformer/Switch_Transformer.md
+      - Swin Transformer: LLM/Transformer/Swin_Transformer.md
+    - Positional_Encoding:
+      - Sinusoidal Positional Encoding: LLM/Positional_Encoding/Sinusoidal_Positional_Encoding.md
+      - Relative Positional Encoding: LLM/Positional_Encoding/Relative_Positional_Encoding.md
+      - Better Relative PE: LLM/Positional_Encoding/Better_Relative_PE.md
+      - Rotary Position Embedding RoPE: LLM/Positional_Encoding/Rotary_Position_Embedding_RoPE.md
+      - ALiBi: LLM/Positional_Encoding/ALiBi.md
+    - BERT: LLM/BERT.md
+    - GPT: LLM/GPT.md
+    - GPT-2: LLM/GPT-2.md
+    - T5: LLM/T5.md
+  - VLM: 
+    - ViT: VLM/1_vision-transformer.md
+    - CLIP: VLM/2_CLIP.md
+    - BLIP: VLM/3_BLIP.md
+    - BLIP-2: VLM/4_BLIP-2.md
+    - SigLIP-2: VLM/5_SigLIP-2.md
+    - Grounding-DINO: VLM/6_Grounding-DINO.md
+    - Grounding-SAM: VLM/7_Grounding-SAM.md
+    - LLaVA: VLM/8_LLaVA.md
+    - Florence-2: VLM/9_Florence_2.md
+    - nanoVLM: VLM/10_nanoVLM.md
+    - Qwen2.5-VL: VLM/11_Qwen2.5-VL.md
+  - Diffusion: 
+    - VAE: 
+      - VAE: Diffusion/VAE/VAE.md
+      - VQ-VAE: Diffusion/VAE/VQ-VAE.md
+    - Sampler:
+      - DDPM: Diffusion/Sampler/DDPM.md 
+      - DDIM: Diffusion/Sampler/DDIM.md 
+      - DPM-Solver: Diffusion/Sampler/DPM-Solver.md 
+    - LDM: Diffusion/LDM.md
+    - DiT: Diffusion/DiT.md
+    - Stable Diffusion: Diffusion/Stable-Diffusion.md
+    - HunyuanImage 2.1: Diffusion/HunyuanImage-2.1.md
+  - Image-to-Text: 
+    - Florence 2: Image-to-Text/Florence_2.md
+
+  # 您可以在此添加更多頁面，例如：
+  # - Theory: theory.md
+  # - Implementation: implementation.md
+
+# 可選：啟用即時預覽伺服器的頁面自動重新加載
+watch:
+  - docs

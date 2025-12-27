@@ -1,0 +1,14 @@
+# MkDocs build output
+site/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtualenv (如果你有用 venv)
+.venv/
+venv/
+
+# OS junk
+.DS_Store
+Thumbs.db
