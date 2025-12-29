@@ -56,28 +56,31 @@ nav:
   - Home: index.md
   - Basics:
     - Loss:
-      - Cross-Entropy: Basics/Loss/Cross-Entropy/Cross-Entropy.md
-      - BCELoss: Basics/Loss/Cross-Entropy/BCELoss.md
-    - Normalization: Basics/Normalization.md
+      - BCELoss: Basics/Loss/BCELoss.md
+    - Normalization:
+      - Normalization: Basics/Normalization/Normalization.md
+      - LayerNorm: Basics/Normalization/LayerNorm.md
+      - RMSNorm: Basics/Normalization/RMSNorm.md
+      - GradNorm: Basics/Normalization/GradNorm.md
+    - Finetune:
+      - Finetune: Basics/Finetune/index.md
   - Detection_Segmentation:
-    # Detection
     - DETR: Detection_Segmentation/DETR.md
-    - Grounding DINO: Detection_Segmentation/Grounding_DINO.md
-    # Segmentation
+    - Grounding-DINO: Detection_Segmentation/Grounding-DINO.md
     - Mask2Former: Detection_Segmentation/Mask2Former.md
-    - Mask DINO: Detection_Segmentation/Mask_DINO.md
+    - Mask-DINO: Detection_Segmentation/Mask-DINO.md
     - Grounding-SAM: Detection_Segmentation/Grounding-SAM.md
   - LLM: 
+    - LLM: LLM/LLM.md
     - Sequence Labeling: 
       - NER: LLM/Sequence_Labeling/NER.md
       - BIO/ BILOU: LLM/Sequence_Labeling/BIO_BILOU.md
     - Attention: LLM/Attention.md
     - Transformer: 
       - Transformer: LLM/Transformer/Transformer.md
-      - Switch Transformer: LLM/Transformer/Switch_Transformer.md
       - Swin Transformer: LLM/Transformer/Swin_Transformer.md
     - Positional_Encoding:
-      - Sinusoidal Positional Encoding: LLM/Positional_Encoding/Sinusoidal_Positional_Encoding.md
+      - Sinusoidal Positional Encoding: LLM/Positional_Encoding/Sinusoidal _Positional_Encoding.md
       - Relative Positional Encoding: LLM/Positional_Encoding/Relative_Positional_Encoding.md
       - Better Relative PE: LLM/Positional_Encoding/Better_Relative_PE.md
       - Rotary Position Embedding RoPE: LLM/Positional_Encoding/Rotary_Position_Embedding_RoPE.md
@@ -110,8 +113,6 @@ nav:
     - DiT: Diffusion/DiT.md
     - Stable Diffusion: Diffusion/Stable-Diffusion.md
     - HunyuanImage 2.1: Diffusion/HunyuanImage-2.1.md
-  - Image-to-Text: 
-    - Florence 2: Image-to-Text/Florence_2.md
 
   # 您可以在此添加更多頁面，例如：
   # - Theory: theory.md
