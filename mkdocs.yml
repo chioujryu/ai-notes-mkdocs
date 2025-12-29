@@ -56,12 +56,23 @@ nav:
   - Home: index.md
   - Basics:
     - Loss:
-      - BCELoss: Basics/Loss/BCELoss.md
+      - MSE & MAE: Basics/Loss/MSE_MAE.md
+      - Cross-Entropy Loss: Basics/Loss/Cross-Entropy_Loss.md
+      - Kullback-Leibler Divergence: Basics/Loss/Kullback-Leibler_Divergence.md
+      - Contrastive Loss: Basics/Loss/Contrastive_Loss.md
+      - Triplet Loss: Basics/Loss/Triplet_Loss.md
+      - Huber Loss: Basics/Loss/Huber_Loss.md
+      - Cosine Similarity Loss: Basics/Loss/Cosine_Similarity_Loss.md
+      - Dice Loss: Basics/Loss/Dice_Loss.md
     - Normalization:
       - Normalization: Basics/Normalization/Normalization.md
       - LayerNorm: Basics/Normalization/LayerNorm.md
       - RMSNorm: Basics/Normalization/RMSNorm.md
       - GradNorm: Basics/Normalization/GradNorm.md
+    - Regularization:
+      - Regularization: Basics/Regularization/Regularization.md
+      - L1 Regularization: Basics/Regularization/L1_Regularization.md
+      - L2 Regularization: Basics/Regularization/L2_Regularization.md
     - Finetune:
       - Finetune: Basics/Finetune/index.md
   - Detection_Segmentation:
@@ -71,7 +82,6 @@ nav:
     - Mask-DINO: Detection_Segmentation/Mask-DINO.md
     - Grounding-SAM: Detection_Segmentation/Grounding-SAM.md
   - LLM: 
-    - LLM: LLM/LLM.md
     - Sequence Labeling: 
       - NER: LLM/Sequence_Labeling/NER.md
       - BIO/ BILOU: LLM/Sequence_Labeling/BIO_BILOU.md
