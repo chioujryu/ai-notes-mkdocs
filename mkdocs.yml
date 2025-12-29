@@ -1,7 +1,7 @@
-site_name: My AI Documentation # 您的網站名稱，可自行修改
-# site_url: https://mydomain.org/mysite
+site_name: AI Notes # 您的網站名稱，可自行修改
+site_url:  https://chioujryu.github.io/ai-notes-mkdocs/
 repo_url: https://github.com/chioujryu/my-mkdocs-AI-docs/tree/main # 仓库地址
-repo_name: my-mkdocs-AI-docs # 仓库名称
+repo_name: ai-notes-mkdocs # 仓库名称
 # edit_uri: blob/main/docs/ # 编辑路径
 # site_description: # 站点描述
 # site_author: # 作者
