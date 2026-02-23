@@ -54,75 +54,323 @@ extra_javascript:
 # 可選：配置導航欄
 nav:
   - Home: index.md
-  - Basics:
-    - Loss:
-      - MSE & MAE: Basics/Loss/MSE_MAE.md
-      - Cross-Entropy Loss: Basics/Loss/Cross-Entropy_Loss.md
-      - Kullback-Leibler Divergence: Basics/Loss/Kullback-Leibler_Divergence.md
-      - Contrastive Loss: Basics/Loss/Contrastive_Loss.md
-      - Triplet Loss: Basics/Loss/Triplet_Loss.md
-      - Huber Loss: Basics/Loss/Huber_Loss.md
-      - Cosine Similarity Loss: Basics/Loss/Cosine_Similarity_Loss.md
-      - Dice Loss: Basics/Loss/Dice_Loss.md
-    - Normalization:
-      - Normalization: Basics/Normalization/Normalization.md
-      - LayerNorm: Basics/Normalization/LayerNorm.md
-      - RMSNorm: Basics/Normalization/RMSNorm.md
-      - GradNorm: Basics/Normalization/GradNorm.md
-    - Regularization:
-      - Regularization: Basics/Regularization/Regularization.md
-      - L1 Regularization: Basics/Regularization/L1_Regularization.md
-      - L2 Regularization: Basics/Regularization/L2_Regularization.md
-    - Finetune:
-      - Finetune: Basics/Finetune/index.md
-  - Detection_Segmentation:
-    - DETR: Detection_Segmentation/DETR.md
-    - Grounding-DINO: Detection_Segmentation/Grounding-DINO.md
-    - Mask2Former: Detection_Segmentation/Mask2Former.md
-    - Mask-DINO: Detection_Segmentation/Mask-DINO.md
-    - Grounding-SAM: Detection_Segmentation/Grounding-SAM.md
-  - LLM: 
-    - Sequence Labeling: 
-      - NER: LLM/Sequence_Labeling/NER.md
-      - BIO/ BILOU: LLM/Sequence_Labeling/BIO_BILOU.md
-    - Attention: LLM/Attention.md
-    - Transformer: 
-      - Transformer: LLM/Transformer/Transformer.md
-      - Swin Transformer: LLM/Transformer/Swin_Transformer.md
-    - Positional_Encoding:
-      - Sinusoidal Positional Encoding: LLM/Positional_Encoding/Sinusoidal _Positional_Encoding.md
-      - Relative Positional Encoding: LLM/Positional_Encoding/Relative_Positional_Encoding.md
-      - Better Relative PE: LLM/Positional_Encoding/Better_Relative_PE.md
-      - Rotary Position Embedding RoPE: LLM/Positional_Encoding/Rotary_Position_Embedding_RoPE.md
-      - ALiBi: LLM/Positional_Encoding/ALiBi.md
-    - BERT: LLM/BERT.md
-    - GPT: LLM/GPT.md
-    - GPT-2: LLM/GPT-2.md
-    - T5: LLM/T5.md
-  - VLM: 
-    - ViT: VLM/1_vision-transformer.md
-    - CLIP: VLM/2_CLIP.md
-    - BLIP: VLM/3_BLIP.md
-    - BLIP-2: VLM/4_BLIP-2.md
-    - SigLIP-2: VLM/5_SigLIP-2.md
-    - Grounding-DINO: VLM/6_Grounding-DINO.md
-    - Grounding-SAM: VLM/7_Grounding-SAM.md
-    - LLaVA: VLM/8_LLaVA.md
-    - Florence-2: VLM/9_Florence_2.md
-    - nanoVLM: VLM/10_nanoVLM.md
-    - Qwen2.5-VL: VLM/11_Qwen2.5-VL.md
-  - Diffusion: 
-    - VAE: 
-      - VAE: Diffusion/VAE/VAE.md
-      - VQ-VAE: Diffusion/VAE/VQ-VAE.md
-    - Sampler:
-      - DDPM: Diffusion/Sampler/DDPM.md 
-      - DDIM: Diffusion/Sampler/DDIM.md 
-      - DPM-Solver: Diffusion/Sampler/DPM-Solver.md 
-    - LDM: Diffusion/LDM.md
-    - DiT: Diffusion/DiT.md
-    - Stable Diffusion: Diffusion/Stable-Diffusion.md
-    - HunyuanImage 2.1: Diffusion/HunyuanImage-2.1.md
+
+  - Foundations:
+      - Overview: foundations/README.md
+      - Losses:
+          - Cross Entropy: foundations/losses/cross-entropy.md
+          - BCE Loss: foundations/losses/bce-loss.md
+          - Focal Loss: foundations/losses/focal-loss.md
+          - Dice / IoU Loss: foundations/losses/dice-iou-loss.md
+          - MSE MAE Loss: foundations/losses/mse_mae-loss.md
+      - Normalization:
+          - Overview: foundations/normalization/README.md
+          - BatchNorm: foundations/normalization/batchnorm.md
+          - LayerNorm: foundations/normalization/layernorm.md
+          - GroupNorm: foundations/normalization/groupnorm.md
+          - RMSNorm: foundations/normalization/rmsnorm.md
+      - Optimization:
+          - Overview: foundations/optimization/README.md
+          - Adam / AdamW: foundations/optimization/adam-adamw.md
+          - LR Scheduler: foundations/optimization/lr-scheduler.md
+          - Gradient Clipping: foundations/optimization/grad-clip.md
+          - EMA / SWA: foundations/optimization/ema-swa.md
+      - Regularization:
+          - Dropout: foundations/regularization/dropout.md
+          - Weight Decay: foundations/regularization/weight-decay.md
+          - Label Smoothing: foundations/regularization/label-smoothing.md
+
+  - Models:
+      - LLM:
+          - Overview: llm/README.md
+          - Core:
+              - Attention: llm/core/attention.md
+              - Multi-Head Attention: llm/core/multi-head_attention.md
+              - Transformer: llm/core/transformer.md
+              - Tokenization: llm/core/tokenization.md
+              - Decoding & Sampling: llm/core/decoding.md
+              - KV Cache (Basics): llm/core/kv-cache.md
+          - Positional Encoding:
+              - Sinusoidal: llm/positional-encoding/sinusoidal.md
+              - Relative: llm/positional-encoding/relative.md
+              - Better Relative PE: llm/positional-encoding/better-relative.md
+              - RoPE: llm/positional-encoding/rope.md
+              - ALiBi: llm/positional-encoding/alibi.md
+              - RoPE Scaling / Long Context: llm/positional-encoding/rope-scaling.md
+          - Architectures:
+              - Encoder-Decoder (T5): llm/architectures/encoder-decoder.md
+              - MoE (Switch / Router): llm/architectures/moe.md
+              - Speculative Decoding (Concept): llm/architectures/speculative-decoding.md
+          - Models:
+              - BERT: llm/models/bert.md
+              - GPT: llm/models/gpt.md
+              - GPT-2: llm/models/gpt-2.md
+              - T5: llm/models/t5.md
+              - Switch Transformer: llm/models/switch-transformer.md
+          - Tasks:
+              - Sequence Labeling:
+                  - NER: llm/tasks/sequence-labeling/ner.md
+                  - BIO / BILOU: llm/tasks/sequence-labeling/bio-bilou.md
+              - Embeddings / Reranking: llm/tasks/embeddings-reranking.md
+              - Tool Use / Function Call: llm/tasks/tool-use.md
+
+      - Vision:
+          - Overview: vision/README.md
+          - Backbones:
+              - ViT: vision/backbones/vit.md
+              - Swin Transformer: vision/backbones/swin-transformer.md
+          - Detection:
+              - DETR: vision/detection/detr.md
+              - Grounding DINO: vision/detection/grounding-dino.md
+          - Segmentation:
+              - Mask2Former: vision/segmentation/mask2former.md
+              - Mask DINO: vision/segmentation/mask-dino.md
+              - SAM: vision/segmentation/sam.md
+              - Grounding-SAM: vision/segmentation/grounding-sam.md
+          - Tasks:
+              - OCR / Document AI: vision/tasks/ocr-docai.md
+              - Video Understanding: vision/tasks/video-understanding.md
+
+      - Audio:
+          - Overview: audio/README.md
+          - Representations:
+              - Spectrogram / Mel / Codec Tokens: audio/representations/codec-tokens.md
+          - Speech Recognition (ASR):
+              - Whisper: audio/asr/whisper.md
+          - Speech Synthesis (TTS):
+              - Overview: audio/tts/README.md
+              - Neural Codec LM (VALL-E): audio/tts/valle.md
+              - Flow-Matching (Voicebox): audio/tts/voicebox.md
+              - Voice Cloning (Concepts): audio/tts/voice-cloning.md
+          - Text-to-Audio / Music:
+              - AudioLDM: audio/generation/audioldm.md
+              - MusicLM: audio/generation/musiclm.md
+              - AudioLM: audio/generation/audiolm.md
+          - Speech Translation:
+              - SeamlessM4T: audio/translation/seamlessm4t.md
+          - Evaluation:
+              - WER / CER: audio/eval/wer-cer.md
+              - MOS / PESQ (Intro): audio/eval/mos-pesq.md
+              - FAD: audio/eval/fad.md
+
+      - Video:
+          - Overview: video/README.md
+          - Generation:
+              - Overview: video/generation/README.md
+              - Sora: video/generation/sora.md
+              - Stable Video Diffusion: video/generation/stable-video-diffusion.md
+              - Lumiere: video/generation/lumiere.md
+              - Temporal Consistency: video/generation/temporal-consistency.md
+          - Control & Editing:
+              - Inpainting / Outpainting: video/editing/inpainting-outpainting.md
+              - Motion / Camera Control: video/editing/motion-camera-control.md
+              - Video-to-Video / Style Transfer: video/editing/video-to-video.md
+          - Evaluation:
+              - FVD: video/eval/fvd.md
+
+      - 3D:
+          - Overview: three-d/README.md
+          - Representations:
+              - Mesh / Point / SDF: three-d/representations/mesh-point-sdf.md
+              - NeRF: three-d/representations/nerf.md
+              - 3D Gaussian Splatting: three-d/representations/3dgs.md
+          - Generation:
+              - Text-to-3D (DreamFusion): three-d/generation/dreamfusion.md
+              - Text-to-3D (3DGS): three-d/generation/text-to-3dgs.md
+              - Novel View Synthesis: three-d/generation/novel-view-synthesis.md
+          - Evaluation:
+              - Chamfer / F-Score / Render Metrics: three-d/eval/metrics.md
+
+      - VLM / Multimodal:
+          - Overview: vlm/README.md
+          - Connectors:
+              - Projector / Adapter (Concepts): vlm/connectors/projector-adapter.md
+              - Q-Former (BLIP-2): vlm/connectors/q-former.md
+          - Contrastive:
+              - CLIP: vlm/contrastive/clip.md
+              - SigLIP-2: vlm/contrastive/siglip-2.md
+          - Generative:
+              - BLIP: vlm/generative/blip.md
+              - BLIP-2: vlm/generative/blip-2.md
+              - LLaVA: vlm/generative/llava.md
+              - Florence-2: vlm/generative/florence-2.md
+              - nanoVLM: vlm/generative/nanovlm.md
+              - Qwen2.5-VL: vlm/generative/qwen2.5-vl.md
+          - Grounding:
+              - Grounding DINO: vision/detection/grounding-dino.md
+              - Grounding-SAM: vision/segmentation/grounding-sam.md
+          - Evaluation:
+              - VQA / MMMU (Intro): vlm/eval/vqa-mmmu.md
+
+      - 數字人 (Digital Human):
+          - Overview: digital-human/README.md
+          - Face / Head:
+              - DECA: digital-human/face/deca.md
+              - GaussianAvatars: digital-human/face/gaussianavatars.md
+          - Full-body Avatars:
+              - 3DGS-Avatar: digital-human/body/3dgs-avatar.md
+          - Talking Head / Lip Sync:
+              - Wav2Lip: digital-human/talking-head/wav2lip.md
+              - Audio-Driven Face Animation: digital-human/talking-head/audio-driven.md
+          - Voice & Safety:
+              - Voice Cloning Risks: digital-human/safety/voice-cloning.md
+              - Consent / Deepfakes: digital-human/safety/consent-deepfakes.md
+              - Watermarking / Provenance (Intro): digital-human/safety/watermarking-provenance.md
+
+  - Generative Models:
+      - Overview: generative/README.md
+      - Diffusion:
+          - Overview: generative/diffusion/README.md
+          - VAE:
+              - VAE: generative/diffusion/vae/vae.md
+              - VQ-VAE: generative/diffusion/vae/vq-vae.md
+          - Samplers:
+              - DDPM: generative/diffusion/samplers/ddpm.md
+              - DDIM: generative/diffusion/samplers/ddim.md
+              - DPM-Solver: generative/diffusion/samplers/dpm-solver.md
+          - Guidance:
+              - Classifier-Free Guidance: generative/diffusion/guidance/cfg.md
+              - Conditioning / Control (Intro): generative/diffusion/guidance/conditioning.md
+          - Latent Diffusion:
+              - LDM: generative/diffusion/latent/ldm.md
+              - Stable Diffusion: generative/diffusion/latent/stable-diffusion.md
+          - DiT: generative/diffusion/dit.md
+          - HunyuanImage 2.1: generative/diffusion/hunyuanimage-2.1.md
+      - Flow / Rectified Flow:
+          - Overview: generative/flow/README.md
+      - Autoregressive Generation:
+          - Overview: generative/autoregressive/README.md
+      - GAN (Optional):
+          - Overview: generative/gan/README.md
+
+  - Data:
+      - Overview: data/README.md
+      - Data Curation:
+          - Cleaning / Dedup / Filtering: data/curation/clean-dedup-filter.md
+          - Mixture & Sampling: data/curation/mixture-sampling.md
+          - Licensing / Copyright (Intro): data/curation/licensing.md
+      - Instruction / Preference Data:
+          - Instruction Tuning Data: data/instruction/it-data.md
+          - Preference Data (RLHF/DPO): data/preference/preference-data.md
+          - Synthetic Data: data/synthetic/synthetic-data.md
+      - Multimodal Data:
+          - Image-Text: data/mm/image-text.md
+          - Video-Text: data/mm/video-text.md
+          - Audio-Text: data/mm/audio-text.md
+      - Tooling:
+          - Datasets / WebDataset / HF Datasets: data/tooling/datasets.md
+
+  - Training & Finetuning:
+      - Overview: training/README.md
+
+      - Pretraining:
+          - Overview: training/pretraining/README.md
+          - Scaling Laws (Intro): training/pretraining/scaling-laws.md
+          - Token Budget & Compute: training/pretraining/token-budget.md
+
+      - Finetuning:
+          - Overview: training/finetuning/README.md
+          - LLM Finetune Recipe (Hyperparams): training/finetuning/llm-recipe-hparams.md
+          - Multimodal Finetune Recipe (Hyperparams): training/finetuning/mm-recipe-hparams.md
+          - LoRA / QLoRA: training/finetuning/lora-qlora.md
+          - SFT: training/finetuning/sft.md
+          - Multimodal Finetuning: training/finetuning/multimodal-finetuning.md
+          - Chat Templates / Prompt Format: training/finetuning/chat-templates.md
+          - Data Pipeline: training/finetuning/data-pipeline.md
+
+      - Alignment:
+          - Overview: training/alignment/README.md
+          - Reward Model: training/alignment/reward-model.md
+          - PPO (RLHF): training/alignment/ppo.md
+          - DPO / RLHF: training/finetuning/dpo-rlhf.md
+          - RLAIF (Optional): training/alignment/rlaif.md
+
+      - Distributed:
+          - DeepSpeed ZeRO: training/distributed/deepspeed-zero.md
+          - FSDP: training/distributed/fsdp.md
+          - Tensor Parallelism: training/distributed/tensor-parallel.md
+          - Pipeline Parallelism: training/distributed/pipeline-parallel.md
+          - Sequence Parallelism (Optional): training/distributed/sequence-parallel.md
+          - Mixed Precision: training/distributed/mixed-precision.md
+          - Gradient Checkpointing: training/distributed/grad-checkpointing.md
+
+  - Systems & Deployment:
+      - Overview: systems/README.md
+
+      - Inference Optimization:
+          - Overview: systems/inference/README.md
+          - KV Cache & Memory: systems/inference/kv-cache.md
+          - Continuous Batching & PagedAttention: systems/inference/continuous-batching-pagedattention.md
+          - FlashAttention: systems/inference/flashattention.md
+          - Prefix Caching: systems/inference/prefix-caching.md
+          - Speculative Decoding: systems/inference/speculative-decoding.md
+          - torch.compile / Inductor (Optional): systems/inference/torch-compile.md
+
+      - Quantization & Compression:
+          - Overview: systems/quantization/README.md
+          - bitsandbytes 4bit / NF4: systems/quantization/bnb-nf4.md
+          - GPTQ: systems/quantization/gptq.md
+          - AWQ: systems/quantization/awq.md
+          - SmoothQuant (INT8 W8A8): systems/quantization/smoothquant.md
+          - GGUF & llama.cpp: systems/quantization/gguf-llamacpp.md
+          - Distillation: systems/compression/distillation.md
+          - Pruning / Sparsity (Optional): systems/compression/pruning-sparsity.md
+
+      - Serving Runtimes:
+          - vLLM: systems/serving/vllm.md
+          - TGI (Text Generation Inference): systems/serving/tgi.md
+          - TensorRT-LLM: systems/serving/tensorrt-llm.md
+          - Triton Inference Server: systems/serving/triton.md
+
+      - Production:
+          - Deployment on Kubernetes: systems/production/k8s.md
+          - Autoscaling & Load Shedding: systems/production/autoscaling.md
+          - Observability (Logs/Metrics/Tracing): systems/production/observability.md
+          - Cost & Capacity Planning: systems/production/cost-capacity.md
+          - Safety Guardrails (PII/Jailbreak/Prompt Injection): systems/production/guardrails.md
+          - Caching (Prompt/Response): systems/production/caching.md
+
+  - Agents:
+      - Overview: agents/README.md
+      - Foundations:
+          - Tool Calling: agents/foundations/tool-calling.md
+          - Planning: agents/foundations/planning.md
+          - Memory: agents/foundations/memory.md
+          - Reflection: agents/foundations/reflection.md
+      - Patterns:
+          - ReAct: agents/patterns/react.md
+          - Function Calling: agents/patterns/function-calling.md
+          - Multi-Agent: agents/patterns/multi-agent.md
+      - RAG:
+          - RAG Overview: agents/rag/rag-overview.md
+          - Chunking: agents/rag/chunking.md
+          - Retriever: agents/rag/retriever.md
+          - Reranker: agents/rag/reranker.md
+          - Vector DB (Optional): agents/rag/vector-db.md
+          - Prompt Injection Defense: agents/rag/prompt-injection.md
+          - RAG Evaluation: agents/rag/evaluation.md
+
+  - Evaluation:
+      - Overview: eval/README.md
+      - Benchmarks:
+          - LLM Benchmarks (MMLU/MT-Bench/etc.): eval/benchmarks/llm-benchmarks.md
+          - VLM Benchmarks (VQA/MMMU/etc.): eval/benchmarks/vlm-benchmarks.md
+      - Metrics:
+          - LLM Eval: eval/llm-eval.md
+          - VLM Eval: eval/vlm-eval.md
+          - Detection Metrics: eval/detection-metrics.md
+          - Video Metrics (FVD): eval/video-metrics.md
+          - Audio Metrics (FAD): eval/audio-metrics.md
+          - 3D Metrics: eval/3d-metrics.md
+      - Reliability:
+          - Robustness / OOD: eval/robustness-ood.md
+          - Calibration / Uncertainty: eval/calibration.md
+      - Safety:
+          - Safety Overview: eval/safety.md
+          - Red Teaming (Optional): eval/red-teaming.md
+          - Deepfake / Synthetic Media Risks (Optional): eval/synthetic-media-risks.md
+
+
 
   # 您可以在此添加更多頁面，例如：
   # - Theory: theory.md
