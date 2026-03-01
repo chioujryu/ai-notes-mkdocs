@@ -72,9 +72,9 @@ Qwen3 同時提供 dense 與 MoE 架構，參數規模從 0.6B 到 235B。
 以旗艦 MoE 模型 **Qwen3-235B-A22B** 為例：總參數 235B，但每個 token 只啟用約 22B 的參數來計算，目標是在高能力與高效率間取得平衡。 
 
 用簡化公式理解：令 $P_{\text{total}}$ 是總參數、$P_{\text{act}}$ 是每 token 啟用參數，則推論成本更接近跟 $P_{\text{act}}$ 相關：
-$$
+$
 \text{FLOPs per token} \approx k \cdot P_{\text{act}}
-$$
+$
 
 報告也給出「效率換表現」的實證摘要：在相同預訓練資料下，Qwen3 的 MoE base 模型可以用約 $1/5$ 的啟用參數達到與 dense base 類似的表現，甚至提到在某些對比下可用到 $1/10$ 啟用參數達到可比效果，帶來推論與訓練成本優勢。 
 
