@@ -55,9 +55,9 @@ Qwen3 的核心主張之一是：同一個模型同時具備
 
 用一個簡化的觀念表示：令 $B$ 是 thinking budget（允許的推理 token 上限），那你可以把成本與延遲粗略想成跟生成量成正比：
 
-$$
+$
 \text{Compute/Latency} \propto T_{\text{answer}} + B
-$$
+$
 
 當你把 $B$ 調大，模型在數學、程式、STEM 類題目上的表現會更好；報告中的圖表顯示，在多個基準（如 AIME、LiveCodeBench、GPQA）上，thinking budget 增加時分數呈現平滑上升趨勢。 
 
