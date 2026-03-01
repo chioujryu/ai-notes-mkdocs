@@ -27,9 +27,11 @@ MoE 的誘惑很大：總參數可以衝很高，但每個 token 只啟用一小
 ### 2-1 痛點：KV cache 太大導致長上下文推論吃不消；解法：MLA 做低秩壓縮
 
 在一般多頭注意力（MHA）下，KV cache 的量級可以用下面的直覺來記：
+
 $$
 \text{KVCache}*{\text{MHA}} \propto L \cdot N*{\text{layer}} \cdot n_h \cdot d_h
 $$
+
 其中 $L$ 是上下文長度、$N_{\text{layer}}$ 是層數、$n_h$ 是 head 數、$d_h$ 是每個 head 維度。
 
 DeepSeek-V3 採用 Multi-head Latent Attention（MLA），把 key/value 用低秩的「latent 向量」表示，讓生成時需要快取的向量更少，從而「顯著降低 KV cache」但仍維持與 MHA 相近的性能。 ([arXiv][1])
@@ -39,9 +41,11 @@ DeepSeek-V3 採用 Multi-head Latent Attention（MLA），把 key/value 用低�
 ### 2-2 痛點：MoE 負載平衡要靠輔助損失，卻常犧牲品質；解法：auxiliary-loss-free + 不丟 token
 
 DeepSeek-V3 的做法是：在路由時對每個 expert 加一個可調的 bias，讓 top-$K$ 選擇看的是「親和度 + bias」，bias 依照每個 batch 的負載情況動態調整，達到平衡但不必用大力的 auxiliary loss 硬推。可用下面的簡化式子理解：
+
 $$
 s'*{i,e} = s*{i,e} + b_e,\quad \text{Top-}K\ \text{routing based on } s'*{i,e}
 $$
+
 而 FFN 輸出仍由原本的 gating（來自 $s*{i,e}$）決定，bias 主要用在「分流」上。 ([arXiv][1])
 
 更關鍵的是，因為負載平衡做得夠好，DeepSeek-V3 明確指出訓練與推論都「不需要 token-dropping」。這很像物流系統：以前為了不塞車只好「丟包裹」，現在用更好的分流策略讓包裹不必被丟掉，品質與穩定性就會更好。 ([arXiv][1])
@@ -53,9 +57,11 @@ DeepSeek-V3 設定 MTP 深度 $D=1$，也就是每個位置除了「下一個 to
 報告提供了實測：額外預測的第二個 token 接受率約落在 $85%$ 到 $90%$，並帶來約 $1.8\times$ 的 TPS 提升。 
 
 用一個直覺公式抓重點：如果第二個 token 被接受的機率是 $r$，那平均每步吃到的 token 數大致是
+
 $$
 \mathbb{E}[\text{tokens/step}] \approx 1 + r
 $$
+
 當 $r \in [0.85, 0.90]$ 時，就會很接近「接近兩倍、但有折損」的加速感，這就是使用者體感變快的來源。
 
 ### 2-4 痛點：超大模型訓練成本與穩定性；解法：FP8 混合精度 + 工程化訓練效率

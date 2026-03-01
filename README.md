@@ -1,0 +1,1 @@
+https://chioujryu.github.io/ai-notes-mkdocs/

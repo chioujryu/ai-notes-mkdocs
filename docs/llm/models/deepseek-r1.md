@@ -42,6 +42,7 @@ DeepSeek-R1-Zero 透過純 RL 的自我演化，確實自然出現更長的思�
 論文採用 GRPO（Group Relative Policy Optimization）。直覺上，它對同一題 $q$ 一次抽一組回答 ${o_1,\dots,o_G}$，用同組內的獎勵做相對比較，來計算每個樣本的 advantage。 
 
 對應到論文中的核心形式（以同樣符號寫法呈現）：
+
 $$
 J_{\mathrm{GRPO}}(\theta)=\mathbb{E}\Bigg[\frac{1}{G}\sum_{i=1}^{G}\Big(\min\big(\frac{\pi_\theta(o_i|q)}{\pi_{\theta_{\mathrm{old}}}(o_i|q)}A_i,\ \mathrm{clip}(\frac{\pi_\theta(o_i|q)}{\pi_{\theta_{\mathrm{old}}}(o_i|q)},1-\epsilon,1+\epsilon)A_i\big)-\beta D_{\mathrm{KL}}(\pi_\theta|\pi_{\mathrm{ref}})\Big)\Bigg]
 $$
@@ -49,6 +50,7 @@ $$
 $$
 A_i=\frac{r_i-\mathrm{mean}({r_1,\dots,r_G})}{\mathrm{std}({r_1,\dots,r_G})}
 $$
+
 這種「同題多解、互相比較」的設計，讓 RL 的訊號更穩定，也更適合擴到大規模推理資料上。 
 
 ### 2-3 痛點：純 RL 產生的推理內容不易讀、還會語言混雜；解法：格式獎勵 + 語言一致性獎勵
@@ -57,6 +59,7 @@ DeepSeek-R1-Zero 的一個主要問題是「可讀性差」與「中英混雜」
 為了讓推理輸出更像人類可用的內容，論文在訓練模板上要求把推理放在 `<think>...</think>`，答案放在 `<answer>...</answer>`，並在規則式獎勵中加入格式要求（format rewards），確保輸出結構固定、可解析。 
 
 另外，為了抑制語言混雜，他們在 RL 中加入「語言一致性獎勵」，用 CoT 中目標語言詞比例來計算： 
+
 $$
 Reward_{\mathrm{language}}=\frac{\mathrm{Num}(Words_{\mathrm{target}})}{\mathrm{Num}(Words)}
 $$
@@ -71,9 +74,11 @@ $$
 DeepSeek-R1 的多階段管線刻意把「推理資料」與「非推理資料」都納入，並在後段加入面向偏好對齊的訓練，目標是讓模型不只在數學與程式強，還能維持更好的寫作與開放式問答表現，同時提升 helpfulness 與 harmlessness。 
 
 在獎勵面，他們也引入 model-based reward 的設計，例如 helpfulness reward 與 safety reward 的定義形式： 
+
 $$
 Reward_{\mathrm{helpful}}=RM_{\mathrm{helpful}}(Response_A,Response_B)
 $$
+
 $$
 Reward_{\mathrm{safety}}=RM_{\mathrm{safety}}(Response)
 $$
