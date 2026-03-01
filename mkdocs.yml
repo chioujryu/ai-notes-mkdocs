@@ -69,6 +69,14 @@ nav:
           - LayerNorm: foundations/normalization/layernorm.md
           - GroupNorm: foundations/normalization/groupnorm.md
           - RMSNorm: foundations/normalization/rmsnorm.md
+      - Activation Functions:
+          - Overview: foundations/activation/README.md
+          - Sigmoid / Tanh: foundations/activation/sigmoid-tanh.md
+          - ReLU Family: foundations/activation/relu-family.md
+          - GELU / SiLU (Swish): foundations/activation/gelu-silu.md
+          - GLU Family (GEGLU / SwiGLU): foundations/activation/glu-family.md
+          - Softmax: foundations/activation/softmax.md
+          - Modern / Others: foundations/activation/modern.md
       - Optimization:
           - Overview: foundations/optimization/README.md
           - Adam / AdamW: foundations/optimization/adam-adamw.md
