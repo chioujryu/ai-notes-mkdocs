@@ -84,6 +84,7 @@ nav:
       - LLM:
           - Overview: llm/README.md
           - Core:
+              - Q, K, V: llm/core/qkv.md
               - Attention: llm/core/attention.md
               - Multi-Head Attention: llm/core/multi-head_attention.md
               - Transformer: llm/core/transformer.md
@@ -92,7 +93,7 @@ nav:
               - KV Cache (Basics): llm/core/kv-cache.md
           - Positional Encoding:
               - Sinusoidal: llm/positional-encoding/sinusoidal.md
-              - Relative: llm/positional-encoding/relative.md
+              - Relative PE: llm/positional-encoding/relative.md
               - Better Relative PE: llm/positional-encoding/better-relative.md
               - RoPE: llm/positional-encoding/rope.md
               - ALiBi: llm/positional-encoding/alibi.md
@@ -107,6 +108,9 @@ nav:
               - GPT-2: llm/models/gpt-2.md
               - T5: llm/models/t5.md
               - Switch Transformer: llm/models/switch-transformer.md
+              - Qwen3: llm/models/qwen3.md
+              - deepseek-v3: llm/models/deepseek-v3.md
+              - deepseek-r1: llm/models/deepseek-r1.md
           - Tasks:
               - Sequence Labeling:
                   - NER: llm/tasks/sequence-labeling/ner.md
@@ -282,6 +286,7 @@ nav:
           - Overview: training/alignment/README.md
           - Reward Model: training/alignment/reward-model.md
           - PPO (RLHF): training/alignment/ppo.md
+          - GRPO: training/finetuning/grpo.md
           - DPO / RLHF: training/finetuning/dpo-rlhf.md
           - RLAIF (Optional): training/alignment/rlaif.md
 
