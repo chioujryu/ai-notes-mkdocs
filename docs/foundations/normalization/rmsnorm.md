@@ -60,24 +60,24 @@ RMSNorm 省掉「減平均」與與其相關的一些計算與反傳複雜度，
 
 * RMSNorm 只看能量大小
   
-  $$
-  \mathrm{RMS}(x)=\sqrt{\frac{3^2+4^2}{2}}=\sqrt{12.5}\approx 3.535
-  $$
-  
-  $$
-  \mathrm{RMSNorm}(x)\approx[0.849,\ 1.131]\odot g
-  $$
+$$
+\mathrm{RMS}(x)=\sqrt{\frac{3^2+4^2}{2}}=\sqrt{12.5}\approx 3.535
+$$
+
+$$
+\mathrm{RMSNorm}(x)\approx[0.849,\ 1.131]\odot g
+$$
 
 * LayerNorm 會先減平均變成零均值
-  
-  $$
-  \mu=\frac{3+4}{2}=3.5,\quad x-\mu=[-0.5,0.5]
-  $$
-  
-  $$
-  \sigma=\sqrt{\frac{(-0.5)^2+(0.5)^2}{2}}=0.5,\quad
-  \mathrm{LayerNorm}(x)=[-1,1]\odot\gamma+\beta
-  $$
+
+$$
+\mu=\frac{3+4}{2}=3.5,\quad x-\mu=[-0.5,0.5]
+$$
+
+$$
+\sigma=\sqrt{\frac{(-0.5)^2+(0.5)^2}{2}}=0.5,\quad
+\mathrm{LayerNorm}(x)=[-1,1]\odot\gamma+\beta
+$$
 
 你可以把「向量的平均值」想成殘差訊號中的某種共同偏移量：LayerNorm 會把它直接扣掉；RMSNorm 則保留方向，只把整體大小調到穩定範圍。近年的幾何觀點也強調：LayerNorm 的定義和「全 1 方向」有內在關聯，而 RMSNorm 的行為更像純粹控制向量長度。 ([arXiv][2])
 
