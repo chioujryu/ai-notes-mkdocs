@@ -59,17 +59,21 @@ RMSNorm 省掉「減平均」與與其相關的一些計算與反傳複雜度，
 用一個直覺例子來看差異。假設某層輸出向量 $x=[3,4]$，$d=2$：
 
 * RMSNorm 只看能量大小
+  
   $$
   \mathrm{RMS}(x)=\sqrt{\frac{3^2+4^2}{2}}=\sqrt{12.5}\approx 3.535
   $$
+  
   $$
   \mathrm{RMSNorm}(x)\approx[0.849,\ 1.131]\odot g
   $$
 
 * LayerNorm 會先減平均變成零均值
+  
   $$
   \mu=\frac{3+4}{2}=3.5,\quad x-\mu=[-0.5,0.5]
   $$
+  
   $$
   \sigma=\sqrt{\frac{(-0.5)^2+(0.5)^2}{2}}=0.5,\quad
   \mathrm{LayerNorm}(x)=[-1,1]\odot\gamma+\beta
