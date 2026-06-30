@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 420" font-family="'Segoe UI','Microsoft JhengHei',sans-serif">
+  <defs>
+    <marker id="k-arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 z" fill="#4a3f6b"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="1280" height="420" rx="14" fill="#f7f5fb" stroke="#d9d2ec" stroke-width="2"/>
+  <text x="640" y="36" text-anchor="middle" font-size="22" font-weight="700" fill="#3b2a66">RF-DETR 的五個「速度 ↔ 精度」旋鈕</text>
+  <text x="640" y="58" text-anchor="middle" font-size="13" fill="#6b5e8c">同一個權重共享超網路，推論時沿這五軸調整，不需重訓練（NAS Pareto front）</text>
+
+  <!-- panel template repeated 5x -->
+  <!-- (a) Patch Embedding -->
+  <g>
+    <rect x="16" y="78" width="237" height="300" rx="10" fill="#ffffff" stroke="#c9bee6" stroke-width="1.5"/>
+    <text x="134" y="104" text-anchor="middle" font-size="14" font-weight="700" fill="#3b2a66">(a) Patch 大小</text>
+    <!-- many small patches -->
+    <g transform="translate(46,128)">
+      <rect width="60" height="60" fill="#c8b6e8" stroke="#7e57c2"/>
+      <g stroke="#7e57c2" stroke-width="0.8">
+        <line x1="15" y1="0" x2="15" y2="60"/><line x1="30" y1="0" x2="30" y2="60"/><line x1="45" y1="0" x2="45" y2="60"/>
+        <line x1="0" y1="15" x2="60" y2="15"/><line x1="0" y1="30" x2="60" y2="30"/><line x1="0" y1="45" x2="60" y2="45"/>
+      </g>
+      <text x="30" y="78" text-anchor="middle" font-size="10" fill="#5a4a86">小 patch · 多 token</text>
+    </g>
+    <!-- few large patches -->
+    <g transform="translate(146,128)">
+      <rect width="60" height="60" fill="#c8b6e8" stroke="#7e57c2"/>
+      <line x1="30" y1="0" x2="30" y2="60" stroke="#7e57c2"/><line x1="0" y1="30" x2="60" y2="30" stroke="#7e57c2"/>
+      <text x="30" y="78" text-anchor="middle" font-size="10" fill="#5a4a86">大 patch · 少 token</text>
+    </g>
+    <line x1="40" y1="312" x2="228" y2="312" stroke="#4a3f6b" stroke-width="1.6" marker-start="url(#k-arr)" marker-end="url(#k-arr)"/>
+    <text x="46" y="336" text-anchor="start" font-size="11" font-weight="600" fill="#2b9a8e">準</text>
+    <text x="228" y="336" text-anchor="end" font-size="11" font-weight="600" fill="#c0392b">快</text>
+    <text x="134" y="364" text-anchor="middle" font-size="10.5" fill="#6b5e8c">token 數 ↑ → 更準更慢</text>
+  </g>
+
+  <!-- (b) Decoder Layers -->
+  <g>
+    <rect x="269" y="78" width="237" height="300" rx="10" fill="#ffffff" stroke="#c9bee6" stroke-width="1.5"/>
+    <text x="387" y="104" text-anchor="middle" font-size="14" font-weight="700" fill="#3b2a66">(b) Decoder 層數</text>
+    <g transform="translate(305,126)">
+      <rect x="0" y="0" width="44" height="20" rx="4" fill="#c8b6e8" stroke="#7e57c2"/>
+      <rect x="0" y="26" width="44" height="20" rx="4" fill="#c8b6e8" stroke="#7e57c2"/>
+      <text x="22" y="64" text-anchor="middle" font-size="10" fill="#5a4a86">少層</text>
+    </g>
+    <g transform="translate(405,118)">
+      <rect x="0" y="0" width="44" height="14" rx="3" fill="#c8b6e8" stroke="#7e57c2"/>
+      <rect x="0" y="18" width="44" height="14" rx="3" fill="#c8b6e8" stroke="#7e57c2"/>
+      <rect x="0" y="36" width="44" height="14" rx="3" fill="#c8b6e8" stroke="#7e57c2"/>
+      <rect x="0" y="54" width="44" height="14" rx="3" fill="#c8b6e8" stroke="#7e57c2"/>
+      <text x="22" y="84" text-anchor="middle" font-size="10" fill="#5a4a86">多層</text>
+    </g>
+    <line x1="293" y1="312" x2="481" y2="312" stroke="#4a3f6b" stroke-width="1.6" marker-start="url(#k-arr)" marker-end="url(#k-arr)"/>
+    <text x="299" y="336" text-anchor="start" font-size="11" font-weight="600" fill="#c0392b">快</text>
+    <text x="481" y="336" text-anchor="end" font-size="11" font-weight="600" fill="#2b9a8e">準</text>
+    <text x="387" y="364" text-anchor="middle" font-size="10.5" fill="#6b5e8c">每層皆有監督 → 可早退</text>
+  </g>
+
+  <!-- (c) Query Dropping -->
+  <g>
+    <rect x="522" y="78" width="237" height="300" rx="10" fill="#ffffff" stroke="#c9bee6" stroke-width="1.5"/>
+    <text x="640" y="104" text-anchor="middle" font-size="14" font-weight="700" fill="#3b2a66">(c) Query 數量</text>
+    <g transform="translate(560,128)">
+      <rect x="0" y="0" width="16" height="16" rx="3" fill="#4dd0c4" stroke="#2b9a8e"/>
+      <rect x="0" y="22" width="16" height="16" rx="3" fill="#4dd0c4" stroke="#2b9a8e"/>
+      <rect x="0" y="44" width="16" height="16" rx="3" fill="#dfe7ee" stroke="#9fb0c0" stroke-dasharray="2 2"/>
+      <text x="8" y="80" text-anchor="middle" font-size="10" fill="#5a4a86">少 query</text>
+    </g>
+    <g transform="translate(660,128)">
+      <rect x="0" y="0" width="16" height="16" rx="3" fill="#4dd0c4" stroke="#2b9a8e"/>
+      <rect x="0" y="22" width="16" height="16" rx="3" fill="#4dd0c4" stroke="#2b9a8e"/>
+      <rect x="0" y="44" width="16" height="16" rx="3" fill="#4dd0c4" stroke="#2b9a8e"/>
+      <rect x="0" y="66" width="16" height="16" rx="3" fill="#4dd0c4" stroke="#2b9a8e"/>
+      <text x="8" y="100" text-anchor="middle" font-size="10" fill="#5a4a86">多 query</text>
+    </g>
+    <line x1="546" y1="312" x2="734" y2="312" stroke="#4a3f6b" stroke-width="1.6" marker-start="url(#k-arr)" marker-end="url(#k-arr)"/>
+    <text x="552" y="336" text-anchor="start" font-size="11" font-weight="600" fill="#c0392b">快</text>
+    <text x="734" y="336" text-anchor="end" font-size="11" font-weight="600" fill="#2b9a8e">準</text>
+    <text x="640" y="364" text-anchor="middle" font-size="10.5" fill="#6b5e8c">丟掉低分 query → 省算力</text>
+  </g>
+
+  <!-- (d) Resolution -->
+  <g>
+    <rect x="775" y="78" width="237" height="300" rx="10" fill="#ffffff" stroke="#c9bee6" stroke-width="1.5"/>
+    <text x="893" y="104" text-anchor="middle" font-size="14" font-weight="700" fill="#3b2a66">(d) 輸入解析度</text>
+    <g transform="translate(812,134)">
+      <rect width="44" height="44" fill="#c8b6e8" stroke="#7e57c2"/>
+      <text x="22" y="62" text-anchor="middle" font-size="10" fill="#5a4a86">低解析</text>
+    </g>
+    <g transform="translate(912,124)">
+      <rect width="68" height="68" fill="#c8b6e8" stroke="#7e57c2"/>
+      <text x="34" y="86" text-anchor="middle" font-size="10" fill="#5a4a86">高解析</text>
+    </g>
+    <line x1="799" y1="312" x2="987" y2="312" stroke="#4a3f6b" stroke-width="1.6" marker-start="url(#k-arr)" marker-end="url(#k-arr)"/>
+    <text x="805" y="336" text-anchor="start" font-size="11" font-weight="600" fill="#c0392b">快</text>
+    <text x="987" y="336" text-anchor="end" font-size="11" font-weight="600" fill="#2b9a8e">準</text>
+    <text x="893" y="364" text-anchor="middle" font-size="10.5" fill="#6b5e8c">解析度插值，不必重訓</text>
+  </g>
+
+  <!-- (e) Number of Windows -->
+  <g>
+    <rect x="1028" y="78" width="237" height="300" rx="10" fill="#ffffff" stroke="#c9bee6" stroke-width="1.5"/>
+    <text x="1146" y="104" text-anchor="middle" font-size="14" font-weight="700" fill="#3b2a66">(e) Window 數量</text>
+    <g transform="translate(1060,132)">
+      <rect width="60" height="60" fill="#c8b6e8" stroke="#7e57c2" stroke-width="1.5"/>
+      <text x="30" y="78" text-anchor="middle" font-size="10" fill="#5a4a86">少 window</text>
+    </g>
+    <g transform="translate(1160,132)">
+      <rect width="30" height="30" fill="#ffcc80" stroke="#7e57c2"/>
+      <rect x="30" width="30" height="30" fill="#c8b6e8" stroke="#7e57c2"/>
+      <rect y="30" width="30" height="30" fill="#4dd0c4" stroke="#7e57c2"/>
+      <rect x="30" y="30" width="30" height="30" fill="#fff2b0" stroke="#7e57c2"/>
+      <text x="30" y="78" text-anchor="middle" font-size="10" fill="#5a4a86">多 window</text>
+    </g>
+    <line x1="1052" y1="312" x2="1240" y2="312" stroke="#4a3f6b" stroke-width="1.6" marker-start="url(#k-arr)" marker-end="url(#k-arr)"/>
+    <text x="1058" y="336" text-anchor="start" font-size="11" font-weight="600" fill="#2b9a8e">準</text>
+    <text x="1240" y="336" text-anchor="end" font-size="11" font-weight="600" fill="#c0392b">快</text>
+    <text x="1146" y="364" text-anchor="middle" font-size="10.5" fill="#6b5e8c">切更多窗 → 注意力更省</text>
+  </g>
+</svg>

@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" font-family="'Segoe UI','Microsoft JhengHei',sans-serif">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 z" fill="#4a3f6b"/>
+    </marker>
+    <marker id="arrd" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 z" fill="#9a8fb8"/>
+    </marker>
+  </defs>
+
+  <!-- self-contained light panel so the figure reads on light AND dark themes -->
+  <rect x="0" y="0" width="1280" height="720" rx="14" fill="#f7f5fb" stroke="#d9d2ec" stroke-width="2"/>
+  <text x="640" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#3b2a66">RF-DETR：從影像到「框 + 遮罩」的資料流</text>
+  <text x="640" y="56" text-anchor="middle" font-size="13" fill="#6b5e8c">（shape 標註對應本文 toy 範例：4 個 token、d=4、2 個 query、3 類）</text>
+
+  <!-- ===================== ROW 1 ===================== -->
+  <!-- Input -->
+  <g>
+    <rect x="24" y="96" width="120" height="150" rx="10" fill="#eae4f7" stroke="#b9abdd" stroke-width="1.5"/>
+    <text x="84" y="118" text-anchor="middle" font-size="13" font-weight="600" fill="#3b2a66">輸入</text>
+    <rect x="40" y="130" width="88" height="56" rx="6" fill="#ffe0b2" stroke="#e0a85f"/>
+    <text x="84" y="154" text-anchor="middle" font-size="11" fill="#5b3d12">影像</text>
+    <text x="84" y="170" text-anchor="middle" font-size="11" fill="#5b3d12">32×32×3</text>
+    <rect x="40" y="196" width="88" height="38" rx="6" fill="#cfeffd" stroke="#5cb6e0"/>
+    <text x="84" y="214" text-anchor="middle" font-size="10.5" fill="#0d4f6b">位置編碼</text>
+    <text x="84" y="228" text-anchor="middle" font-size="10.5" fill="#0d4f6b">⊕</text>
+  </g>
+
+  <!-- Backbone -->
+  <g>
+    <rect x="190" y="84" width="300" height="180" rx="12" fill="#c8b6e8" stroke="#7e57c2" stroke-width="2"/>
+    <text x="340" y="106" text-anchor="middle" font-size="15" font-weight="700" fill="#2c1b54">ViT（DINOv2-reg）Backbone</text>
+    <!-- tokens -->
+    <g>
+      <rect x="214" y="120" width="22" height="22" rx="4" fill="#4dd0c4" stroke="#2b9a8e"/>
+      <rect x="240" y="120" width="22" height="22" rx="4" fill="#4dd0c4" stroke="#2b9a8e"/>
+      <rect x="266" y="120" width="22" height="22" rx="4" fill="#4dd0c4" stroke="#2b9a8e"/>
+      <rect x="292" y="120" width="22" height="22" rx="4" fill="#4dd0c4" stroke="#2b9a8e"/>
+      <text x="404" y="136" text-anchor="middle" font-size="11" fill="#2c1b54">4 個 patch token</text>
+    </g>
+    <rect x="214" y="156" width="252" height="38" rx="7" fill="#efe8fb" stroke="#9b86cf"/>
+    <text x="340" y="180" text-anchor="middle" font-size="12.5" fill="#2c1b54">Windowed Encoder Layer ×2（窗內注意力）</text>
+    <rect x="214" y="200" width="252" height="38" rx="7" fill="#fff4d6" stroke="#d9b24a"/>
+    <text x="340" y="224" text-anchor="middle" font-size="12.5" fill="#4a3408">Non-Windowed（Global）Encoder ×1</text>
+    <text x="340" y="254" text-anchor="middle" font-size="10.5" fill="#5a4a86">（真實：12 層 = (2窗+1全域)×4）</text>
+  </g>
+
+  <!-- Projector -->
+  <g>
+    <rect x="536" y="120" width="96" height="108" rx="10" fill="#b39ddb" stroke="#7e57c2" stroke-width="2"/>
+    <text x="584" y="166" text-anchor="middle" font-size="13" font-weight="700" fill="#2c1b54">Projector</text>
+    <text x="584" y="186" text-anchor="middle" font-size="10.5" fill="#2c1b54">→ d_model</text>
+  </g>
+
+  <!-- Query Selection -->
+  <g>
+    <rect x="678" y="100" width="150" height="148" rx="10" fill="#b39ddb" stroke="#7e57c2" stroke-width="2"/>
+    <text x="753" y="122" text-anchor="middle" font-size="13" font-weight="700" fill="#2c1b54">Query Selection</text>
+    <text x="753" y="140" text-anchor="middle" font-size="10.5" fill="#2c1b54">(two-stage, top-k)</text>
+    <text x="753" y="176" text-anchor="middle" font-size="20" fill="#2c1b54">⊕</text>
+    <rect x="690" y="196" width="126" height="40" rx="7" fill="#efe8fb" stroke="#9b86cf"/>
+    <text x="753" y="213" text-anchor="middle" font-size="11" fill="#2c1b54">Query Embeddings</text>
+    <text x="753" y="229" text-anchor="middle" font-size="10" fill="#5a4a86">（可學習）</text>
+  </g>
+
+  <!-- Decoder -->
+  <g>
+    <rect x="876" y="84" width="200" height="180" rx="12" fill="#c8b6e8" stroke="#7e57c2" stroke-width="2"/>
+    <text x="976" y="106" text-anchor="middle" font-size="14" font-weight="700" fill="#2c1b54">Decoder Layer ×L</text>
+    <rect x="894" y="116" width="164" height="32" rx="6" fill="#efe8fb" stroke="#9b86cf"/>
+    <text x="976" y="137" text-anchor="middle" font-size="12" fill="#2c1b54">Self-Attention</text>
+    <rect x="894" y="154" width="164" height="32" rx="6" fill="#efe8fb" stroke="#9b86cf"/>
+    <text x="976" y="175" text-anchor="middle" font-size="12" fill="#2c1b54">Deformable Cross-Attend</text>
+    <rect x="894" y="192" width="164" height="32" rx="6" fill="#efe8fb" stroke="#9b86cf"/>
+    <text x="976" y="213" text-anchor="middle" font-size="12" fill="#2c1b54">Feed Forward (FFN)</text>
+    <text x="976" y="248" text-anchor="middle" font-size="10" fill="#5a4a86">Decoder Group = Group DETR（訓練13組 / 推論1組）</text>
+  </g>
+
+  <!-- Row 1 arrows -->
+  <line x1="146" y1="171" x2="186" y2="171" stroke="#4a3f6b" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="492" y1="174" x2="532" y2="174" stroke="#4a3f6b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="512" y="166" text-anchor="middle" font-size="10.5" fill="#5e35b1" font-family="monospace">F:4×4</text>
+  <line x1="634" y1="174" x2="674" y2="174" stroke="#4a3f6b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="654" y="166" text-anchor="middle" font-size="10.5" fill="#5e35b1" font-family="monospace">M:4×4</text>
+  <line x1="830" y1="174" x2="872" y2="174" stroke="#4a3f6b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="852" y="166" text-anchor="middle" font-size="10.5" fill="#5e35b1" font-family="monospace">Q0:2×4</text>
+
+  <!-- ===================== ROW 2 (heads) ===================== -->
+  <!-- D output bus -->
+  <line x1="976" y1="264" x2="976" y2="300" stroke="#4a3f6b" stroke-width="2"/>
+  <text x="1006" y="286" text-anchor="middle" font-size="10.5" fill="#5e35b1" font-family="monospace">D:2×4</text>
+  <line x1="976" y1="300" x2="470" y2="300" stroke="#4a3f6b" stroke-width="2"/>
+  <line x1="470" y1="300" x2="470" y2="356" stroke="#4a3f6b" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="976" y1="300" x2="976" y2="356" stroke="#4a3f6b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- Detection Head -->
+  <g>
+    <rect x="320" y="360" width="300" height="150" rx="12" fill="#c8b6e8" stroke="#7e57c2" stroke-width="2"/>
+    <text x="470" y="384" text-anchor="middle" font-size="15" font-weight="700" fill="#2c1b54">Detection Head</text>
+    <rect x="342" y="398" width="120" height="44" rx="7" fill="#fff4d6" stroke="#d9b24a"/>
+    <text x="402" y="418" text-anchor="middle" font-size="12" fill="#4a3408">Class Head</text>
+    <text x="402" y="434" text-anchor="middle" font-size="10" fill="#4a3408" font-family="monospace">→ 2×3 (sigmoid)</text>
+    <rect x="478" y="398" width="120" height="44" rx="7" fill="#fff4d6" stroke="#d9b24a"/>
+    <text x="538" y="418" text-anchor="middle" font-size="12" fill="#4a3408">Box Head</text>
+    <text x="538" y="434" text-anchor="middle" font-size="10" fill="#4a3408" font-family="monospace">→ 2×4 (cx,cy,w,h)</text>
+    <text x="470" y="470" text-anchor="middle" font-size="11.5" fill="#2c1b54">set prediction＋Hungarian 匹配，免 NMS</text>
+    <text x="470" y="492" text-anchor="middle" font-size="12" font-weight="600" fill="#2c1b54">輸出：🐱 Cat 框 + 🐶 Dog 框</text>
+  </g>
+
+  <!-- Segmentation Head -->
+  <g>
+    <rect x="826" y="360" width="300" height="150" rx="12" fill="#c8b6e8" stroke="#7e57c2" stroke-width="2"/>
+    <text x="976" y="384" text-anchor="middle" font-size="15" font-weight="700" fill="#2c1b54">Segmentation Head</text>
+    <rect x="848" y="398" width="120" height="44" rx="7" fill="#efe8fb" stroke="#9b86cf"/>
+    <text x="908" y="418" text-anchor="middle" font-size="11.5" fill="#2c1b54">FFN → mask</text>
+    <text x="908" y="434" text-anchor="middle" font-size="10.5" fill="#2c1b54">embedding e_q</text>
+    <text x="988" y="424" text-anchor="middle" font-size="20" fill="#2c1b54">⊗</text>
+    <rect x="1006" y="398" width="108" height="44" rx="7" fill="#cfeffd" stroke="#5cb6e0"/>
+    <text x="1060" y="416" text-anchor="middle" font-size="10.5" fill="#0d4f6b">pixel emb（上採樣）</text>
+    <text x="1060" y="432" text-anchor="middle" font-size="10" fill="#0d4f6b" font-family="monospace">16×4</text>
+    <text x="976" y="470" text-anchor="middle" font-size="11.5" fill="#2c1b54">點積 → sigmoid → mask（MaskDINO-style）</text>
+    <text x="976" y="492" text-anchor="middle" font-size="12" font-weight="600" fill="#2c1b54">輸出：每物件一張 mask（4×4）</text>
+  </g>
+
+  <!-- memory M feeds seg head (dashed) — routed through the gap between the two head boxes -->
+  <polyline points="584,228 584,332 722,332 722,540 1060,540 1060,446" fill="none" stroke="#9a8fb8" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#arrd)"/>
+  <text x="744" y="556" text-anchor="middle" font-size="10.5" fill="#6b5e8c">memory M 上採樣成高解析 pixel embedding map</text>
+
+  <!-- result thumbnails -->
+  <g>
+    <rect x="356" y="566" width="120" height="120" rx="8" fill="#ffffff" stroke="#c9bee6"/>
+    <rect x="384" y="600" width="64" height="56" rx="4" fill="none" stroke="#7e57c2" stroke-width="2"/>
+    <text x="416" y="596" text-anchor="middle" font-size="11" fill="#7e57c2">Dog</text>
+    <rect x="396" y="616" width="40" height="34" rx="14" fill="#d7a86e"/>
+    <text x="416" y="678" text-anchor="middle" font-size="10.5" fill="#6b5e8c">bbox（左上）</text>
+  </g>
+  <g>
+    <rect x="916" y="566" width="120" height="120" rx="8" fill="#ffffff" stroke="#c9bee6"/>
+    <path d="M958 656 q-6 -34 16 -44 q10 -22 18 0 q24 8 18 44 z" fill="#b39ddb" stroke="#7e57c2"/>
+    <text x="976" y="596" text-anchor="middle" font-size="11" fill="#7e57c2">Cat mask（右下）</text>
+    <text x="976" y="678" text-anchor="middle" font-size="10.5" fill="#6b5e8c">逐像素遮罩</text>
+  </g>
+  <line x1="470" y1="510" x2="470" y2="562" stroke="#4a3f6b" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="976" y1="510" x2="976" y2="562" stroke="#4a3f6b" stroke-width="2" marker-end="url(#arr)"/>
+</svg>

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" font-family="'Segoe UI','Microsoft JhengHei',sans-serif">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#4a3f6b"/></marker>
+    <marker id="ad" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#9a8fb8"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1280" height="640" rx="14" fill="#f7f5fb" stroke="#d9d2ec" stroke-width="2"/>
+  <text x="640" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#3b2a66">DETR：集合預測式偵測（免 anchor、免 NMS）</text>
+  <text x="640" y="56" text-anchor="middle" font-size="13" fill="#6b5e8c">shape 對應本文 toy：4 個影像 token、d=4、N=3 object queries、類別 {cat, dog, ∅}</text>
+
+  <!-- Row 1: encoder path -->
+  <g>
+    <rect x="24" y="92" width="120" height="120" rx="10" fill="#ffffff" stroke="#c9bee6"/>
+    <text x="84" y="112" text-anchor="middle" font-size="12" font-weight="600" fill="#3b2a66">輸入影像</text>
+    <rect x="44" y="124" width="80" height="74" rx="4" fill="#eef3f7" stroke="#c9bee6"/>
+    <rect x="52" y="132" width="30" height="26" rx="2" fill="none" stroke="#7e57c2" stroke-width="1.5"/><text x="67" y="130" text-anchor="middle" font-size="8" fill="#7e57c2">dog</text>
+    <path d="M96 188 q-3 -18 9 -22 q5 -11 9 0 q12 4 9 22 z" fill="#b39ddb" stroke="#7e57c2"/><text x="104" y="130" text-anchor="middle" font-size="8" fill="#7e57c2">cat</text>
+  </g>
+  <rect x="186" y="116" width="120" height="72" rx="10" fill="#b39ddb" stroke="#7e57c2" stroke-width="2"/>
+  <text x="246" y="148" text-anchor="middle" font-size="13" font-weight="700" fill="#2c1b54">CNN Backbone</text>
+  <text x="246" y="166" text-anchor="middle" font-size="10.5" fill="#2c1b54">(ResNet)</text>
+
+  <rect x="346" y="116" width="110" height="72" rx="10" fill="#cfeffd" stroke="#5cb6e0"/>
+  <text x="401" y="144" text-anchor="middle" font-size="11.5" fill="#0d4f6b">攤平 + 位置編碼</text>
+  <text x="401" y="164" text-anchor="middle" font-size="10" fill="#0d4f6b">4 tokens, d=4</text>
+
+  <rect x="496" y="100" width="220" height="104" rx="12" fill="#c8b6e8" stroke="#7e57c2" stroke-width="2"/>
+  <text x="606" y="124" text-anchor="middle" font-size="14" font-weight="700" fill="#2c1b54">Transformer Encoder ×6</text>
+  <rect x="514" y="136" width="184" height="26" rx="6" fill="#efe8fb" stroke="#9b86cf"/><text x="606" y="154" text-anchor="middle" font-size="11.5" fill="#2c1b54">全域 Self-Attention</text>
+  <rect x="514" y="168" width="184" height="24" rx="6" fill="#efe8fb" stroke="#9b86cf"/><text x="606" y="185" text-anchor="middle" font-size="11" fill="#2c1b54">FFN</text>
+
+  <line x1="146" y1="152" x2="182" y2="152" stroke="#4a3f6b" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="306" y1="152" x2="342" y2="152" stroke="#4a3f6b" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="456" y1="152" x2="492" y2="152" stroke="#4a3f6b" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- memory M label + arrow down to decoder -->
+  <text x="770" y="148" text-anchor="middle" font-size="12" font-weight="700" fill="#5e35b1">memory</text>
+  <text x="770" y="166" text-anchor="middle" font-size="11" fill="#5e35b1" font-family="monospace">M:4×4</text>
+  <polyline points="716,152 760,152 760,300 360,300 360,360" fill="none" stroke="#9a8fb8" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#ad)"/>
+  <text x="540" y="292" text-anchor="middle" font-size="10.5" fill="#6b5e8c">編碼器記憶體餵給解碼器的 cross-attention</text>
+
+  <!-- Row 2: decoder path -->
+  <g>
+    <rect x="24" y="368" width="150" height="150" rx="10" fill="#ffffff" stroke="#c9bee6"/>
+    <text x="99" y="390" text-anchor="middle" font-size="12.5" font-weight="700" fill="#3b2a66">Object Queries ×N</text>
+    <rect x="60" y="404" width="22" height="22" rx="4" fill="#4dd0c4" stroke="#2b9a8e"/>
+    <rect x="88" y="404" width="22" height="22" rx="4" fill="#4dd0c4" stroke="#2b9a8e"/>
+    <rect x="116" y="404" width="22" height="22" rx="4" fill="#4dd0c4" stroke="#2b9a8e"/>
+    <text x="99" y="452" text-anchor="middle" font-size="10.5" fill="#5a4a86">可學習向量</text>
+    <text x="99" y="470" text-anchor="middle" font-size="10.5" fill="#5a4a86">（取代 anchor）</text>
+    <text x="99" y="500" text-anchor="middle" font-size="10" fill="#6b5e8c">真實 N=100</text>
+  </g>
+
+  <rect x="200" y="356" width="232" height="180" rx="12" fill="#c8b6e8" stroke="#7e57c2" stroke-width="2"/>
+  <text x="316" y="380" text-anchor="middle" font-size="14" font-weight="700" fill="#2c1b54">Transformer Decoder ×6</text>
+  <rect x="218" y="392" width="196" height="32" rx="6" fill="#efe8fb" stroke="#9b86cf"/><text x="316" y="413" text-anchor="middle" font-size="12" fill="#2c1b54">Query Self-Attention</text>
+  <rect x="218" y="430" width="196" height="32" rx="6" fill="#fff4d6" stroke="#d9b24a"/><text x="316" y="446" text-anchor="middle" font-size="11.5" fill="#4a3408">稠密 Cross-Attention</text><text x="316" y="459" text-anchor="middle" font-size="9.5" fill="#4a3408">(query → 全部 memory，收斂慢)</text>
+  <rect x="218" y="468" width="196" height="30" rx="6" fill="#efe8fb" stroke="#9b86cf"/><text x="316" y="488" text-anchor="middle" font-size="11.5" fill="#2c1b54">FFN</text>
+  <text x="316" y="520" text-anchor="middle" font-size="10.5" fill="#5a4a86">輸出 D：每個 query 一個向量</text>
+
+  <line x1="174" y1="443" x2="196" y2="443" stroke="#4a3f6b" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- heads -->
+  <rect x="468" y="372" width="200" height="148" rx="12" fill="#c8b6e8" stroke="#7e57c2" stroke-width="2"/>
+  <text x="568" y="396" text-anchor="middle" font-size="14" font-weight="700" fill="#2c1b54">預測頭</text>
+  <rect x="486" y="408" width="164" height="44" rx="7" fill="#fff4d6" stroke="#d9b24a"/><text x="568" y="427" text-anchor="middle" font-size="11.5" fill="#4a3408">Class Head → softmax</text><text x="568" y="443" text-anchor="middle" font-size="10" fill="#4a3408" font-family="monospace">N×3 (cat,dog,∅)</text>
+  <rect x="486" y="458" width="164" height="44" rx="7" fill="#fff4d6" stroke="#d9b24a"/><text x="568" y="477" text-anchor="middle" font-size="11.5" fill="#4a3408">Box Head → MLP</text><text x="568" y="493" text-anchor="middle" font-size="10" fill="#4a3408" font-family="monospace">N×4 (cx,cy,w,h)</text>
+  <line x1="432" y1="446" x2="464" y2="446" stroke="#4a3f6b" stroke-width="2" marker-end="url(#a)"/><text x="448" y="438" text-anchor="middle" font-size="10" fill="#5e35b1" font-family="monospace">D:3×4</text>
+
+  <!-- Hungarian -->
+  <rect x="704" y="372" width="260" height="148" rx="12" fill="#dbeede" stroke="#5aa06a" stroke-width="2"/>
+  <text x="834" y="396" text-anchor="middle" font-size="14" font-weight="700" fill="#1e5430">二分圖匹配 (Hungarian)</text>
+  <text x="834" y="416" text-anchor="middle" font-size="11" fill="#1e5430">N 個預測 ↔ GT 物件，一對一</text>
+  <text x="834" y="442" text-anchor="middle" font-size="11" fill="#23502f">GT 狗 → q1 ｜ GT 貓 → q2</text>
+  <text x="834" y="460" text-anchor="middle" font-size="11" fill="#23502f">未配到的 q3 → ∅</text>
+  <text x="834" y="490" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1e5430">⇒ 一物件一框，免 NMS</text>
+  <line x1="668" y1="446" x2="700" y2="446" stroke="#4a3f6b" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- output thumbnails -->
+  <rect x="1000" y="372" width="120" height="148" rx="10" fill="#ffffff" stroke="#c9bee6"/>
+  <text x="1060" y="394" text-anchor="middle" font-size="12" font-weight="600" fill="#3b2a66">輸出</text>
+  <rect x="1018" y="406" width="84" height="96" rx="4" fill="#eef3f7" stroke="#c9bee6"/>
+  <rect x="1026" y="416" width="34" height="28" rx="2" fill="none" stroke="#7e57c2" stroke-width="1.5"/><text x="1043" y="414" text-anchor="middle" font-size="8" fill="#7e57c2">dog</text>
+  <path d="M1078 494 q-3 -20 10 -24 q5 -12 10 0 q13 4 10 24 z" fill="none" stroke="#7e57c2" stroke-width="1.5"/><text x="1090" y="470" text-anchor="middle" font-size="8" fill="#7e57c2">cat</text>
+  <line x1="964" y1="446" x2="996" y2="446" stroke="#4a3f6b" stroke-width="2" marker-end="url(#a)"/>
+</svg>

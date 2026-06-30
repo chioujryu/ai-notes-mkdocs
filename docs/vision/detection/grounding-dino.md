@@ -1,598 +1,195 @@
-# CLIP
-![alt text](../../generative/assets/transformer/transformer-01.png)
-## CLIP 可以用於的任務以及能解決的痛點
+# Grounding DINO
 
-CLIP（Contrastive Language–Image Pretraining）是一種多模態模型，其設計目的是結合文字和圖像的模態，實現通用的人工智能能力。以下將詳細解釋 CLIP 可以應用於的任務以及它解決的核心痛點。
+Grounding DINO（Liu et al., 2023）是一個**開放詞彙（open-vocabulary / open-set）偵測器**：你給它一張影像**加一段文字 prompt**（例如 `"cat . dog ."` 或 `"the person holding an umbrella"`），它就把文字裡提到的東西全部框出來——**不限於訓練時看過的固定類別**。它把 **DINO 偵測器**和 **GLIP 的語言-視覺對齊**結合起來，在偵測流程的多個階段把文字「融」進視覺特徵。
 
----
+![Grounding DINO 架構：影像 + 文字 → 特徵增強器 → 語言引導 query 選擇 → 跨模態解碼器 → 對比式框-詞對齊](../assets/grounding-dino/gdino-arch.svg)
 
-### CLIP 可以用於的任務
-
-#### 1. **零樣本圖像分類（Zero-shot Image Classification）**
-CLIP 能夠直接根據文字描述對圖像進行分類，而無需針對特定類別進行微調。  
-**例子**：給定一張動物的照片，CLIP 可以根據標籤「一隻狗的照片」或「一隻貓的照片」來進行推斷。
-
-**應用場景**：
-- 識別新類別的物體而不需要重新訓練。
-- 在多樣化的場景中進行分類（例如醫療影像、衛星照片等領域）。
+> 這份筆記先講為什麼需要「用文字找物件」，再用一個能手算的 toy 範例，把**影像 + 文字 prompt** 一步一步餵進模型，看文字怎麼一路引導，最後用**對比式（contrastive）框-詞對齊**把每個框配到對應的詞。
 
 ---
 
-#### 2. **圖像-文字檢索（Image-Text Retrieval）**
-CLIP 能夠有效地在大規模數據中進行圖像和文字的匹配。  
-**例子**：給定文字描述「一隻在草地上奔跑的狗」，CLIP 可以檢索出符合描述的圖像。
+## 1) 故事背景：從「固定類別」到「用文字找任何東西」
 
-**應用場景**：
-- 圖像搜索引擎：根據文字描述快速找到相關圖片。
-- 多模態內容管理：在大型數據集中進行匹配與索引。
+傳統偵測器（[DETR](detr.md)、YOLO、RF-DETR specialist 版）都是**閉集合（closed-set）**：訓練時定好 80 個 COCO 類別，模型就只會吐這 80 類。想偵測新類別？得重新標註、重新訓練分類頭。
 
----
+但人類找東西是**用語言**的：「幫我找畫面裡的**安全帽**和**反光背心**」。Grounding DINO 的目標就是這個——把**任意文字**當成查詢條件。它的關鍵差別在於：
 
-#### 3. **圖像生成輔助（Image Generation Assistance）**
-CLIP 與生成模型（例如 DALL·E）結合使用時，可以幫助生成符合文字描述的圖像。  
-**例子**：根據描述「一隻穿著帽子的狗」，CLIP 可以幫助生成模型生成此類圖像。
+- 不再有「固定的分類頭」。**類別空間 = 你當下給的 prompt**。
+- 它把文字特徵**深度融合**進偵測的每一步（特徵增強、query 選擇、解碼、分類），不像 CLIP 只在最後算一次圖文相似度。
 
-**應用場景**：
-- 藝術創作：生成符合語意的圖像。
-- 虛擬世界建模：根據文字設計和生成場景或物件。
+可以這樣記：**CLIP 是「整張圖 ↔ 整句話」的對齊；Grounding DINO 是「每個框 ↔ 每個詞」的對齊**，而且是在一個偵測器內端到端完成。
 
 ---
 
-#### 4. **多模態分析與問答（Multimodal Analysis and Q&A）**
-CLIP 能夠在圖像與文字的交互中進行分析，支持多模態問答系統的開發。  
-**例子**：問題「這張圖片中的主要物體是什麼？」CLIP 可以根據嵌入向量回答正確的物體名稱。
+## 2) Grounding DINO 解決的痛點
 
-**應用場景**：
-- 智能助理：基於圖片回答問題。
-- 教育系統：圖像和文字相結合的互動式學習平台。
+**痛點①：閉集合、換類別要重訓。**
+把偵測重寫成**語言條件**問題：prompt 決定要找什麼。要找新東西，改 prompt 即可，**零樣本（zero-shot）**就能偵測。
 
----
+**痛點②：語言與視覺融合太淺。**
+GLIP 等早期方法融合有限。Grounding DINO 在三個地方做**緊密融合（tight fusion）**：
 
-### CLIP 能解決的痛點
+- **Feature Enhancer**：影像特徵與文字特徵做**雙向 cross-attention**，互相注入資訊。
+- **Language-guided Query Selection**：用「和文字最相關」的影像位置當作解碼器 query 的起點。
+- **Cross-Modality Decoder**：每個 query 同時對**影像**和**文字**做 cross-attention。
 
-#### 1. **標註數據成本高**
-- **問題**：傳統的監督學習模型需要大量標註數據，標註成本高且耗時。
-- **解決方案**：CLIP 使用來自互聯網的大規模未標註數據（如圖像和文字配對），避免依賴人工標註。
+**痛點③：怎麼判斷一個框是哪個詞？**
+不用固定分類頭，而用**對比式對齊**：把 query 輸出和每個文字 token 做**點積**，分數最高的詞就是這個框的標籤。這天然支援任意長度、任意內容的 prompt。
 
----
-
-#### 2. **缺乏泛化能力**
-- **問題**：傳統模型通常只能識別訓練過的類別，對新類別或場景的泛化能力有限。
-- **解決方案**：CLIP 能夠在零樣本情境下根據文字描述進行分類，無需重新訓練即可泛化到未見過的類別。
+> 一句話：**Grounding DINO = DINO（強偵測器）+ 把語言融進每一步 + 用「框-詞點積」當分類器**，於是能用文字找任何東西。
 
 ---
 
-#### 3. **單模態模型的局限**
-- **問題**：傳統模型通常只處理單一模態（如僅處理圖像或文字），無法同時理解圖像與文字的關聯。
-- **解決方案**：CLIP 將圖像和文字嵌入到同一向量空間中，實現跨模態的理解與推理。
+## 3) 架構總覽
+
+對照上面的流程圖：
+
+| 模組 | 做的事 |
+| --- | --- |
+| **影像骨幹（Swin）** | 抽多尺度影像特徵。 |
+| **文字骨幹（BERT）** | 把 prompt 編碼成一串文字 token 特徵。 |
+| **Feature Enhancer** | 影像 deformable self-attn + 文字 self-attn + **影像↔文字雙向 cross-attn**，輸出增強後的影像/文字特徵。 |
+| **Language-guided Query Selection** | 依「影像位置 vs 文字」的相似度，挑出最相關的位置當 query。 |
+| **Cross-Modality Decoder** | 每層 = query self-attn + **影像** cross-attn + **文字** cross-attn + FFN。 |
+| **對比式分類頭 + Box Head** | query·文字tokenᵀ → 對齊分數（哪個詞）；Box Head → (cx,cy,w,h)（DINO 式參考點精修）。 |
 
 ---
 
-#### 4. **靈活性不足**
-- **問題**：很多模型需要針對特定任務進行微調，限制了它們的靈活性。
-- **解決方案**：CLIP 是通用模型，能夠應用於多種任務（如分類、檢索、生成等），不需要針對每個任務進行微調。
+## 4) 一步一步的數值前向傳播（toy 範例）
+
+我們用同一張「貓狗照片」（和 [DETR](detr.md) / [RF-DETR](rf-detr.md) 一致），prompt 給 `"cat . dog ."`，看**文字怎麼一路引導偵測**。真實超參數放對照表，運算用可手算的小尺度。
+
+### 假設的輸入與超參數
+
+| 參數 | 真實 Grounding DINO（Liu 2023） | 本文 toy |
+| --- | --- | --- |
+| 影像骨幹 | Swin-T / Swin-L → 多尺度特徵 | 2×2 = 4 個 token，\(d=4\) |
+| 文字骨幹 | BERT-base | prompt `"cat . dog ."` → 2 個 token，\(d=4\) |
+| Feature Enhancer | 6 層（影像 deformable self-attn＋文字 self-attn＋雙向 cross-attn） | 1 步影像↔文字 cross-attn |
+| query 數 | 900 | 2 |
+| query 選擇 | language-guided，取 top-900 | 取 top-2 |
+| decoder | 6 層（self＋影像 cross(deformable)＋文字 cross＋FFN） | 1 層 |
+| 分類頭 | **對比式**（query·文字 token） | 同 |
+| box head | MLP，DINO 式參考點精修 | 1 層＋參考點精修 |
+| 訓練資料 | O365、GoldG、Cap4M…（偵測＋接地） | — |
+
+**場景**：影像 2×2 網格（左上狗、右上天空、左下地板、右下貓）。文字兩個詞 \(t_{\text{cat}},t_{\text{dog}}\)，我們讓「cat」這個詞向量落在影像的「顏色」維（dim1，貓的主維），「dog」落在「紋理」維（dim0，狗的主維）——這就是 BERT 學到的「詞 ↔ 視覺概念」對齊。
+
+$$
+T=\begin{bmatrix} 0.10 & 0.90 & 0.10 & 0.10 \\ 0.90 & 0.10 & 0.10 & 0.10 \end{bmatrix}\ \begin{smallmatrix}\leftarrow t_{\text{cat}}\\ \leftarrow t_{\text{dog}}\end{smallmatrix}\quad(\mathbb{R}^{2\times4}),\qquad
+F_{\text{img}}=\begin{bmatrix} 0.90 & 0.15 & 0.10 & 0.15 \\ 0.15 & 0.10 & 0.95 & 0.10 \\ 0.10 & 0.15 & 0.15 & 0.90 \\ 0.15 & 0.90 & 0.10 & 0.15 \end{bmatrix}\quad(\mathbb{R}^{4\times4})
+$$
+
+### Part A — Feature Enhancer（影像↔文字融合）
+
+讓**每個影像 token 對文字做 cross-attention**（影像當 query、文字當 key/value），把「和你相關的詞」的資訊注入影像特徵：
+
+$$
+A_{\text{img}\to\text{txt}}=\mathrm{softmax}\!\left(\tfrac{F_{\text{img}}T^\top}{\sqrt d}\right)=\begin{bmatrix} 0.43 & 0.57 \\ 0.50 & 0.50 \\ 0.50 & 0.50 \\ 0.57 & 0.43 \end{bmatrix}\quad(\mathbb{R}^{4\times2})
+$$
+
+殘差 + LN 後得到**文字增強的影像特徵 \(F'\)**：
+
+$$
+F'=\mathrm{LN}(F_{\text{img}}+A_{\text{img}\to\text{txt}}\,T)=\begin{bmatrix} 1.65 & -0.07 & -0.84 & -0.74 \\ 0.10 & -0.10 & 1.41 & -1.41 \\ -0.11 & 0.11 & -1.41 & 1.41 \\ -0.07 & 1.65 & -0.84 & -0.74 \end{bmatrix}
+$$
+
+（真實模型還會做反方向的「文字 ← 影像」cross-attention，這裡為精簡只示範一個方向。）
+
+> **痛點②對應**：融合發生在**偵測器內部、很早期**，不是事後才算一次圖文相似度。
+
+### Part B — Language-guided Query Selection
+
+對每個影像位置，算它和文字的相似度，取「對某個詞最像」的分數當作 objectness：
+
+$$
+S_{\text{sel}}=F'T^\top=\begin{bmatrix} -0.05 & 1.32 \\ -0.08 & 0.08 \\ 0.09 & -0.09 \\ 1.32 & -0.05 \end{bmatrix},\qquad
+\text{score}=\sigma\!\big(\max_{\text{詞}}S_{\text{sel}}\big)=\begin{bmatrix} 0.79 \\ 0.52 \\ 0.52 \\ 0.79 \end{bmatrix}
+$$
+
+位置 0（狗）和位置 3（貓）分數最高（各 0.79）——因為它們分別和「dog」「cat」很像。選這 **top-2** 當 query，並記下它們的格子中心當參考點：
+
+$$
+Q_0=F'[\{0,3\}]=\begin{bmatrix} 1.65 & -0.07 & -0.84 & -0.74 \\ -0.07 & 1.65 & -0.84 & -0.74 \end{bmatrix},\qquad \text{ref}=\begin{bmatrix} 0.25 & 0.25 \\ 0.75 & 0.75 \end{bmatrix}
+$$
+
+> **痛點①對應**：query 從哪裡出發，是**文字決定的**。prompt 沒提到的東西，相似度低、不會被選成 query。
+
+### Part C — Cross-Modality Decoder
+
+每層讓 query 同時吸收影像與文字資訊：**self-attn → 影像 cross-attn → 文字 cross-attn → FFN**。
+
+影像 cross-attention（query 對 4 個影像位置）：
+
+$$
+A_{\text{q}\to\text{img}}=\begin{bmatrix} 0.65 & 0.09 & 0.09 & 0.18 \\ 0.18 & 0.07 & 0.10 & 0.64 \end{bmatrix}\quad(\mathbb{R}^{2\times4})
+$$
+
+文字 cross-attention（query 對 2 個文字 token）：
+
+$$
+A_{\text{q}\to\text{txt}}=\begin{bmatrix} 0.37 & 0.63 \\ 0.63 & 0.37 \end{bmatrix}\quad(\mathbb{R}^{2\times2})
+$$
+
+經 FFN / 殘差 / LN 後得到解碼器輸出 \(D\)：
+
+$$
+D=\begin{bmatrix} 1.53 & 0.26 & -0.91 & -0.87 \\ 0.26 & 1.53 & -0.98 & -0.81 \end{bmatrix}\quad(\mathbb{R}^{2\times4})
+$$
+
+### Part D — 對比式框-詞對齊 + Box Head
+
+**這是 Grounding DINO 取代「固定分類頭」的關鍵**：把每個 query 和每個文字 token 做**點積**，分數最高的詞就是這個框的標籤：
+
+$$
+\text{align}=D\cdot T^\top=\begin{bmatrix} 0.21 & \mathbf{1.22} \\ \mathbf{1.22} & 0.21 \end{bmatrix}\ \begin{smallmatrix}(\text{欄}=t_{\text{cat}},\,t_{\text{dog}})\end{smallmatrix},\qquad
+\sigma(\text{align})=\begin{bmatrix} 0.55 & \mathbf{0.77} \\ \mathbf{0.77} & 0.55 \end{bmatrix}
+$$
+
+$$
+\Rightarrow\ \text{query 1（左上那塊）} \to \textbf{“dog”}\ (0.77),\qquad \text{query 2（右下那塊）} \to \textbf{“cat”}\ (0.77)
+$$
+
+**Box Head**（DINO 式：相對參考點精修，\(\text{中心}=\sigma(\mathrm{logit}(\text{ref})+\Delta)\)）：
+
+$$
+\text{box}=\begin{bmatrix} 0.35 & 0.23 & 0.57 & 0.48 \\ 0.72 & 0.83 & 0.47 & 0.57 \end{bmatrix}\ (cx,cy,w,h)
+$$
+
+狗框中心 \((0.35,0.23)\) 落在左上、貓框 \((0.72,0.83)\) 落在右下——和它們在影像中的位置吻合。
+
+> **痛點③對應**：分類器就是「框向量 · 詞向量」。換 prompt（例如只給 `"cat ."`），整個類別空間就跟著變——這就是開放詞彙。
+
+### 總結流程（shape 一路追蹤）
+
+| 階段 | 運算 | 輸出 shape |
+| --- | --- | --- |
+| 影像 / 文字編碼 | Swin / BERT | 影像 \(4\times4\)、文字 \(2\times4\) |
+| Feature Enhancer | 影像↔文字 cross-attn → \(F'\) | \(4\times4\) |
+| Query Selection | 文字相似度取 top-2 → \(Q_0\) | \(2\times4\) |
+| Cross-Modality Decoder | self ＋ 影像 cross ＋ 文字 cross ＋ FFN → \(D\) | \(2\times4\) |
+| 對比式分類 | \(D\cdot T^\top\) → sigmoid | \(2\times2\)（框 × 詞） |
+| Box Head | 參考點 + \(\Delta\) | \(2\times4\) |
+
+一句話：**Grounding DINO 讓文字一路引導偵測——從特徵融合、query 挑選到最後的「框·詞」對比分類——於是你給什麼詞，它就找什麼物件。**
 
 ---
 
-#### 5. **多模態交互困難**
-- **問題**：圖像和文字是兩種不同的模態，如何讓模型在它們之間建立語義聯繫是難題。
-- **解決方案**：CLIP 使用對比學習（Contrastive Learning）方法，讓圖像和文字的嵌入向量互相關聯，提高跨模態交互能力。
+## 5) 與 CLIP / DETR / RF-DETR 的關係
 
----
-## 詳細數學計算
+| 模型 | 一句話 | 和 Grounding DINO 的關係 |
+| --- | --- | --- |
+| **CLIP** | 整張圖 ↔ 整句話的對比對齊 | Grounding DINO 把「對比對齊」下放到**框 ↔ 詞** 的細粒度 |
+| **[DETR](detr.md)** | 集合預測、免 anchor/NMS | Grounding DINO 的偵測骨架（經 DINO 強化）源自 DETR |
+| **[RF-DETR](rf-detr.md)** | 即時、固定類別 specialist | 互補：固定類別要快選 RF-DETR；要用文字找任意物件選 Grounding DINO |
 
-### **對比式預訓練 (Contrastive Pre-training)**
-![alt text](../assets/clip/clip-02.png)
-
-
-#### **1️⃣ 輸入資料**
-我們假設有 **3 張圖片**（I₁, I₂, I₃）與 **3 段文字**（T₁, T₂, T₃），目標是讓對應的圖片與文字在 embedding 空間中距離最近（相似度最高）。
-
-痛點：  
-圖片與文字原本是完全不同模態的數據（像素 vs. 字符），我們必須先透過編碼器把它們轉換到**相同的向量空間**，否則後續無法計算相似度。
+選型直覺：**類別固定、要快** → RF-DETR；**要用文字 prompt 找任意/新類別、可接受較慢** → Grounding DINO。兩者常搭配（例如先用 Grounding DINO 自動標註，再 fine-tune RF-DETR）。
 
 ---
 
-#### **2️⃣ Text Encoder（文字編碼）輸出**
-
-假設經過 Text Encoder（例如 Transformer）後，每段文字被轉換成 **4 維向量**：
-
-$$
-T =
-\begin{bmatrix}
-0.20 & 0.10 & 0.30 & 0.40 \\
-0.25 & 0.15 & 0.35 & 0.20 \\
-0.10 & 0.30 & 0.25 & 0.35
-\end{bmatrix}
-$$
-
-Shape: **(3, 4)**  
-（3 條文字，每條 4 維向量）
-
----
-
-#### **3️⃣ Image Encoder（圖片編碼）輸出**
-
-假設經過 Image Encoder（例如 ResNet 或 Vision Transformer）後，每張圖片也被轉換成 **4 維向量**：
-
-$$
-I =
-\begin{bmatrix}
-0.22 & 0.12 & 0.28 & 0.38 \\
-0.18 & 0.20 & 0.33 & 0.29 \\
-0.12 & 0.28 & 0.20 & 0.40
-\end{bmatrix}
-$$
-
-Shape: **(3, 4)**  
-（3 張圖片，每張 4 維向量）
-
----
-
-#### **4️⃣ 計算相似度矩陣**
-
-痛點：  
-這一步的核心是**對齊跨模態的表示（alignment）**，確保對應的圖片-文字配對相似度高，錯配的相似度低。
-
-我們使用 **點積（dot product）** 來計算圖片與文字之間的相似度：
-
-$$
-S = I \cdot T^T
-$$
-
-其中：  
-- \( I \) shape: **(3, 4)**  
-- \( T^T \) shape: **(4, 3)**  
-- \( S \) shape: **(3, 3)**
-
----
-
-計算：
-
-$$
-S =
-\begin{bmatrix}
-0.22 & 0.12 & 0.28 & 0.38 \\
-0.18 & 0.20 & 0.33 & 0.29 \\
-0.12 & 0.28 & 0.20 & 0.40
-\end{bmatrix}
-\cdot
-\begin{bmatrix}
-0.20 & 0.25 & 0.10 \\
-0.10 & 0.15 & 0.30 \\
-0.30 & 0.35 & 0.25 \\
-0.40 & 0.20 & 0.35
-\end{bmatrix}
-=
-\begin{bmatrix}
-0.292 & 0.302 & 0.318 \\
-0.289 & 0.307 & 0.311 \\
-0.298 & 0.300 & 0.330
-\end{bmatrix}
-$$
-
----
-
-#### **5️⃣ 解讀相似度矩陣**
-
-- \( S_{11} = 0.292 \)：圖片 I₁ 與文字 T₁ 的相似度
-- \( S_{12} = 0.302 \)：圖片 I₁ 與文字 T₂ 的相似度
-- \( S_{33} = 0.330 \)：圖片 I₃ 與文字 T₃ 的相似度（較高，表示模型認為它們很相關）
-
----
-
-#### **6️⃣ （可選）Softmax 步驟**
-
-在真實 Contrastive Pre-training（例如 CLIP）中，我們會對每一行做 Softmax，轉換成機率分佈，用於計算 InfoNCE Loss。
-
-$$
-P_{ij} = \frac{\exp(S_{ij} / \tau)}{\sum_{k=1}^3 \exp(S_{ik} / \tau)}
-$$
-
-其中 \(\tau\) 是溫度參數（例如 0.07），控制分佈鋒利程度。
-
----
-
-#### **痛點總結**
-1. **跨模態對齊**：圖片和文字特徵原本不在同一空間，必須通過編碼器映射到同一空間。  
-2. **相似度矩陣計算**：點積是最常用的相似度計算方式，但需要確保向量已經經過歸一化，否則長度不同會影響結果。  
-3. **對比學習目標**：讓正樣本對的相似度最大，負樣本對的相似度最小。  
-
----
-
-#### **7️⃣ 已知相似度矩陣 S（由 I ⋅ Tᵀ 得到）**
-
-$$
-S =
-\begin{bmatrix}
-0.292 & 0.302 & 0.318 \\
-0.289 & 0.307 & 0.311 \\
-0.298 & 0.300 & 0.330
-\end{bmatrix}
-$$
-
-Shape: **(3, 3)**
-
-這裡 \( S_{ij} \) 代表圖片 \( I_i \) 與文字 \( T_j \) 的相似度。
-
----
-
-#### **8️⃣ 引入溫度參數 τ**
-
-痛點：  
-在對比學習中，溫度參數 \( \tau \) 控制 Softmax 的「鋒利程度」。  
-- 小的 \( \tau \) → 分佈更極端，更容易讓正樣本機率明顯高於負樣本  
-- 大的 \( \tau \) → 分佈更平滑  
-
-我們假設 \( \tau = 0.07 \)。
-
----
-
-#### **9️⃣ Softmax（圖片到文字的方向）**
-
-我們先計算 **圖片作為 query，文字作為 key** 的機率分佈：
-
-公式：
-
-$$
-P^{(i \rightarrow t)}_{ij} = \frac{\exp(S_{ij} / \tau)}{\sum_{k=1}^3 \exp(S_{ik} / \tau)}
-$$
-
-矩陣形式（先除以 τ）：
-
-$$
-Z = \frac{S}{\tau} =
-\begin{bmatrix}
-4.171 & 4.314 & 4.543 \\
-4.129 & 4.386 & 4.443 \\
-4.257 & 4.286 & 4.714
-\end{bmatrix}
-$$
-Shape: **(3, 3)**
-
----
-
-計算 Softmax：
-
-$$
-P^{(i \rightarrow t)} =
-\begin{bmatrix}
-\frac{e^{4.171}}{e^{4.171}+e^{4.314}+e^{4.543}} &
-\frac{e^{4.314}}{e^{4.171}+e^{4.314}+e^{4.543}} &
-\frac{e^{4.543}}{e^{4.171}+e^{4.314}+e^{4.543}} \\
-\frac{e^{4.129}}{e^{4.129}+e^{4.386}+e^{4.443}} &
-\frac{e^{4.386}}{e^{4.129}+e^{4.386}+e^{4.443}} &
-\frac{e^{4.443}}{e^{4.129}+e^{4.386}+e^{4.443}} \\
-\frac{e^{4.257}}{e^{4.257}+e^{4.286}+e^{4.714}} &
-\frac{e^{4.286}}{e^{4.257}+e^{4.286}+e^{4.714}} &
-\frac{e^{4.714}}{e^{4.257}+e^{4.286}+e^{4.714}}
-\end{bmatrix}
-$$
-
-數值計算（四捨五入到小數點 3 位）：
-
-$$
-P^{(i \rightarrow t)} \approx
-\begin{bmatrix}
-0.300 & 0.344 & 0.356 \\
-0.296 & 0.351 & 0.353 \\
-0.286 & 0.294 & 0.420
-\end{bmatrix}
-$$
-
----
-
-#### **🔟 Softmax（文字到圖片的方向）**
-
-同理，文字作為 query，圖片作為 key：
-
-$$
-P^{(t \rightarrow i)}_{ji} = \frac{\exp(S_{ij} / \tau)}{\sum_{k=1}^3 \exp(S_{kj} / \tau)}
-$$
-
-數值計算結果（四捨五入到小數點 3 位）：
-
-$$
-P^{(t \rightarrow i)} \approx
-\begin{bmatrix}
-0.338 & 0.330 & 0.332 \\
-0.331 & 0.339 & 0.330 \\
-0.325 & 0.327 & 0.348
-\end{bmatrix}
-$$
-
----
-
-#### **1️⃣1️⃣ InfoNCE Loss 計算**
-
-痛點：  
-InfoNCE Loss 的目標是**最大化正樣本的機率**，讓對應的圖片-文字對（I₁-T₁, I₂-T₂, I₃-T₃）在 Softmax 後的概率變大。
-
-對於圖片到文字的方向：
-
-$$
-\mathcal{L}_{i \rightarrow t} = -\frac{1}{N} \sum_{i=1}^N \log P^{(i \rightarrow t)}_{ii}
-$$
-
-對於文字到圖片的方向：
-
-$$
-\mathcal{L}_{t \rightarrow i} = -\frac{1}{N} \sum_{i=1}^N \log P^{(t \rightarrow i)}_{ii}
-$$
-
----
-
-數值代入（N=3）：
-
-圖片 → 文字：
-
-$$
-\mathcal{L}_{i \rightarrow t} = -\frac{1}{3} \left[ \log 0.300 + \log 0.351 + \log 0.420 \right]
-$$
-
-$$
-\mathcal{L}_{i \rightarrow t} \approx -\frac{1}{3} \left[ -1.204 - 1.046 - 0.868 \right] \approx 1.039
-$$
-
-文字 → 圖片：
-
-$$
-\mathcal{L}_{t \rightarrow i} = -\frac{1}{3} \left[ \log 0.338 + \log 0.339 + \log 0.348 \right]
-$$
-
-$$
-\mathcal{L}_{t \rightarrow i} \approx -\frac{1}{3} \left[ -1.086 - 1.082 - 1.056 \right] \approx 1.075
-$$
-
----
-
-#### **1️⃣2️⃣ 最終對比損失（CLIP 常用做法）**
-
-$$
-\mathcal{L} = \frac{\mathcal{L}_{i \rightarrow t} + \mathcal{L}_{t \rightarrow i}}{2}
-$$
-
-代入：
-$$
-\mathcal{L} \approx \frac{1.039 + 1.075}{2} \approx 1.057
-$$
-
----
-
-#### **痛點總結**
-1. **Softmax 計算中數值可能過大** → 必須在實作中使用 log-sum-exp trick 防止溢出。  
-2. **τ 的選擇影響學習效果** → τ 太小可能過度強調極端概率，τ 太大則降低對比效果。  
-3. **對稱損失**（i→t 和 t→i）可以讓模型雙向對齊，這是 CLIP 相對於單向檢索更穩定的原因。  
-
----
-
-### **推論**
-![alt text](../assets/clip/clip-03.png)
-
-#### 場景與詞彙嵌入（toy，但符合實務邏輯）
-
-資料集四個類別：`plane / car / dog / bird`
-模板：`"A photo of a {object}."`（6 個 token：A, photo, of, a, ., 以及類別詞）
-
-> 痛點①：**不再需要為每個新資料集重新訓練分類器**。我們只要把「類別文字」丟進**同一個 Text Encoder**，就能得到該類別在多模態共同空間的**原型向量**。
-
-為了可手算，我用 4 維空間（d=4）。給定下列**詞向量表**（就是 Text Encoder 的最前面的 embedding lookup；模板詞向量相同，類別詞不同）：
-
-模板 token 的嵌入（shape $5\times 4$，每個模板詞都相同）：
-
-$$
-E_{\text{tmpl}}=
-\begin{bmatrix}
-0.2 & 0.1 & 0.0 & 0.1\\
-0.2 & 0.1 & 0.0 & 0.1\\
-0.2 & 0.1 & 0.0 & 0.1\\
-0.2 & 0.1 & 0.0 & 0.1\\
-0.2 & 0.1 & 0.0 & 0.1
-\end{bmatrix}
-\quad (\text{shape }5\times 4)
-$$
-
-四個「類別詞」的嵌入（shape $4\times 4$，按 plane/car/dog/bird 排列）：
-
-$$
-E_{\text{label}}=
-\begin{bmatrix}
- 1.40 & 0.10 & -1.20 & 4.72\\
- 2.72 & -1.40 &  1.80 & 3.58\\
- 0.20 & 4.00 &  0.72 & 2.86\\
--3.10 & 2.14 &  0.66 & 3.70
-\end{bmatrix}
-\quad (\text{shape }4\times 4)
-$$
-
-> 痛點②：**形狀（shape）常出錯**。我會在每一步都標 shape，避免在實作時維度對不上。
-
----
-
-#### (2) Create dataset classifier from label text
-
-##### 2-1 把每個類別的模板句嵌入並平均（Bag-of-Embeddings → 句向量）
-
-平均是用一個 $\frac{1}{6}\mathbf{1}_{1\times6}$ 左乘，把 6 個 token 的向量做均值；等效於「Text Encoder 最後的句向量輸出」（此處用簡化版平均來示範）。
-
-**plane** 的 6×4 token 矩陣：
-
-$$
-X_{\text{plane}}=
-\begin{bmatrix}
-0.2 & 0.1 & 0.0 & 0.1\\
-0.2 & 0.1 & 0.0 & 0.1\\
-0.2 & 0.1 & 0.0 & 0.1\\
-0.2 & 0.1 & 0.0 & 0.1\\
-0.2 & 0.1 & 0.0 & 0.1\\
-1.40 & 0.10 & -1.20 & 4.72
-\end{bmatrix}
-\quad (\text{shape }6\times4)
-$$
-
-平均權重向量：
-
-$$
-W_{\text{avg}}=\frac{1}{6}
-\begin{bmatrix}
-1 & 1 & 1 & 1 & 1 & 1
-\end{bmatrix}
-\quad(\text{shape }1\times6)
-$$
-
-做平均（只寫乘法）：
-
-$$
-W_{\text{avg}}\cdot X_{\text{plane}}=T^{(\text{raw})}_{\text{plane}}=
-\begin{bmatrix}
-0.40 & 0.10 & -0.20 & 0.87
-\end{bmatrix}
-\quad(\text{shape }1\times4)
-$$
-
-同理可得另外三類的句向量（我直接給結果）：
-
-$$
-\begin{aligned}
-W_{\text{avg}}\cdot X_{\text{car}} &= 
-\begin{bmatrix}
-0.62 & -0.15 & 0.30 & 0.68
-\end{bmatrix}\\[2mm]
-W_{\text{avg}}\cdot X_{\text{dog}} &= 
-\begin{bmatrix}
-0.20 & 0.75 & 0.12 & 0.56
-\end{bmatrix}\\[2mm]
-W_{\text{avg}}\cdot X_{\text{bird}} &= 
-\begin{bmatrix}
--0.35 & 0.44 & 0.11 & 0.70
-\end{bmatrix}
-\end{aligned}
-\quad(\text{每個都是 }1\times4)
-$$
-
-> 痛點③：CLIP 在相似度前會做 **L2 正規化**，讓比較變成「餘弦相似度」，避免尺度影響。
-
-##### 2-2 L2 正規化得到「類別原型」(Text features)
-
-把四個 1×4 向量堆疊成 $4\times4$ 矩陣，再逐列做 L2 normalize：
-
-未正規化的矩陣（按 plane/car/dog/bird）：
-
-$$
-T_{\text{raw}}=
-\begin{bmatrix}
-0.40 & 0.10 & -0.20 & 0.87\\
-0.62 & -0.15 & 0.30 & 0.68\\
-0.20 & 0.75 & 0.12 & 0.56\\
--0.35 & 0.44 & 0.11 & 0.70
-\end{bmatrix}
-\quad(\text{shape }4\times4)
-$$
-
-其 L2 範數（逐列）：
-$\| \cdot \|_2=[0.9833,\;0.9794,\;0.9646,\;0.9045]$
-
-正規化後（每列除以各自範數）得到 **文字原型矩陣** $T$：
-
-$$
-T=
-\begin{bmatrix}
- 0.407 &  0.102 & -0.203 &  0.885\\
- 0.633 & -0.153 &  0.306 &  0.694\\
- 0.207 &  0.778 &  0.124 &  0.581\\
--0.387 &  0.486 &  0.122 &  0.774
-\end{bmatrix}
-\quad(\text{shape }4\times4)
-$$
-
-> 痛點④：**這個 T 就是「資料集分類器」**。之後換任何圖片，只要編碼成同一空間的向量，就能直接跟這四個原型比相似度做 zero-shot。
-
----
-
-#### (3) Use for zero-shot prediction
-
-假設我們有一張「黑狗在草叢」的圖片。示範一個極簡 Image Encoder：把圖切成 3 個 patch，各自 4 維向量，最後平均並做 L2 正規化。
-
-##### 3-1 圖片 patch 特徵與平均
-
-三個 patch 特徵堆成矩陣 $P$：
-
-$$
-P=
-\begin{bmatrix}
-0.24 & 0.78 & 0.09 & 0.57\\
-0.20 & 0.80 & 0.06 & 0.59\\
-0.19 & 0.82 & 0.09 & 0.55
-\end{bmatrix}
-\quad(\text{shape }3\times4)
-$$
-
-平均權重（與前面概念相同）：
-
-$$
-W_{\text{avg(img)}}=\frac{1}{3}
-\begin{bmatrix}
-1 & 1 & 1
-\end{bmatrix}
-\quad(\text{shape }1\times3)
-$$
-
-做平均：
-
-$$
-W_{\text{avg(img)}}\cdot P = I_{\text{raw}}=
-\begin{bmatrix}
-0.21 & 0.80 & 0.08 & 0.57
-\end{bmatrix}
-\quad(\text{shape }1\times4)
-$$
-
-做 L2 正規化（$\|I_{\text{raw}}\|_2=1.0077$）得到 **影像特徵**：
-
-$$
-I_1=
-\begin{bmatrix}
-0.208 & 0.794 & 0.079 & 0.566
-\end{bmatrix}
-\quad(\text{shape }1\times4)
-$$
-
-> 痛點⑤：**文字/影像向量都在同一個單位球面**，可以直接做內積比較相似度（即餘弦相似度）。
-
-##### 3-2 相似度（logits）與機率（softmax）
-
-先算相似度（對四個類別）：
-
-$$
-S \;=\; I_1 \cdot T^\top \;=\;
-\begin{bmatrix}
-0.650 & 0.427 & 0.999 & 0.753
-\end{bmatrix}
-\quad(\text{shape }1\times4)
-$$
-
-CLIP 會乘上一個 **溫度（logit scale）**。示範用 $s=4.0$：
-
-$$
-\text{logits} = s \cdot S =
-\begin{bmatrix}
-2.599 & 1.710 & 3.995 & 3.012
-\end{bmatrix}
-\quad(\text{shape }1\times4)
-$$
-
-做 softmax 得到各類別機率：
-
-$$
-p=\text{softmax}(\text{logits})=
-\begin{bmatrix}
-0.144 & 0.059 & 0.580 & 0.217
-\end{bmatrix}
-\quad(\text{plane, car, \;dog,\; bird})
-$$
-
-**預測：dog（0.580）**
-
-> 痛點⑥：溫度 $s$ 讓 logit 的對比度更清楚；若分數太接近，可調高 $s$ 得到更尖銳的分佈。
-
-
+## 6) 參考資料
+
+- Grounding DINO 論文：[Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection (arXiv:2303.05499)](https://arxiv.org/abs/2303.05499)
+- 官方程式碼：[IDEA-Research/GroundingDINO](https://github.com/IDEA-Research/GroundingDINO)
+- 基礎：[DINO (arXiv:2203.03605)](https://arxiv.org/abs/2203.03605)、[GLIP (arXiv:2112.03857)](https://arxiv.org/abs/2112.03857)、[CLIP (arXiv:2103.00020)](https://arxiv.org/abs/2103.00020)
+- 延伸：[DETR](detr.md)、[RF-DETR](rf-detr.md)、Grounded-SAM（接 SAM 出遮罩）

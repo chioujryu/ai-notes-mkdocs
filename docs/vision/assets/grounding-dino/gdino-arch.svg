@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 660" font-family="'Segoe UI','Microsoft JhengHei',sans-serif">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#4a3f6b"/></marker>
+  </defs>
+  <rect x="0" y="0" width="1280" height="660" rx="14" fill="#f7f5fb" stroke="#d9d2ec" stroke-width="2"/>
+  <text x="640" y="34" text-anchor="middle" font-size="22" font-weight="700" fill="#3b2a66">Grounding DINO：用文字 prompt 偵測任意物件</text>
+  <text x="640" y="56" text-anchor="middle" font-size="13" fill="#6b5e8c">文字一路引導：特徵融合 → query 選擇 → 跨模態解碼 → 框·詞 對比對齊（shape 對應本文 toy）</text>
+
+  <!-- inputs -->
+  <rect x="24" y="120" width="130" height="86" rx="10" fill="#b39ddb" stroke="#7e57c2" stroke-width="2"/>
+  <text x="89" y="150" text-anchor="middle" font-size="13" font-weight="700" fill="#2c1b54">影像骨幹</text>
+  <text x="89" y="170" text-anchor="middle" font-size="11" fill="#2c1b54">(Swin)</text>
+  <text x="89" y="190" text-anchor="middle" font-size="10" fill="#2c1b54" font-family="monospace">img 4×4</text>
+
+  <rect x="24" y="300" width="130" height="86" rx="10" fill="#f6c9a8" stroke="#d98a4e" stroke-width="2"/>
+  <text x="89" y="326" text-anchor="middle" font-size="13" font-weight="700" fill="#6b3410">文字骨幹</text>
+  <text x="89" y="344" text-anchor="middle" font-size="11" fill="#6b3410">(BERT)</text>
+  <text x="89" y="362" text-anchor="middle" font-size="9.5" fill="#6b3410">"cat . dog ."</text>
+  <text x="89" y="378" text-anchor="middle" font-size="10" fill="#6b3410" font-family="monospace">text 2×4</text>
+
+  <!-- feature enhancer -->
+  <rect x="200" y="150" width="210" height="200" rx="12" fill="#c8b6e8" stroke="#7e57c2" stroke-width="2"/>
+  <text x="305" y="174" text-anchor="middle" font-size="14" font-weight="700" fill="#2c1b54">Feature Enhancer ×6</text>
+  <rect x="218" y="186" width="174" height="30" rx="6" fill="#efe8fb" stroke="#9b86cf"/><text x="305" y="206" text-anchor="middle" font-size="11" fill="#2c1b54">影像 Deformable Self-Attn</text>
+  <rect x="218" y="222" width="174" height="28" rx="6" fill="#fde7d2" stroke="#d98a4e"/><text x="305" y="241" text-anchor="middle" font-size="11" fill="#6b3410">文字 Self-Attn</text>
+  <rect x="218" y="256" width="174" height="44" rx="6" fill="#fff4d6" stroke="#d9b24a"/><text x="305" y="275" text-anchor="middle" font-size="11.5" fill="#4a3408">影像 ↔ 文字</text><text x="305" y="291" text-anchor="middle" font-size="11.5" fill="#4a3408">雙向 Cross-Attention</text>
+  <text x="305" y="324" text-anchor="middle" font-size="10" fill="#5a4a86">早期、緊密的語言-視覺融合</text>
+  <text x="305" y="340" text-anchor="middle" font-size="10" fill="#5a4a86">→ 增強影像特徵 F'、文字特徵</text>
+
+  <line x1="154" y1="163" x2="196" y2="200" stroke="#4a3f6b" stroke-width="2" marker-end="url(#a)"/>
+  <line x1="154" y1="343" x2="196" y2="300" stroke="#d98a4e" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- query selection -->
+  <rect x="448" y="180" width="170" height="140" rx="12" fill="#b39ddb" stroke="#7e57c2" stroke-width="2"/>
+  <text x="533" y="204" text-anchor="middle" font-size="13" font-weight="700" fill="#2c1b54">Language-guided</text>
+  <text x="533" y="222" text-anchor="middle" font-size="13" font-weight="700" fill="#2c1b54">Query Selection</text>
+  <text x="533" y="248" text-anchor="middle" font-size="11" fill="#2c1b54">依「影像位置 vs 文字」</text>
+  <text x="533" y="266" text-anchor="middle" font-size="11" fill="#2c1b54">相似度取 top-k</text>
+  <text x="533" y="296" text-anchor="middle" font-size="10.5" fill="#5a4a86">→ 2 個跨模態 query</text>
+  <text x="533" y="312" text-anchor="middle" font-size="10" fill="#5a4a86">（真實 900）</text>
+  <line x1="410" y1="250" x2="444" y2="250" stroke="#4a3f6b" stroke-width="2" marker-end="url(#a)"/><text x="427" y="242" text-anchor="middle" font-size="10" fill="#5e35b1" font-family="monospace">F'</text>
+
+  <!-- cross-modality decoder -->
+  <rect x="656" y="150" width="232" height="200" rx="12" fill="#c8b6e8" stroke="#7e57c2" stroke-width="2"/>
+  <text x="772" y="174" text-anchor="middle" font-size="14" font-weight="700" fill="#2c1b54">Cross-Modality Decoder ×6</text>
+  <rect x="674" y="186" width="196" height="28" rx="6" fill="#efe8fb" stroke="#9b86cf"/><text x="772" y="205" text-anchor="middle" font-size="11" fill="#2c1b54">Query Self-Attention</text>
+  <rect x="674" y="220" width="196" height="28" rx="6" fill="#efe8fb" stroke="#9b86cf"/><text x="772" y="239" text-anchor="middle" font-size="11" fill="#2c1b54">影像 Cross-Attention</text>
+  <rect x="674" y="254" width="196" height="28" rx="6" fill="#fde7d2" stroke="#d98a4e"/><text x="772" y="273" text-anchor="middle" font-size="11" fill="#6b3410">文字 Cross-Attention</text>
+  <rect x="674" y="288" width="196" height="26" rx="6" fill="#efe8fb" stroke="#9b86cf"/><text x="772" y="306" text-anchor="middle" font-size="11" fill="#2c1b54">FFN</text>
+  <text x="772" y="336" text-anchor="middle" font-size="10.5" fill="#5a4a86">輸出 D：每個 query 同時懂影像與文字</text>
+  <line x1="618" y1="250" x2="652" y2="250" stroke="#4a3f6b" stroke-width="2" marker-end="url(#a)"/>
+  <!-- text feeds decoder text-cross-attn (dashed from text backbone) -->
+  <polyline points="89,386 89,440 772,440 772,356" fill="none" stroke="#d98a4e" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#a)"/>
+  <text x="430" y="456" text-anchor="middle" font-size="10.5" fill="#a8651f">文字特徵也餵給解碼器的文字 cross-attention</text>
+
+  <!-- contrastive head + box -->
+  <rect x="924" y="150" width="232" height="200" rx="12" fill="#dbeede" stroke="#5aa06a" stroke-width="2"/>
+  <text x="1040" y="174" text-anchor="middle" font-size="14" font-weight="700" fill="#1e5430">對比式分類 + Box</text>
+  <rect x="942" y="188" width="196" height="56" rx="7" fill="#eef7ef" stroke="#8cbf98"/>
+  <text x="1040" y="210" text-anchor="middle" font-size="12" fill="#1e5430">框·詞 點積</text>
+  <text x="1040" y="228" text-anchor="middle" font-size="10.5" fill="#1e5430" font-family="monospace">D · Tᵀ → 2×2 (框×詞)</text>
+  <text x="1040" y="240" text-anchor="middle" font-size="9.5" fill="#1e5430">→ 每個框配到一個詞</text>
+  <rect x="942" y="252" width="196" height="40" rx="7" fill="#fff4d6" stroke="#d9b24a"/>
+  <text x="1040" y="270" text-anchor="middle" font-size="11.5" fill="#4a3408">Box Head（參考點精修）</text>
+  <text x="1040" y="284" text-anchor="middle" font-size="10" fill="#4a3408" font-family="monospace">→ (cx,cy,w,h)</text>
+  <text x="1040" y="312" text-anchor="middle" font-size="11" fill="#1e5430">q1 → "dog"｜q2 → "cat"</text>
+  <text x="1040" y="332" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1e5430">prompt 決定類別空間（開放詞彙）</text>
+  <line x1="888" y1="250" x2="920" y2="250" stroke="#4a3f6b" stroke-width="2" marker-end="url(#a)"/><text x="904" y="242" text-anchor="middle" font-size="10" fill="#5e35b1" font-family="monospace">D</text>
+
+  <!-- output -->
+  <rect x="500" y="520" width="280" height="110" rx="10" fill="#ffffff" stroke="#c9bee6"/>
+  <text x="640" y="544" text-anchor="middle" font-size="12.5" font-weight="700" fill="#3b2a66">輸出：文字提到的都框出來</text>
+  <rect x="556" y="556" width="168" height="62" rx="4" fill="#eef3f7" stroke="#c9bee6"/>
+  <rect x="566" y="566" width="40" height="32" rx="2" fill="none" stroke="#7e57c2" stroke-width="1.5"/><text x="586" y="564" text-anchor="middle" font-size="9" fill="#7e57c2">dog</text>
+  <path d="M690 610 q-3 -22 11 -26 q6 -12 11 0 q14 4 11 26 z" fill="none" stroke="#7e57c2" stroke-width="1.5"/><text x="700" y="566" text-anchor="middle" font-size="9" fill="#7e57c2">cat</text>
+  <line x1="1040" y1="350" x2="1040" y2="575" stroke="#4a3f6b" stroke-width="2"/>
+  <line x1="1040" y1="575" x2="784" y2="575" stroke="#4a3f6b" stroke-width="2" marker-end="url(#a)"/>
+</svg>
