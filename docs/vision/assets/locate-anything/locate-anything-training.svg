@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="620" viewBox="0 0 1500 620" role="img" aria-labelledby="title desc">
+  <title id="title">LocateAnything joint NTP and MTP training flow</title>
+  <desc id="desc">Three training stages transform the same ground-truth answer into fixed-length semantic, box, and end blocks; isolate causal NTP and block-causal MTP streams with attention masks; and optimize the sum of NTP and MTP cross-entropy losses.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#faf6ff"/><stop offset="1" stop-color="#f2f8ff"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#27304f" flood-opacity="0.14"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L9,3 L0,6 Z" fill="#52617a"/></marker>
+    <style>.panel{fill:#fff;stroke:#a7b3c4;stroke-width:2;filter:url(#shadow)}.title{font:700 28px Arial,"Noto Sans TC",sans-serif;fill:#30335a}.step{font:700 19px Arial,"Noto Sans TC",sans-serif;fill:#28354a}.body{font:15px Arial,"Noto Sans TC",sans-serif;fill:#4b596d}.small{font:13px Arial,"Noto Sans TC",sans-serif;fill:#657186}.badge{fill:#6659ca}.badgeText{font:700 15px Arial,"Noto Sans TC",sans-serif;fill:#fff;text-anchor:middle}.arrow{fill:none;stroke:#52617a;stroke-width:3;marker-end:url(#arrow)}</style>
+  </defs>
+  <rect x="8" y="8" width="1484" height="604" rx="28" fill="url(#bg)" stroke="#d9ddef" stroke-width="2"/>
+  <text x="750" y="48" text-anchor="middle" class="title">LocateAnything：Joint NTP–MTP Training（T1–T3）</text>
+
+  <rect x="45" y="102" width="410" height="404" rx="20" class="panel"/>
+  <circle cx="76" cy="133" r="22" class="badge"/><text x="76" y="139" class="badgeText">T1</text><text x="110" y="139" class="step">Fixed-length Box-Aligned Blocks</text>
+  <text x="72" y="180" class="body">同一份 ground truth 依語意邊界切成 L = 6：</text>
+  <rect x="72" y="207" width="356" height="68" rx="10" fill="#f4f2ff" stroke="#aaa4e3"/><text x="88" y="232" class="small">Semantic</text><text x="88" y="257" class="body">[&lt;ref&gt;, red, button, &lt;/ref&gt;, &lt;null&gt;, &lt;null&gt;]</text>
+  <rect x="72" y="288" width="356" height="68" rx="10" fill="#eef6ff" stroke="#94b8d8"/><text x="88" y="313" class="small">Box</text><text x="88" y="338" class="body">[&lt;box&gt;, 120, 200, 420, 650, &lt;/box&gt;]</text>
+  <rect x="72" y="369" width="356" height="68" rx="10" fill="#f3faf4" stroke="#9fc7a7"/><text x="88" y="394" class="small">End</text><text x="88" y="419" class="body">[&lt;eos&gt;, &lt;null&gt;, &lt;null&gt;, &lt;null&gt;, &lt;null&gt;, &lt;null&gt;]</text>
+  <text x="72" y="475" class="small">Negative Block 也使用相同 shape；未使用位置補 &lt;null&gt;。</text>
+
+  <path d="M455 304 H504" class="arrow"/>
+  <rect x="507" y="102" width="472" height="404" rx="20" class="panel"/>
+  <circle cx="538" cy="133" r="22" class="badge"/><text x="538" y="139" class="badgeText">T2</text><text x="572" y="139" class="step">Joint NTP/MTP Attention Mask</text>
+  <text x="534" y="180" class="body">xall = xvis ⊕ xq ⊕ xntp ⊕ xblk</text>
+  <rect x="535" y="207" width="416" height="73" rx="10" fill="#fff7ee" stroke="#d9ae76"/><text x="552" y="233" class="body">NTP stream：token-level causal</text><text x="552" y="258" class="small">只能看 shared context 與自己的歷史，不可偷看 MTP。</text>
+  <rect x="535" y="294" width="416" height="73" rx="10" fill="#f3f2ff" stroke="#aaa4e3"/><text x="552" y="320" class="body">MTP stream：block-causal</text><text x="552" y="345" class="small">blocks 之間 causal；目前 block 可以看已 committed blocks。</text>
+  <rect x="535" y="381" width="416" height="73" rx="10" fill="#eef6ff" stroke="#94b8d8"/><text x="552" y="407" class="body">Intra-block：bidirectional</text><text x="552" y="432" class="small">同一個 block 的 6 個位置互看並同時還原 masked tokens。</text>
+  <text x="535" y="481" class="small">兩條訓練 stream 共享影像與 query context，但彼此隔離。</text>
+
+  <path d="M979 304 H1028" class="arrow"/>
+  <rect x="1031" y="102" width="424" height="404" rx="20" class="panel"/>
+  <circle cx="1062" cy="133" r="22" class="badge"/><text x="1062" y="139" class="badgeText">T3</text><text x="1096" y="139" class="step">Dual Cross-Entropy Loss</text>
+  <text x="1060" y="188" class="body">標準 NTP 目標：</text><text x="1060" y="217" class="small">保留原本 causal reasoning 與 token generation 能力</text>
+  <text x="1060" y="270" class="body">Box-aligned MTP 目標：</text><text x="1060" y="299" class="small">學會在一個 step 內完成完整幾何單位</text>
+  <rect x="1072" y="348" width="342" height="85" rx="14" fill="#6758ca"/><text x="1243" y="382" text-anchor="middle" font-family="Arial,'Noto Sans TC',sans-serif" font-size="20" font-weight="700" fill="#fff">L = Lntp + Lmtp</text><text x="1243" y="411" text-anchor="middle" font-family="Arial,'Noto Sans TC',sans-serif" font-size="14" fill="#e8e7ff">Toy：0.42 + 0.31 = 0.73</text>
+  <text x="1060" y="476" class="small">同一模型因此同時支援 Slow、Fast 與 Hybrid Mode。</text>
+
+  <rect x="66" y="545" width="1368" height="42" rx="12" fill="#fff" stroke="#c4cedb" stroke-width="1.5"/>
+  <text x="750" y="571" text-anchor="middle" class="body">T1 決定結構邊界，T2 決定資訊可見範圍，T3 同時保存 NTP 穩定性與 MTP 平行能力。</text>
+</svg>

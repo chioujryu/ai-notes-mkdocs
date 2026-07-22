@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1160" font-family="'Segoe UI','Microsoft JhengHei',sans-serif" role="img" aria-labelledby="title desc">
+  <title id="title">MoonViT 六階段原生解析度視覺編碼流程</title>
+  <desc id="desc">兩張不同長寬的影像依序經過原生解析度前處理、patch embedding、NaViT 式 packing、含二維旋轉位置編碼的 MoonViT encoder、最終 LayerNorm，以及二乘二 patch merger，輸出每張影像的分組視覺特徵。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 z" fill="#4a3f6b"/>
+    </marker>
+    <style>
+      .stage { fill:#eae4f7; stroke:#846ab8; stroke-width:2; }
+      .module { fill:#fff; stroke:#b4a5d3; stroke-width:1.5; }
+      .accent { fill:#d9f3ef; stroke:#43a79c; stroke-width:1.5; }
+      .warm { fill:#fff1d6; stroke:#d6a34d; stroke-width:1.5; }
+      .title { fill:#34225f; font-weight:700; }
+      .body { fill:#46356d; }
+      .small { fill:#675b82; font-size:14px; }
+      .shape { fill:#5e35b1; font-size:14px; font-family:Consolas,monospace; }
+      .flow { fill:none; stroke:#4a3f6b; stroke-width:2.5; marker-end:url(#arrow); }
+    </style>
+  </defs>
+
+  <rect x="1" y="1" width="758" height="1158" rx="18" fill="#f8f6fc" stroke="#d8d0e9" stroke-width="2"/>
+  <text x="380" y="34" text-anchor="middle" font-size="24" class="title">MoonViT：六階段原生解析度資料流</text>
+  <text x="380" y="60" text-anchor="middle" font-size="15" class="body">不同尺寸影像一起運算；sequence 邊界阻止它們互相偷看</text>
+
+  <!-- 1. Native-resolution preprocessing -->
+  <g>
+    <rect x="45" y="82" width="670" height="150" rx="14" class="stage"/>
+    <circle cx="76" cy="112" r="20" fill="#6e55a4"/>
+    <text x="76" y="119" text-anchor="middle" font-size="19" fill="#fff" font-weight="700">1</text>
+    <text x="112" y="118" font-size="20" class="title">原生解析度前處理</text>
+
+    <rect x="78" y="144" width="164" height="62" rx="8" class="warm"/>
+    <text x="160" y="168" text-anchor="middle" font-size="16" class="body">輸入：影像 A、B</text>
+    <text x="160" y="191" text-anchor="middle" class="shape">2×2、2×4 grid</text>
+    <rect x="284" y="144" width="178" height="62" rx="8" class="module"/>
+    <text x="373" y="168" text-anchor="middle" font-size="16" class="body">必要時等比例縮小</text>
+    <text x="373" y="191" text-anchor="middle" class="small">補齊、正規化</text>
+    <rect x="504" y="144" width="178" height="62" rx="8" class="accent"/>
+    <text x="593" y="168" text-anchor="middle" font-size="16" class="body">切成 14×14 patches</text>
+    <text x="593" y="191" text-anchor="middle" class="shape">4 + 8 tokens</text>
+    <line x1="244" y1="175" x2="280" y2="175" class="flow"/>
+    <line x1="464" y1="175" x2="500" y2="175" class="flow"/>
+  </g>
+  <line x1="380" y1="234" x2="380" y2="254" class="flow"/>
+
+  <!-- 2. Patch embedding -->
+  <g>
+    <rect x="45" y="258" width="670" height="150" rx="14" class="stage"/>
+    <circle cx="76" cy="288" r="20" fill="#6e55a4"/>
+    <text x="76" y="295" text-anchor="middle" font-size="19" fill="#fff" font-weight="700">2</text>
+    <text x="112" y="294" font-size="20" class="title">Patch embedding</text>
+
+    <rect x="78" y="320" width="164" height="62" rx="8" class="module"/>
+    <text x="160" y="344" text-anchor="middle" font-size="16" class="body">Conv2d 線性投影</text>
+    <text x="160" y="367" text-anchor="middle" class="shape">patch → d=1152</text>
+    <text x="267" y="360" text-anchor="middle" font-size="24" class="title">⊕</text>
+    <rect x="292" y="320" width="190" height="62" rx="8" class="accent"/>
+    <text x="387" y="344" text-anchor="middle" font-size="16" class="body">64×64 位置表插值</text>
+    <text x="387" y="367" text-anchor="middle" class="small">依每張 grid 調整</text>
+    <line x1="484" y1="351" x2="518" y2="351" class="flow"/>
+    <rect x="522" y="320" width="160" height="62" rx="8" class="warm"/>
+    <text x="602" y="344" text-anchor="middle" font-size="16" class="body">內容 + 絕對位置</text>
+    <text x="602" y="367" text-anchor="middle" class="shape">4×1152、8×1152</text>
+  </g>
+  <line x1="380" y1="410" x2="380" y2="430" class="flow"/>
+
+  <!-- 3. Packing -->
+  <g>
+    <rect x="45" y="434" width="670" height="150" rx="14" class="stage"/>
+    <circle cx="76" cy="464" r="20" fill="#6e55a4"/>
+    <text x="76" y="471" text-anchor="middle" font-size="19" fill="#fff" font-weight="700">3</text>
+    <text x="112" y="470" font-size="20" class="title">NaViT 式 packing</text>
+
+    <rect x="78" y="496" width="174" height="62" rx="8" class="accent"/>
+    <text x="165" y="520" text-anchor="middle" font-size="16" class="body">順序串接兩張影像</text>
+    <text x="165" y="543" text-anchor="middle" class="shape">X: 12×1152</text>
+    <line x1="254" y1="527" x2="286" y2="527" class="flow"/>
+    <rect x="290" y="496" width="184" height="62" rx="8" class="module"/>
+    <text x="382" y="520" text-anchor="middle" font-size="16" class="body">保存 sequence 邊界</text>
+    <text x="382" y="543" text-anchor="middle" class="shape">[0, 4, 12]</text>
+    <line x1="476" y1="527" x2="508" y2="527" class="flow"/>
+    <rect x="512" y="496" width="170" height="62" rx="8" class="warm"/>
+    <text x="597" y="520" text-anchor="middle" font-size="16" class="body">Block-diagonal mask</text>
+    <text x="597" y="543" text-anchor="middle" class="small">A、B 不互相注意</text>
+  </g>
+  <line x1="380" y1="586" x2="380" y2="606" class="flow"/>
+
+  <!-- 4. Encoder -->
+  <g>
+    <rect x="45" y="610" width="670" height="190" rx="14" fill="#d4c5ef" stroke="#7655b3" stroke-width="2.2"/>
+    <circle cx="76" cy="640" r="20" fill="#5e3d9a"/>
+    <text x="76" y="647" text-anchor="middle" font-size="19" fill="#fff" font-weight="700">4</text>
+    <text x="112" y="646" font-size="20" class="title">MoonViT Encoder ×27</text>
+    <text x="680" y="645" text-anchor="end" class="shape">1152 / 16 heads / MLP 4304</text>
+
+    <rect x="72" y="675" width="178" height="92" rx="8" class="module"/>
+    <text x="161" y="699" text-anchor="middle" font-size="16" class="body">LayerNorm → Q、K、V</text>
+    <text x="161" y="724" text-anchor="middle" font-size="16" class="body">Q、K 套用 2D RoPE</text>
+    <text x="161" y="748" text-anchor="middle" class="small">高度、寬度分開旋轉</text>
+    <line x1="252" y1="721" x2="284" y2="721" class="flow"/>
+    <rect x="288" y="675" width="184" height="92" rx="8" class="warm"/>
+    <text x="380" y="699" text-anchor="middle" font-size="16" class="body">影像內全域</text>
+    <text x="380" y="724" text-anchor="middle" font-size="16" class="body">Self-Attention</text>
+    <text x="380" y="748" text-anchor="middle" class="small">邊界阻擋跨影像 attention</text>
+    <line x1="474" y1="721" x2="506" y2="721" class="flow"/>
+    <rect x="510" y="675" width="178" height="92" rx="8" class="module"/>
+    <text x="599" y="699" text-anchor="middle" font-size="16" class="body">輸出投影 + Residual</text>
+    <text x="599" y="724" text-anchor="middle" font-size="16" class="body">LayerNorm → GELU MLP</text>
+    <text x="599" y="748" text-anchor="middle" class="small">再加一次 Residual</text>
+  </g>
+  <line x1="380" y1="802" x2="380" y2="822" class="flow"/>
+
+  <!-- 5. Final layer norm -->
+  <g>
+    <rect x="45" y="826" width="670" height="126" rx="14" class="stage"/>
+    <circle cx="76" cy="856" r="20" fill="#6e55a4"/>
+    <text x="76" y="863" text-anchor="middle" font-size="19" fill="#fff" font-weight="700">5</text>
+    <text x="112" y="862" font-size="20" class="title">Final LayerNorm</text>
+
+    <rect x="198" y="874" width="364" height="55" rx="8" class="module"/>
+    <text x="380" y="897" text-anchor="middle" font-size="16" class="body">逐 token 重新置中與縮放；不改變 token 數</text>
+    <text x="380" y="919" text-anchor="middle" class="shape">packed features: 12×1152</text>
+  </g>
+  <line x1="380" y1="954" x2="380" y2="974" class="flow"/>
+
+  <!-- 6. Patch merger -->
+  <g>
+    <rect x="45" y="978" width="670" height="150" rx="14" class="stage"/>
+    <circle cx="76" cy="1008" r="20" fill="#6e55a4"/>
+    <text x="76" y="1015" text-anchor="middle" font-size="19" fill="#fff" font-weight="700">6</text>
+    <text x="112" y="1014" font-size="20" class="title">2×2 Patch Merger</text>
+
+    <rect x="78" y="1040" width="174" height="62" rx="8" class="accent"/>
+    <text x="165" y="1064" text-anchor="middle" font-size="16" class="body">四個相鄰 token</text>
+    <text x="165" y="1087" text-anchor="middle" class="small">reshape + permute</text>
+    <line x1="254" y1="1071" x2="300" y2="1071" class="flow"/>
+    <rect x="304" y="1040" width="174" height="62" rx="8" class="warm"/>
+    <text x="391" y="1064" text-anchor="middle" font-size="16" class="body">影像 A 輸出</text>
+    <text x="391" y="1087" text-anchor="middle" class="shape">1×4×1152</text>
+    <rect x="508" y="1040" width="174" height="62" rx="8" class="warm"/>
+    <text x="595" y="1064" text-anchor="middle" font-size="16" class="body">影像 B 輸出</text>
+    <text x="595" y="1087" text-anchor="middle" class="shape">2×4×1152</text>
+  </g>
+
+  <text x="380" y="1148" text-anchor="middle" class="small">原生解析度保留長寬比，但超過 4096 個輸入 patches 時仍會等比例縮小</text>
+</svg>

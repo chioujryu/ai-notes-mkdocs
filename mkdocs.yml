@@ -147,6 +147,7 @@ nav:
           - Overview: vision/README.md
           - Backbones:
               - ViT: vision/backbones/vit.md
+              - MoonViT: vision/backbones/moonvit.md
               - Swin Transformer: vision/backbones/swin-transformer.md
           - Self-Supervised / Foundation Models:
               - DINOv2: vision/self-supervised/dinov2.md

@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="920" viewBox="0 0 1600 920" role="img" aria-labelledby="title desc">
+  <title id="title">MonoViT inference and self-supervised training data flow</title>
+  <desc id="desc">Steps 1 to 4 form the inference path from input frame through Conv-stem, the MPViT encoder, and the attention decoder to a depth map. Training continues through steps 5 to 8 with PoseNet, geometric projection, bilinear reconstruction, and self-supervised losses.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7f5ff"/>
+      <stop offset="1" stop-color="#edf7fb"/>
+    </linearGradient>
+    <linearGradient id="infer" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5b5bd6"/>
+      <stop offset="1" stop-color="#367fbe"/>
+    </linearGradient>
+    <linearGradient id="train" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b15c32"/>
+      <stop offset="1" stop-color="#c58a32"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#26354a" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#52617a"/>
+    </marker>
+    <style>
+      .panel { fill:#fff; stroke:#a7b3c4; stroke-width:2; filter:url(#shadow); }
+      .infer-panel { fill:#f4f4ff; stroke:#7478d7; stroke-width:2.4; filter:url(#shadow); }
+      .train-panel { fill:#fff8ef; stroke:#d09a58; stroke-width:2.4; filter:url(#shadow); }
+      .title { font:700 29px Arial,"Noto Sans TC",sans-serif; fill:#26334a; }
+      .lane { font:700 20px Arial,"Noto Sans TC",sans-serif; fill:#fff; }
+      .step { font:700 18px Arial,"Noto Sans TC",sans-serif; fill:#26334a; }
+      .body { font:15px Arial,"Noto Sans TC",sans-serif; fill:#4a586c; }
+      .small { font:13px Arial,"Noto Sans TC",sans-serif; fill:#657186; }
+      .arrow { fill:none; stroke:#52617a; stroke-width:3; marker-end:url(#arrow); }
+      .branch { fill:none; stroke:#b27635; stroke-width:3; marker-end:url(#arrow); }
+      .badge-i { fill:#5b5bd6; }
+      .badge-t { fill:#bd7433; }
+      .badge-text { font:700 16px Arial,"Noto Sans TC",sans-serif; fill:#fff; text-anchor:middle; }
+    </style>
+  </defs>
+
+  <rect x="8" y="8" width="1584" height="904" rx="28" fill="url(#bg)" stroke="#d8deea" stroke-width="2"/>
+  <text x="800" y="48" text-anchor="middle" class="title">MonoViT：推論與自監督訓練的完整資料流</text>
+
+  <rect x="44" y="72" width="1512" height="42" rx="12" fill="url(#infer)"/>
+  <text x="800" y="100" text-anchor="middle" class="lane">推論路徑：部署時只執行 Step 1–4</text>
+
+  <rect x="45" y="151" width="245" height="190" rx="18" class="panel"/>
+  <circle cx="72" cy="177" r="19" class="badge-i"/><text x="72" y="183" class="badge-text">1</text>
+  <text x="101" y="182" class="step">輸入影格與相機資料</text>
+  <text x="68" y="220" class="body">目標影格 Iₜ：shape (2, 2)</text>
+  <text x="68" y="247" class="body">來源影格 Iₛ：shape (2, 2)</text>
+  <text x="68" y="274" class="body">內參 K：shape (3, 3)</text>
+  <text x="68" y="307" class="small">推論只需要 Iₜ；Iₛ、K 用於訓練</text>
+
+  <path d="M290 246 H337" class="arrow"/>
+  <rect x="340" y="163" width="220" height="166" rx="18" class="infer-panel"/>
+  <circle cx="367" cy="189" r="19" class="badge-i"/><text x="367" y="195" class="badge-text">2</text>
+  <text x="396" y="194" class="step">Conv-stem 局部特徵</text>
+  <text x="365" y="232" class="body">局部卷積與 LayerNorm</text>
+  <text x="365" y="260" class="body">像素 → stem tokens X</text>
+  <text x="365" y="291" class="small">Toy output：shape (4, 2)</text>
+
+  <path d="M560 246 H607" class="arrow"/>
+  <rect x="610" y="135" width="382" height="222" rx="18" class="infer-panel"/>
+  <circle cx="637" cy="161" r="19" class="badge-i"/><text x="637" y="167" class="badge-text">3</text>
+  <text x="666" y="166" class="step">MPViT Joint CNN &amp; Transformer Encoder</text>
+  <text x="637" y="204" class="body">CPE → Factorized MHSA + CRPE → FFN</text>
+  <text x="637" y="233" class="body">並行 CNN local branch</text>
+  <text x="637" y="262" class="body">Concat + 1×1 Conv feature fusion</text>
+  <text x="637" y="297" class="small">全域關係 T + 局部紋理 L → 融合特徵 F</text>
+  <text x="637" y="325" class="small">真實模型輸出五個尺度；Toy F：shape (4, 2)</text>
+
+  <path d="M992 246 H1039" class="arrow"/>
+  <rect x="1042" y="151" width="278" height="190" rx="18" class="infer-panel"/>
+  <circle cx="1069" cy="177" r="19" class="badge-i"/><text x="1069" y="183" class="badge-text">4</text>
+  <text x="1098" y="182" class="step">Attention Decoder 與深度輸出</text>
+  <text x="1067" y="220" class="body">跨尺度融合 + Channel Attention</text>
+  <text x="1067" y="248" class="body">Sigmoid disparity head</text>
+  <text x="1067" y="276" class="body">inverse depth → depth Dₜ</text>
+  <text x="1067" y="309" class="small">Toy Dₜ：shape (2, 2)</text>
+
+  <path d="M1320 246 H1366" class="arrow"/>
+  <rect x="1369" y="178" width="170" height="136" rx="18" fill="#e9f7ef" stroke="#62a47d" stroke-width="2.4" filter="url(#shadow)"/>
+  <text x="1454" y="220" text-anchor="middle" class="step" fill="#256343">推論輸出</text>
+  <text x="1454" y="251" text-anchor="middle" class="body">Dense depth map</text>
+  <text x="1454" y="278" text-anchor="middle" class="small">只保留 DepthNet</text>
+
+  <rect x="44" y="403" width="1512" height="42" rx="12" fill="url(#train)"/>
+  <text x="800" y="431" text-anchor="middle" class="lane">訓練路徑：Step 4 的深度搭配相鄰影格，產生自監督訊號</text>
+
+  <rect x="82" y="511" width="265" height="165" rx="18" class="train-panel"/>
+  <circle cx="109" cy="537" r="19" class="badge-t"/><text x="109" y="543" class="badge-text">5</text>
+  <text x="138" y="542" class="step">PoseNet 相對姿態</text>
+  <text x="107" y="581" class="body">Concat(Iₜ, Iₛ) → ResNet-18</text>
+  <text x="107" y="610" class="body">6 DoF ξ → Tₜ→ₛ</text>
+  <text x="107" y="643" class="small">Tₜ→ₛ：shape (4, 4)</text>
+
+  <rect x="425" y="491" width="342" height="205" rx="18" class="train-panel"/>
+  <circle cx="452" cy="517" r="19" class="badge-t"/><text x="452" y="523" class="badge-text">6</text>
+  <text x="481" y="522" class="step">3D 反投影、座標變換與再投影</text>
+  <text x="450" y="561" class="body">K⁻¹Pₜ ⊙ dₜ → Xₜ</text>
+  <text x="450" y="590" class="body">Tₜ→ₛXₜʰ → Xₛʰ</text>
+  <text x="450" y="619" class="body">KXₛ → sampling grid Gₛ</text>
+  <text x="450" y="654" class="small">Gₛ：shape (2, 4)</text>
+
+  <rect x="847" y="511" width="266" height="165" rx="18" class="train-panel"/>
+  <circle cx="874" cy="537" r="19" class="badge-t"/><text x="874" y="543" class="badge-text">7</text>
+  <text x="903" y="542" class="step">Bilinear Sampling 影像重建</text>
+  <text x="872" y="581" class="body">Gₛ → weights B</text>
+  <text x="872" y="610" class="body">B · iₛ → reconstructed Ĩₜ</text>
+  <text x="872" y="643" class="small">Ĩₜ：shape (2, 2)</text>
+
+  <rect x="1192" y="491" width="330" height="205" rx="18" class="train-panel"/>
+  <circle cx="1219" cy="517" r="19" class="badge-t"/><text x="1219" y="523" class="badge-text">8</text>
+  <text x="1248" y="514" class="step">Minimum Reprojection、Auto-mask、</text>
+  <text x="1248" y="539" class="step">Smoothness 與總損失</text>
+  <text x="1217" y="570" class="body">SSIM + L1 photometric loss</text>
+  <text x="1217" y="598" class="body">Minimum reprojection + Auto-mask</text>
+  <text x="1217" y="626" class="body">Edge-aware smoothness</text>
+  <text x="1217" y="654" class="small">輸出：Ltotal（四尺度平均）</text>
+
+  <path d="M224 341 V476 H214 V508" class="branch"/>
+  <text x="235" y="472" class="small">Iₜ, Iₛ</text>
+  <path d="M1181 341 V465 H596 V488" class="branch"/>
+  <text x="1088" y="461" class="small">Dₜ</text>
+  <path d="M347 594 H422" class="branch"/>
+  <text x="366" y="584" class="small">Tₜ→ₛ</text>
+  <path d="M767 594 H844" class="branch"/>
+  <path d="M1113 594 H1189" class="branch"/>
+  <path d="M214 676 V763 H1357 V699" class="branch"/>
+  <text x="650" y="789" text-anchor="middle" class="small">目標影格 Iₜ 直接送入 loss，與重建影格 Ĩₜ 比較</text>
+
+  <rect x="72" y="825" width="1456" height="54" rx="14" fill="#fff" stroke="#c4cedb" stroke-width="1.5"/>
+  <text x="800" y="849" text-anchor="middle" class="body">核心痛點對應：Step 2 保留局部細節；Step 3 建立全域關係；Step 5–8 不需深度標籤，用影格能否重建來監督。</text>
+  <text x="800" y="870" text-anchor="middle" class="small">圖中的 shape 對應正文 2×2 教學範例；真實 MPViT-small shape 另列於正文。</text>
+</svg>

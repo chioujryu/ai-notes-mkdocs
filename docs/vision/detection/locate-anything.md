@@ -1,6 +1,6 @@
 # LocateAnything
 
-LocateAnything（Wang et al., 2026）是一個專門做**視覺定位（Visual Grounding）**的視覺語言模型（Vision-Language Model, VLM）。你給它一張影像和一句話，例如 `"the red button"`，它會用座標指出紅色按鈕在哪裡。它也能處理一般物件偵測、密集物件偵測、GUI 元件定位、文字定位（OCR localization）、文件版面定位與 point-based localization。
+LocateAnything（Wang et al., 2026）是一個專門做**視覺定位（Visual Grounding）**的視覺語言模型（Vision-Language Model, VLM）。你給它一張影像和一句話，例如 `"the red button"`，它會用座標指出紅色按鈕在哪裡。它也能處理一般物件偵測、密集物件偵測、GUI 元件定位、[光學字元辨識（Optical Character Recognition, OCR）](../tasks/ocr-docai.md)文字定位、文件版面定位與 point-based localization。
 
 它最重要的設計叫做 **Parallel Box Decoding (PBD)**：不再把一個框的四個座標拆開、逐 token 慢慢生成，而是把完整 bounding box 視為一個不可拆的 **atomic unit**，在同一個 decoding step 內平行預測。
 
@@ -10,13 +10,13 @@ LocateAnything（Wang et al., 2026）是一個專門做**視覺定位（Visual G
 
 ---
 
-## 1) 故事背景：GUI agent 卡在「一個座標一個座標念」
+## 故事背景：GUI Agent 卡在「一個座標一個座標念」
 
 想像一個 GUI agent 正在操作購物網站。使用者說：
 
 > Click the red button.
 
-模型先看懂畫面，也知道紅色按鈕在哪裡，但它仍要把位置轉成文字序列。如果按鈕的框是 \((120,200,420,650)\)，傳統 generative VLM 常用 **Next-Token Prediction (NTP)** 依序輸出：
+模型先看懂畫面，也知道紅色按鈕在哪裡，但它仍要把位置轉成文字序列。如果按鈕的框是 \((120,200,420,650)\)，傳統 generative VLM 常用 [**Next-Token Prediction (NTP)**](../../llm/core/decoding.md)，也就是每次只接著猜一個 token，依序輸出：
 
 ```text
 <box> → <120> → <200> → <420> → <650> → </box>
@@ -32,7 +32,7 @@ LocateAnything（Wang et al., 2026）是一個專門做**視覺定位（Visual G
 
 ---
 
-## 2) 四種座標 decoding 方法有什麼差別？
+## 四種座標 Decoding 方法有什麼差別？
 
 | 方法 | 如何輸出 `(120, 200, 420, 650)` | 主要問題或優點 |
 | --- | --- | --- |
@@ -50,27 +50,41 @@ $$
 - \(Z\)：影像經 vision encoder 得到的 visual tokens。
 - \(E\)：文字 query。
 - \(b_i\)：第 \(i\) 個 box-aligned block。
-- \(b_{<i}\)：已經確認並寫進 KV cache 的先前 blocks。
+- \(b_{<i}\)：已經確認並寫進 [**Key-Value Cache（KV Cache）**](../../llm/core/kv-cache.md) 的先前 blocks；它像是把已讀過的上下文重點先記住，下一步不必全部重算。
 
 ---
 
-## 3) 真實架構：Moon-ViT → MLP projector → Qwen2.5
+## 推論架構：從影像與文字到 Pixel Box
 
-LocateAnything-3B 建立在 native-resolution VLM 上，主要資料流如下：
+LocateAnything-3B 建立在 native-resolution VLM 上；它會保留影像的原生長寬比例與較細的空間線索。推論的六個階段與上圖完全對齊：
 
-| 階段 | 模組 | 做的事 |
+| 編號 | 階段 | 輸入 → 輸出 |
 | --- | --- | --- |
-| 1 | **Moon-ViT vision encoder** | 依原生解析度抽取 visual tokens，保留細小文字、GUI icon 和密集物件需要的空間細節。 |
-| 2 | **MLP projector** | 把 vision encoder 的特徵維度轉成 language decoder 能接收的維度。 |
-| 3 | **Qwen2.5 language decoder** | 同時讀取 visual tokens、文字 query 與先前輸出，產生下一個 structured block。 |
-| 4 | **Parallel Box Decoding (PBD)** | 在一個 decoding step 內解析長度為 6 的 block。 |
-| 5 | **Hybrid validator** | 檢查 format 與 spatial confidence；不可靠時只重解碼有問題的 block。 |
+| 1 | **影像與文字 Query** | GUI screenshot 與 `"the red button"` → 影像張量與文字 tokens。 |
+| 2 | [**Moon-ViT Visual Tokens**](../backbones/moonvit.md) | 影像張量 → 保留細小文字、GUI icon 與密集物件位置線索的 visual tokens。 |
+| 3 | **MLP Projector 與 Query Context** | visual tokens 與 query embeddings → Qwen2.5 能共同讀取的 context。 |
+| 4 | **Qwen2.5 + Parallel Box Decoding** | context 與已確認 blocks → 一次預測長度為 6 的 Box Block。 |
+| 5 | **Hybrid Validation 與局部 NTP Fallback** | 檢查格式與空間信心；不可靠時只重解碼有問題的 block。 |
+| 6 | **`[0,1000]` 座標還原成 Pixel Box** | 量化座標 → 原圖上的像素邊界框。 |
 
-Qwen2.5 decoder 內部仍是 Transformer：反覆經過 masked self-attention、FFN 與 LM head。PBD 改變的重點不是 vision encoder，也不是把 Transformer 換掉，而是**輸出單位、attention mask、訓練目標與 inference loop**。若要先複習 decoder 的基本運算，可參考 [Transformer](../../llm/core/transformer.md) 與 [Attention](../../llm/core/attention.md)。
+Qwen2.5 decoder 內部仍是 [Transformer](../../llm/core/transformer.md)：反覆經過 masked self-attention、FFN 與 LM head。[Attention](../../llm/core/attention.md) 可以把它想成「依目前問題，替不同視覺與文字線索分配注意力」。PBD 改變的重點不是 vision encoder，也不是把 Transformer 換掉，而是**輸出單位、attention mask、訓練目標與 inference loop**。
+
+公開的 `nvidia/LocateAnything-3B` checkpoint 使用的真實主幹如下；這些是官方設定，不是後文為了手算縮小的 toy shape：
+
+| 模組 | 官方設定 | 資料轉換重點 |
+| --- | --- | --- |
+| Moon-ViT | patch size 14、27 layers、hidden size 1152、16 attention heads | 原生解析度影像 → visual tokens。 |
+| 2×2 spatial merger | 每四個相鄰 token 合併 | 每組特徵為 \(4\times1152=4608\) 維。 |
+| [MLP Projector](../../vlm/connectors/projector-adapter.md) | [LayerNorm](../../foundations/normalization/layernorm.md) `(4608)` → Linear → [GELU](../../foundations/activation/gelu-silu.md) → Linear | LayerNorm 先把數值尺度整理穩定，GELU 再以平滑非線性挑選特徵；最後把 Moon-ViT 特徵投影到 Qwen2.5 的 hidden size。Projector 就像不同模組之間的轉接頭。 |
+| Qwen2.5-3B-Instruct | causal language decoder | 讀取 visual tokens、query 與已確認 blocks，再產生 structured output。 |
+
+訓練時則依下圖的 T1–T3，把同一份答案同時教成逐 token 與逐 block 兩種讀法：
+
+![LocateAnything 訓練流程：T1 建立固定長度且對齊邊界框的 blocks，T2 套用 NTP 與 MTP 聯合 attention mask，T3 以雙交叉熵損失共同訓練](../assets/locate-anything/locate-anything-training.svg)
 
 ---
 
-## 4) Box-aligned block：每一塊固定長度 \(L=6\)
+## T1 — Fixed-length Box-Aligned Blocks
 
 LocateAnything 先把連續座標正規化到 \([0,1000]\)，再量化為 coordinate tokens。所有 block 都固定為 6 個位置；用不到的位置填 `<null>`，以維持一致的 tensor shape。
 
@@ -93,7 +107,7 @@ LocateAnything 先把連續座標正規化到 \([0,1000]\)，再量化為 coordi
 
 ---
 
-## 5) 聯合訓練：同一份答案，同時練 NTP 與 MTP
+## T2 — Joint NTP/MTP Attention Mask
 
 只訓練平行輸出，可能破壞原本 language decoder 擅長的 causal reasoning；只訓練 NTP，又學不會一次完成整個 box。LocateAnything 因此把同一份 ground truth 做成兩種表示：
 
@@ -115,7 +129,7 @@ Box target:      [<box>, <120>, <200>, <420>, <650>, </box>]
 End target:      [<eos>, <null>, <null>, <null>, <null>, <null>]
 ```
 
-### 5.1 三種 attention 可見範圍
+### T2.1 三種 Attention 可見範圍
 
 以下矩陣都用 `1` 表示「可以 attend」，`0` 表示「不可 attend」。
 
@@ -163,7 +177,11 @@ M_{\text{intra}}=
 \quad\text{shape}=(6,6)
 $$
 
-這三個規則合起來就是 **block-causal attention**：block 之間維持 causal，block 內部則可以雙向互看。最後同時最小化兩份 cross-entropy loss：
+這三個規則合起來就是 **block-causal attention**：block 之間維持 causal，block 內部則可以雙向互看。
+
+## T3 — Dual Cross-Entropy Loss
+
+最後同時最小化兩份[交叉熵損失（Cross-Entropy Loss）](../../foundations/losses/cross-entropy.md)：它會懲罰模型分給正確 token 的機率太低，讓 NTP 與 MTP 兩條訓練路徑一起變準。
 
 $$
 \mathcal{L}=\mathcal{L}_{\text{ntp}}+\mathcal{L}_{\text{mtp}}
@@ -174,15 +192,52 @@ $$
 
 ---
 
-## 6) 完整數值範例：從 GUI screenshot 到 pixel box
+## Step 1 — 影像與文字 Query
 
 我們用一張寬 \(W_{\text{img}}=1000\)、高 \(H_{\text{img}}=600\) 的 GUI screenshot，query 是 `"the red button"`。為了能手算，以下把真實模型縮成 4 個 visual tokens、hidden dimension 2 的 toy model。
 
 > **重要：**以下所有 feature、embedding 與 probability 都是教學用 toy values，只為追蹤資料如何流動，不是 `nvidia/LocateAnything-3B` 的真實 hidden values 或輸出機率。真實 Transformer 維度和 vocabulary 都大得多。
 
-### Step 1 — Moon-ViT 產生 visual tokens
+把 screenshot 簡化成 \(2\times2\) 四個區域，每個區域用三個可追蹤的 toy 數值表示，得到 **影像區域矩陣 \(X_{\text{img}}\)**：
 
-把 screenshot 簡化成 \(2\times2\) 四個區域。Moon-ViT 的 toy 輸出為 **visual tokens \(Z\)**，shape \(4\times3\)：
+$$
+X_{\text{img}}=
+\begin{bmatrix}
+0.0&1.0&1.0\\
+1.0&0.0&1.0\\
+1.0&1.0&0.0\\
+1.0&0.0&0.0
+\end{bmatrix}
+\quad\text{shape}=(4,3)
+$$
+
+四列由左上、右上、左下到右下排列；三欄只是教學用視覺量測，不把它們冒充真實模型學到的語意。文字 Query token sequence 為 \(T_q=(\texttt{the},\texttt{red},\texttt{button})\)，sequence length 為 3；它在 Step 3 才會轉成有數值的 embedding matrix。
+
+所以本階段輸出是 \(X_{\text{img}}\)、\(T_q\)、\(W_{\text{img}}=1000\) 與 \(H_{\text{img}}=600\)，供後續視覺編碼與座標還原使用。
+
+## Step 2 — Moon-ViT Visual Tokens
+
+真實 Moon-ViT 會經過 patch embedding 與多層 attention。為了讓每個數值都能驗算，這裡只以 **toy Moon-ViT weight \(W_{\text{vit}}\)** 模擬一次視覺特徵轉換：
+
+$$
+W_{\text{vit}}=
+\begin{bmatrix}
+0.0&1.0&0.0\\
+1.0&0.0&0.0\\
+0.0&0.0&1.0
+\end{bmatrix}
+\quad\text{shape}=(3,3)
+$$
+
+矩陣關係為：
+
+$$
+\underbrace{X_{\text{img}}}_{(4,3)}\cdot
+\underbrace{W_{\text{vit}}}_{(3,3)}=
+\underbrace{Z}_{(4,3)}
+$$
+
+得到 **visual tokens \(Z\)**：
 
 $$
 Z=
@@ -195,9 +250,9 @@ Z=
 \quad\text{shape}=(4,3)
 $$
 
-每一列是一個 image region，每一欄可想成 toy 視覺屬性。真實 feature 不是人工指定的「紅色欄」或「按鈕欄」，而是訓練學到的 dense representation。
+每一列仍對應一個 image region，每一欄是轉換後的 toy 視覺屬性。這個 \(3\times3\) 矩陣只是把龐大的真實 encoder 壓成可手算的代理；真實 feature 不是人工指定的「紅色欄」或「按鈕欄」，而是訓練學到的 dense representation。
 
-### Step 2 — MLP projector 對齊維度
+## Step 3 — MLP Projector 與 Query Context
 
 為了示範，toy MLP projector 簡化成一個線性矩陣 **projector weight \(W_{\text{proj}}\)**，shape \(3\times2\)：
 
@@ -232,7 +287,7 @@ V=
 \quad\text{shape}=(4,2)
 $$
 
-### Step 3 — 加入 query embeddings
+### 3.1 加入 Query Embeddings
 
 `the`、`red`、`button` 三個 token 的 toy **query embeddings \(Q\)** 為：
 
@@ -264,7 +319,7 @@ $$
 
 前四列來自 image，後三列來自 query。Qwen2.5 decoder 會以 attention 讓文字和視覺資訊互相作用，再根據 shared context、先前 committed blocks 與目前的 masked block 產生六個位置的 token probabilities。
 
-### Step 4 — 一個 step 產生完整 Box Block
+## Step 4 — Qwen2.5 + Parallel Box Decoding
 
 為了完整列出所有值，toy vocabulary 只保留本例需要的 10 個 tokens，欄順序是：
 
@@ -272,7 +327,52 @@ $$
 [<box>, <120>, <200>, <390>, <405>, <420>, <470>, <501>, <650>, </box>]
 ```
 
-Qwen2.5 decoder 經 LM head 與 softmax 後，得到 **box token probability matrix \(P_{\text{box}}\)**，shape \(6\times10\)。每一列對應 block 的一個位置，每列總和皆為 1：
+目前要解碼的是 `[<box>, [mask], [mask], [mask], [mask], [mask]]`。加入 token 與 position embedding 後，用 **Box Block 輸入矩陣 \(B_{\text{in}}\)** 表示：
+
+$$
+B_{\text{in}}=
+\begin{bmatrix}
+0.6&0.2\\
+0.1&0.1\\
+0.2&0.1\\
+0.3&0.1\\
+0.4&0.1\\
+0.5&0.1
+\end{bmatrix}
+\quad\text{shape}=(6,2)
+$$
+
+完整 Qwen2.5 有數十層，無法用兩維 toy model重現；這裡把 attention、FFN 與 LM head 壓成同一個可追蹤函式，輸入 \(C\) 與 \(B_{\text{in}}\)，輸出 **box token logits \(L_{\text{box}}\)**。為使後續機率可精確驗算，令 \(L_{\text{box}}=\ln(P_{\text{box}})\)，顯示至小數點後八位：
+
+$$
+\operatorname{ToyQwen}\!\left(
+\underbrace{C}_{(7,2)},
+\underbrace{B_{\text{in}}}_{(6,2)}
+\right)=
+\underbrace{L_{\text{box}}}_{(6,10)}
+$$
+
+$$
+L_{\text{box}}=
+\begin{bmatrix}
+-0.09431068&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-4.60517019\\
+-4.60517019&-0.10536052&-3.91202301&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-4.60517019\\
+-4.60517019&-3.91202301&-0.11653382&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-3.91202301&-4.60517019\\
+-4.60517019&-4.60517019&-4.60517019&-2.52572864&-2.12026354&-0.49429632&-2.40794561&-2.99573227&-4.60517019&-4.60517019\\
+-4.60517019&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-3.91202301&-4.60517019&-4.60517019&-0.10536052&-4.60517019\\
+-4.60517019&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-4.60517019&-0.09431068
+\end{bmatrix}
+\quad\text{shape}=(6,10)
+$$
+
+接著對每一列套用 [Softmax](../../foundations/activation/softmax.md)，得到 **box token probability matrix \(P_{\text{box}}\)**。Softmax 會把每列 logits 轉成總和為 1 的機率：
+
+$$
+\operatorname{Softmax}\!\left(
+\underbrace{L_{\text{box}}}_{(6,10)}
+\right)=
+\underbrace{P_{\text{box}}}_{(6,10)}
+$$
 
 $$
 P_{\text{box}}=
@@ -295,7 +395,7 @@ $$
 
 這正是一個完整 box。若用 NTP，要依序走 6 個 decoding steps；PBD 在這個 box block 內只用 1 個 parallel step。
 
-### Step 5 — Hybrid Mode 檢查 spatial ambiguity
+## Step 5 — Hybrid Validation 與局部 NTP Fallback
 
 雖然第 4 列的 argmax 是 `<420>`，但它的 top-1 probability 只有：
 
@@ -312,11 +412,30 @@ $$
 
 兩個條件同時成立，因此觸發 **spatial ambiguity**。Hybrid Mode 會：
 
+$$
+\text{fallback}
+=\left(p_{\text{top-1}}<0.7\right)
+\land\left(\text{top-5 span}>80\right)
+=\text{true}
+$$
+
 1. 丟棄整個未確認的 Box Block，不把它寫入 KV cache。
 2. 回到上一個 verified prefix，也就是已確認的 Semantic Block。
 3. 暫時切換成 **NTP**，逐 token 重解碼這一個 block。
 4. 得到格式正確、信心較穩定的 `<box><120><200><420><650></box>`。
 5. 把確認過的 tokens 寫入 KV cache，下一個 block 再切回 **MTP**。
+
+在本例中，局部 NTP fallback 得到的 **已驗證 token 信心向量 \(p_{\text{verified}}\)** 為：
+
+$$
+p_{\text{verified}}=
+\begin{bmatrix}
+0.99&0.94&0.93&0.88&0.96&0.99
+\end{bmatrix}
+\quad\text{shape}=(1,6)
+$$
+
+它依序對應 `[<box>, <120>, <200>, <420>, <650>, </box>]`，因此本階段輸出已確認的四個量化座標 \((120,200,420,650)\)。這組信心仍是教學用 toy values，不是官方 checkpoint 的實測輸出。
 
 另一種 fallback 原因叫 **format irregularity**，例如 block 內混入 `</ref>`：
 
@@ -326,7 +445,7 @@ $$
 
 這種輸出即使 coordinate confidence 很高也不能構成合法 Box Block，因此同樣直接回退到 NTP。
 
-### Step 6 — 從 `[0,1000]` 換成 pixel coordinates
+## Step 6 — `[0,1000]` 座標還原成 Pixel Box
 
 確認後的 **normalized box \(B_{\text{norm}}\)** 為：
 
@@ -345,6 +464,27 @@ x_{\text{pixel}}=\frac{x}{1000}W_{\text{img}},\qquad
 y_{\text{pixel}}=\frac{y}{1000}H_{\text{img}}
 $$
 
+也可把四個縮放係數排成 **pixel scaling matrix \(S_{\text{pixel}}\)**：
+
+$$
+S_{\text{pixel}}=
+\begin{bmatrix}
+1.0&0.0&0.0&0.0\\
+0.0&0.6&0.0&0.0\\
+0.0&0.0&1.0&0.0\\
+0.0&0.0&0.0&0.6
+\end{bmatrix}
+\quad\text{shape}=(4,4)
+$$
+
+其中 \(1.0=W_{\text{img}}/1000\)，\(0.6=H_{\text{img}}/1000\)。矩陣關係為：
+
+$$
+\underbrace{B_{\text{norm}}}_{(1,4)}\cdot
+\underbrace{S_{\text{pixel}}}_{(4,4)}=
+\underbrace{B_{\text{pixel}}}_{(1,4)}
+$$
+
 所以 **pixel box \(B_{\text{pixel}}\)** 為：
 
 $$
@@ -359,7 +499,7 @@ $$
 
 ---
 
-## 7) 三種 inference mode 怎麼選？
+## 三種 Inference Mode 怎麼選？
 
 | Mode | Decoding 行為 | 論文報告的 throughput | 適合情境 |
 | --- | --- | ---: | --- |
@@ -373,7 +513,7 @@ $$
 
 ---
 
-## 8) LocateAnything-Data：不只看一般照片
+## LocateAnything-Data：不只看一般照片
 
 PBD 解決「怎麼輸出」，大量且多樣的資料則解決「模型看過哪些定位問題」。作者整理的 LocateAnything-Data 包含約：
 
@@ -390,12 +530,12 @@ PBD 解決「怎麼輸出」，大量且多樣的資料則解決「模型看過�
 | Layout Grounding | 3.5% | 文件、表格與版面區塊定位。 |
 | Point-Based Localization | 2.2% | 只需回傳一個 point 的細粒度定位。 |
 
-在作者報告的 **Hybrid Mode** 結果中，LocateAnything-3B 達到 12.7 BPS；同一份結果摘要也列出 LVIS mean F1 50.7、COCO mean F1 54.7、M6Doc mean F1 70.1，以及 ScreenSpot-Pro 平均 60.3。這些數字應解讀為特定 benchmark 與 evaluation protocol 下的論文結果，不等於每個自有資料集都會得到相同表現。
+在作者報告的 **Hybrid Mode** 結果中，LocateAnything-3B 達到 12.7 BPS；同一份結果摘要也列出 LVIS mean F1 50.7、COCO mean F1 54.7、M6Doc mean F1 70.1，以及 ScreenSpot-Pro 平均 60.3。定位常先以 [Intersection over Union（IoU）](../../foundations/losses/dice-iou-loss.md) 衡量預測框與真實框的重疊比例，再依 benchmark 規則彙整成 F1 等指標。這些數字應解讀為特定 benchmark 與 evaluation protocol 下的論文結果，不等於每個自有資料集都會得到相同表現。
 
 
 ---
 
-## 9) 官方 `LocateAnythingWorker` Quick Start
+## 官方 `LocateAnythingWorker` Quick Start
 
 官方程式碼位於 Eagle repository 的 `Embodied` 目錄：
 
@@ -440,11 +580,15 @@ print(worker.point(image, "the traffic light")["answer"])
 
 座標是 \([0,1000]\) 的整數。Bounding box 轉回原圖時，\(x\) 乘上 `image_width / 1000`，\(y\) 乘上 `image_height / 1000`；point 也使用相同規則。
 
-> 截至 **2026-07-22**，官方 README 註明公開的 `nvidia/LocateAnything-3B` 權重尚未直接支援 **visual prompt inference**。repository 已提供 visual prompt 與 LoRA fine-tuning 程式，但能直接做 visual prompt inference 的官方權重仍待後續發布。
+### 發布狀態（截至 2026-07-22）
+
+- 論文已獲 **ECCV 2026** 接收。
+- 官方程式庫已支援 **batch inference**；在 NVIDIA A100、RTX 4090 等非 Hopper／Blackwell GPU 上，可選用 `la_flash` attention backend。
+- 公開的 `nvidia/LocateAnything-3B` 權重尚未直接支援 **visual prompt inference**。程式庫已釋出 visual prompt 與 LoRA fine-tuning 程式，但可直接做 visual prompt inference 的官方權重仍待後續發布。
 
 ---
 
-## 10) 和 Grounding DINO、一般 generative VLM 有什麼不同？
+## 和 Grounding DINO、一般 Generative VLM 有什麼不同？
 
 | 面向 | LocateAnything | [Grounding DINO](grounding-dino.md) | 一般 generative VLM grounding |
 | --- | --- | --- | --- |
@@ -452,7 +596,7 @@ print(worker.point(image, "the traffic light")["answer"])
 | Box 產生方式 | `PBD` 生成 structured coordinate blocks | Detection queries 經 Box Head 直接回歸 boxes | 常用 NTP 逐 coordinate token 生成 |
 | 語言能力 | 保留 instruction-following 與多任務介面 | 強項是 open-vocabulary detection / grounding | 通用問答強，但定位速度與幾何一致性不一定最佳 |
 | 速度策略 | Fast / Slow / Hybrid on-demand decoding | detector forward pass | 通常只能調 generation 參數或換 runtime |
-| 典型優勢 | GUI、OCR、layout、dense detection、pointing 統一在一個模型 | 純偵測 pipeline 成熟，能接 SAM 等模組 | 任務彈性高、自然語言輸出方便 |
+| 典型優勢 | GUI、OCR、layout、dense detection、pointing 統一在一個模型 | 純偵測 pipeline 成熟，能接 [SAM](../segmentation/sam.md) 等模組 | 任務彈性高、自然語言輸出方便 |
 
 選型直覺：
 
@@ -462,7 +606,7 @@ print(worker.point(image, "the traffic light")["answer"])
 
 ---
 
-## 11) 限制與容易誤解的地方
+## 限制與容易誤解的地方
 
 1. **PBD 不是所有 boxes 一次平行完成。**它平行的是一個 atomic block 內的 tokens；blocks 之間仍遵守 causal order。
 2. **Fast Mode 不是永遠和 Slow Mode 一樣準。**密集排列或 category transition 複雜時仍可能出現 spatial ambiguity / format irregularity。
@@ -473,7 +617,7 @@ print(worker.point(image, "the traffic light")["answer"])
 
 ---
 
-## 12) 參考資料
+## 參考資料
 
 - NVIDIA 專案頁：[LocateAnything: Fast and High-Quality Vision-Language Grounding with Parallel Box Decoding](https://research.nvidia.com/labs/lpr/locate-anything/)
 - 原始論文：[LocateAnything.pdf](https://research.nvidia.com/labs/lpr/locate-anything/LocateAnything.pdf)
