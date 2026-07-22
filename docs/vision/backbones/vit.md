@@ -110,7 +110,7 @@ $$   （包含 \(196\) 個 Patch 和 \(1\) 個 class embedding）。
 ### **Step 3: 加入 Position Embedding**
 
 1. **添加位置編碼**：
-   為每個 Patch 和 class embedding 添加位置編碼（[Position Embedding](#position-embedding)），詳細可以參考：
+   為每個 Patch 和 class embedding 添加位置編碼（Position Embedding），詳細可以參考：
    
    $$
    E_{\text{pos}} = E' + P_{\text{pos}}

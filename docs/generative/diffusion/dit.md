@@ -1,6 +1,6 @@
 # DiT (Scalable Diffusion Models with Transformers)
 
-![alt text](../assets/dit/dit-01.png)
+![DiT architecture](assets/DiT/image.png)
 
 
 太好了，這張圖就是 **DiT（Diffusion Transformer）** 家族的典型模組。下面用「歷史 → 解痛點 → 能做什麼 → 誰在用」四段超清楚帶你過一遍。

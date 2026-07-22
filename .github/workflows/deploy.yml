@@ -3,7 +3,7 @@ name: Deploy MkDocs to GitHub Pages
 on:
   push:
     branches:
-      - v2
+      - main
   workflow_dispatch:
 
 permissions:
@@ -22,17 +22,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v8
         with:
-          python-version: '3.x'
+          enable-cache: true
+          cache-dependency-glob: uv.lock
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
+      - name: Install Python
+        run: uv python install
 
-      - name: Build MkDocs site
-        run: mkdocs build
+      - name: Sync dependencies
+        run: uv sync --locked
+
+      - name: Build MkDocs site strictly
+        run: uv run mkdocs build --strict
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="560" viewBox="0 0 1400 560" role="img" aria-labelledby="title desc">
+  <title id="title">LocateAnything architecture and Hybrid Mode fallback</title>
+  <desc id="desc">An image and text query pass through Moon-ViT, an MLP projector, and a Qwen2.5 decoder. Parallel Box Decoding predicts a six-token box block. A validator commits reliable blocks or re-decodes uncertain blocks with NTP.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6f3ff"/>
+      <stop offset="1" stop-color="#eef7ff"/>
+    </linearGradient>
+    <linearGradient id="pbd" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6d5bd0"/>
+      <stop offset="1" stop-color="#4d8bd8"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#27304f" flood-opacity="0.16"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#52617a"/>
+    </marker>
+    <style>
+      .box { fill: #ffffff; stroke: #9aa9bd; stroke-width: 2; rx: 16; filter: url(#shadow); }
+      .label { font-family: Arial, "Noto Sans TC", sans-serif; font-size: 18px; fill: #26334a; }
+      .small { font-family: Arial, "Noto Sans TC", sans-serif; font-size: 14px; fill: #59677c; }
+      .title { font-family: Arial, "Noto Sans TC", sans-serif; font-size: 27px; font-weight: 700; fill: #30275f; }
+      .module { font-family: Arial, "Noto Sans TC", sans-serif; font-size: 19px; font-weight: 700; fill: #26334a; }
+      .arrow { fill: none; stroke: #52617a; stroke-width: 3; marker-end: url(#arrow); }
+    </style>
+  </defs>
+
+  <rect x="8" y="8" width="1384" height="544" rx="26" fill="url(#bg)" stroke="#d9ddef" stroke-width="2"/>
+  <text x="700" y="47" text-anchor="middle" class="title">LocateAnything：Box-aligned Parallel Decoding</text>
+  <text x="700" y="73" text-anchor="middle" class="small">同一個 Box Block 的 6 個 tokens 平行預測；blocks 之間維持 causal order</text>
+
+  <rect x="45" y="115" width="190" height="145" class="box"/>
+  <rect x="68" y="138" width="72" height="70" rx="8" fill="#eef1f7" stroke="#8391a7"/>
+  <rect x="82" y="151" width="44" height="40" rx="6" fill="#ed5f6d"/>
+  <text x="104" y="176" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#ffffff">CLICK</text>
+  <text x="151" y="157" class="small">Image</text>
+  <text x="151" y="181" class="small">1000 × 600</text>
+  <rect x="65" y="218" width="150" height="26" rx="13" fill="#fff1f3" stroke="#ed8b96"/>
+  <text x="140" y="236" text-anchor="middle" class="small">"the red button"</text>
+
+  <path d="M235 187 H282" class="arrow"/>
+  <rect x="285" y="132" width="175" height="110" class="box"/>
+  <text x="372" y="177" text-anchor="middle" class="module">Moon-ViT</text>
+  <text x="372" y="203" text-anchor="middle" class="small">native-resolution</text>
+  <text x="372" y="223" text-anchor="middle" class="small">visual tokens Z</text>
+
+  <path d="M460 187 H502" class="arrow"/>
+  <rect x="505" y="132" width="165" height="110" class="box"/>
+  <text x="587" y="177" text-anchor="middle" class="module">MLP Projector</text>
+  <text x="587" y="205" text-anchor="middle" class="small">vision → LLM space</text>
+
+  <path d="M670 187 H712" class="arrow"/>
+  <rect x="715" y="132" width="190" height="110" class="box"/>
+  <text x="810" y="173" text-anchor="middle" class="module">Qwen2.5</text>
+  <text x="810" y="199" text-anchor="middle" class="small">language decoder</text>
+  <text x="810" y="220" text-anchor="middle" class="small">context + KV cache</text>
+
+  <path d="M905 187 H947" class="arrow"/>
+  <rect x="950" y="106" width="405" height="164" rx="18" fill="url(#pbd)" filter="url(#shadow)"/>
+  <text x="1152" y="139" text-anchor="middle" font-family="Arial, 'Noto Sans TC', sans-serif" font-size="20" font-weight="700" fill="#ffffff">Parallel Box Decoding (MTP)</text>
+  <text x="1152" y="162" text-anchor="middle" font-family="Arial, 'Noto Sans TC', sans-serif" font-size="14" fill="#e9edff">one atomic block · one decoding step</text>
+
+  <g font-family="Arial" font-size="13" text-anchor="middle">
+    <rect x="974" y="184" width="55" height="48" rx="8" fill="#ffffff"/><text x="1001" y="213" fill="#3a4270">&lt;box&gt;</text>
+    <rect x="1035" y="184" width="55" height="48" rx="8" fill="#ffffff"/><text x="1062" y="213" fill="#3a4270">120</text>
+    <rect x="1096" y="184" width="55" height="48" rx="8" fill="#ffffff"/><text x="1123" y="213" fill="#3a4270">200</text>
+    <rect x="1157" y="184" width="55" height="48" rx="8" fill="#ffffff"/><text x="1184" y="213" fill="#3a4270">420</text>
+    <rect x="1218" y="184" width="55" height="48" rx="8" fill="#ffffff"/><text x="1245" y="213" fill="#3a4270">650</text>
+    <rect x="1279" y="184" width="55" height="48" rx="8" fill="#ffffff"/><text x="1306" y="213" fill="#3a4270">&lt;/box&gt;</text>
+  </g>
+
+  <path d="M1152 270 V316" class="arrow"/>
+  <rect x="962" y="319" width="380" height="82" class="box"/>
+  <text x="1152" y="351" text-anchor="middle" class="module">Hybrid Validator</text>
+  <text x="1152" y="377" text-anchor="middle" class="small">format integrity + spatial confidence</text>
+
+  <path d="M962 360 H807 V448 H718" class="arrow"/>
+  <text x="827" y="347" class="small" fill="#a43d48">unreliable</text>
+  <rect x="465" y="421" width="250" height="82" class="box" style="stroke:#e28a93"/>
+  <text x="590" y="453" text-anchor="middle" class="module">Corrected NTP Re-decoding</text>
+  <text x="590" y="479" text-anchor="middle" class="small">只重做有問題的 block</text>
+  <path d="M465 462 H380 V295 H810 V245" class="arrow"/>
+  <text x="390" y="443" class="small">verified prefix</text>
+
+  <path d="M1152 401 V456 H1276" class="arrow"/>
+  <text x="1170" y="430" class="small" fill="#27704c">reliable</text>
+  <rect x="1279" y="421" width="78" height="76" rx="14" fill="#e8f7ee" stroke="#63a57d" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1318" y="451" text-anchor="middle" class="module" fill="#286544">Commit</text>
+  <text x="1318" y="476" text-anchor="middle" class="small">KV cache</text>
+
+  <rect x="50" y="326" width="300" height="156" rx="18" fill="#ffffff" stroke="#c8cfdd" stroke-width="2"/>
+  <text x="200" y="358" text-anchor="middle" class="module">Three On-demand Modes</text>
+  <circle cx="84" cy="391" r="7" fill="#4d8bd8"/><text x="101" y="397" class="label">Fast: MTP blocks</text>
+  <circle cx="84" cy="426" r="7" fill="#ed8b4f"/><text x="101" y="432" class="label">Slow: NTP tokens</text>
+  <circle cx="84" cy="461" r="7" fill="#6d5bd0"/><text x="101" y="467" class="label">Hybrid: MTP → NTP fallback</text>
+</svg>

@@ -22,7 +22,7 @@ theme:
     collapse_navigation: True # 只在当前页面的侧边栏中包含页面标题。
     titles_only: False # 只在侧边栏中包括文章标题，不包括所有子标题。默认值:False。
     sticky_navigation: True #侧边栏在滚动页面时随主页内容滚动
-    locale: zh_CN # 语言配置，需要安装mkdocs[i18n]：pip install mkdocs[i18n]
+    language: zh # Material 主題語言
 
 # theme:
 #   name: material
@@ -88,6 +88,23 @@ nav:
           - Weight Decay: foundations/regularization/weight-decay.md
           - Label Smoothing: foundations/regularization/label-smoothing.md
 
+  - Data:
+      - Overview: data/README.md
+      - Data Curation:
+          - Cleaning / Dedup / Filtering: data/curation/clean-dedup-filter.md
+          - Mixture & Sampling: data/curation/mixture-sampling.md
+          - Licensing / Copyright (Intro): data/curation/licensing.md
+      - Instruction / Preference Data:
+          - Instruction Tuning Data: data/instruction/it-data.md
+          - Preference Data (RLHF/DPO): data/preference/preference-data.md
+          - Synthetic Data: data/synthetic/synthetic-data.md
+      - Multimodal Data:
+          - Image-Text: data/mm/image-text.md
+          - Video-Text: data/mm/video-text.md
+          - Audio-Text: data/mm/audio-text.md
+      - Tooling:
+          - Datasets / WebDataset / HF Datasets: data/tooling/datasets.md
+
   - Models:
       - LLM:
           - Overview: llm/README.md
@@ -131,13 +148,20 @@ nav:
           - Backbones:
               - ViT: vision/backbones/vit.md
               - Swin Transformer: vision/backbones/swin-transformer.md
+          - Self-Supervised / Foundation Models:
+              - DINOv2: vision/self-supervised/dinov2.md
+              - DINOv3: vision/self-supervised/dinov3.md
+          - Depth Estimation:
+              - MonoViT: vision/depth/monovit.md
           - Detection:
               - DETR: vision/detection/detr.md
               - Grounding DINO: vision/detection/grounding-dino.md
+              - LocateAnything: vision/detection/locate-anything.md
+              - RF-DETR: vision/detection/rf-detr.md
           - Segmentation:
+              - SAM: vision/segmentation/sam.md
               - Mask2Former: vision/segmentation/mask2former.md
               - Mask DINO: vision/segmentation/mask-dino.md
-              - SAM: vision/segmentation/sam.md
               - Grounding-SAM: vision/segmentation/grounding-sam.md
           - Tasks:
               - OCR / Document AI: vision/tasks/ocr-docai.md
@@ -210,6 +234,7 @@ nav:
               - Qwen2.5-VL: vlm/generative/qwen2.5-vl.md
           - Grounding:
               - Grounding DINO: vision/detection/grounding-dino.md
+              - LocateAnything: vision/detection/locate-anything.md
               - Grounding-SAM: vision/segmentation/grounding-sam.md
           - Evaluation:
               - VQA / MMMU (Intro): vlm/eval/vqa-mmmu.md
@@ -254,23 +279,6 @@ nav:
           - Overview: generative/autoregressive/README.md
       - GAN (Optional):
           - Overview: generative/gan/README.md
-
-  - Data:
-      - Overview: data/README.md
-      - Data Curation:
-          - Cleaning / Dedup / Filtering: data/curation/clean-dedup-filter.md
-          - Mixture & Sampling: data/curation/mixture-sampling.md
-          - Licensing / Copyright (Intro): data/curation/licensing.md
-      - Instruction / Preference Data:
-          - Instruction Tuning Data: data/instruction/it-data.md
-          - Preference Data (RLHF/DPO): data/preference/preference-data.md
-          - Synthetic Data: data/synthetic/synthetic-data.md
-      - Multimodal Data:
-          - Image-Text: data/mm/image-text.md
-          - Video-Text: data/mm/video-text.md
-          - Audio-Text: data/mm/audio-text.md
-      - Tooling:
-          - Datasets / WebDataset / HF Datasets: data/tooling/datasets.md
 
   - Training & Finetuning:
       - Overview: training/README.md

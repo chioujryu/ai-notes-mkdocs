@@ -99,8 +99,6 @@ CLIP 能夠在圖像與文字的交互中進行分析，支持多模態問答系
 
 ### **對比式預訓練 (Contrastive Pre-training)**
 
-![alt text](../../llm/assets/transformer/transformer-06.png)
-
 #### **1️⃣ 輸入資料**
 
 我們假設有 **3 張圖片**（I₁, I₂, I₃）與 **3 段文字**（T₁, T₂, T₃），目標是讓對應的圖片與文字在 embedding 空間中距離最近（相似度最高）。

@@ -1,0 +1,14 @@
+[project]
+name = "ai-notes-mkdocs"
+version = "0.1.0"
+description = "AI notes documentation site built with MkDocs Material."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "mkdocs[i18n]>=1.6,<2",
+    "mkdocs-material>=9,<10",
+    "pymdown-extensions>=10,<11",
+]
+
+[tool.uv]
+package = false

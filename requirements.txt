@@ -1,15 +1,7 @@
-# MkDocs 核心套件
-mkdocs>=1.5.0
+# pip fallback for Read the Docs or environments that cannot use uv.
+# Local development and CI should prefer:
+#   uv sync --locked
 
-# Material for MkDocs 主題
-mkdocs-material>=9.0.0
-
-# 國際化支持（用於中文語言配置）
-mkdocs[i18n]>=1.5.0
-
-# Markdown 擴展套件
-# 用於數學公式、語法高亮、任務列表、刪除線、上標、下標等功能
-pymdown-extensions>=10.0.0
-
-# Markdown 擴展（admonition 支持）
-markdown>=3.4.0
+mkdocs[i18n]>=1.6,<2
+mkdocs-material>=9,<10
+pymdown-extensions>=10,<11
